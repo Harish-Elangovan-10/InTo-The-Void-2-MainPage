@@ -1,276 +1,71 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Space+Mono:wght@400;700&amp;family=JetBrains+Mono:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="assets/css/responsive.css" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "primary-fixed-dim": "#00dbe9",
-                    "outline": "#849495",
-                    "on-secondary-container": "#480063",
-                    "error-container": "#93000a",
-                    "inverse-surface": "#e2e2e2",
-                    "on-background": "#e2e2e2",
-                    "primary-fixed": "#7df4ff",
-                    "tertiary-fixed": "#ffd7f5",
-                    "secondary": "#ecb1ff",
-                    "on-error": "#690005",
-                    "secondary-fixed": "#f9d8ff",
-                    "primary-container": "#00f0ff",
-                    "inverse-primary": "#006970",
-                    "inverse-on-surface": "#303030",
-                    "tertiary": "#fff3f9",
-                    "tertiary-container": "#ffc9f4",
-                    "surface": "#131313",
-                    "surface-container-lowest": "#0e0e0e",
-                    "primary": "#dbfcff",
-                    "on-tertiary": "#5b005b",
-                    "secondary-container": "#d05bff",
-                    "on-error-container": "#ffdad6",
-                    "on-primary-container": "#006970",
-                    "surface-container-high": "#2a2a2a",
-                    "on-tertiary-fixed": "#380038",
-                    "outline-variant": "#3b494b",
-                    "surface-container-highest": "#353535",
-                    "surface-bright": "#393939",
-                    "on-tertiary-container": "#a900a9",
-                    "surface-dim": "#131313",
-                    "on-surface": "#e2e2e2",
-                    "on-secondary": "#520070",
-                    "on-primary": "#00363a",
-                    "surface-tint": "#00dbe9",
-                    "on-secondary-fixed-variant": "#75009e",
-                    "surface-variant": "#353535",
-                    "error": "#ffb4ab",
-                    "secondary-fixed-dim": "#ecb1ff",
-                    "on-surface-variant": "#b9cacb",
-                    "on-primary-fixed-variant": "#004f54",
-                    "tertiary-fixed-dim": "#ffabf3",
-                    "on-tertiary-fixed-variant": "#810081",
-                    "surface-container-low": "#1b1b1b",
-                    "on-primary-fixed": "#002022",
-                    "surface-container": "#1f1f1f",
-                    "background": "#131313",
-                    "on-secondary-fixed": "#320046"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "margin-mobile": "16px",
-                    "base": "8px",
-                    "gutter": "24px",
-                    "grid-columns": "12",
-                    "margin-desktop": "64px"
-            },
-            "fontFamily": {
-                    "label-caps": ["Space Mono"],
-                    "headline-lg": ["Space Grotesk"],
-                    "body-md": ["JetBrains Mono"],
-                    "display-lg": ["Space Grotesk"],
-                    "headline-lg-mobile": ["Space Grotesk"],
-                    "headline-xl": ["Space Grotesk"],
-                    "body-lg": ["JetBrains Mono"]
-            },
-            "fontSize": {
-                    "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.15em", "fontWeight": "700"}],
-                    "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                    "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
-                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
-                    "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
-            }
-          },
-        },
-      }
-    </script>
+<title>404 - Page Not Found</title>
+<link href="https://fonts.googleapis.com/css2?family=Arvo&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
-        body {
-            background-color: #000000;
-            overflow-x: hidden;
-        }
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 4px, 3px 100%;
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0.03;
-        }
-        .glitch-text {
-            text-shadow: 2px 0 #00dbe9, -2px 0 #d05bff;
-        }
-        .glass-panel {
-            background: rgba(10, 10, 11, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 219, 233, 0.3);
-            box-shadow: 0 0 20px rgba(0, 219, 233, 0.1);
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        @keyframes walk-forward {
-            from { transform: translate(-50%, 0) scale(0.9); opacity: 0.7; }
-            to { transform: translate(-50%, 0) scale(1.1); opacity: 1; }
-        }
-        @keyframes mouth-talk {
-            0%, 100% { clip-path: inset(0 0 0 0); }
-            20% { clip-path: inset(2% 5% 2% 5%); }
-            40% { clip-path: inset(0 2% 0 2%); }
-            60% { clip-path: inset(3% 0 3% 0%); }
-            80% { clip-path: inset(1% 4% 1% 4%); }
-        }
-        .doom-animation {
-            animation: walk-forward 12s ease-in-out infinite alternate;
-        }
-        .talking-mask {
-            animation: mouth-talk 0.3s steps(2) infinite;
-        }
-    </style>
+/*======================
+    404 page
+=======================*/
+
+.page_404{ padding:40px 0; background:#fff; font-family: 'Arvo', serif;
+}
+
+.page_404  img{ width:100%;}
+
+.four_zero_four_bg{
+ 
+ background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+    height: 400px;
+    background-position: center;
+ }
+ 
+ 
+ .four_zero_four_bg h1{
+ font-size:80px;
+ }
+ 
+  .four_zero_four_bg h3{
+			 font-size:80px;
+			 }
+			 
+			 .link_404{			 
+	color: #fff!important;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;}
+	.contant_box_404{ margin-top:-50px;}
+</style>
 </head>
-<body class="font-body-md text-on-surface selection:bg-primary-container selection:text-on-primary-container">
-<div class="scanlines"></div>
-<!-- TopNavBar -->
-<nav class="fixed top-0 left-0 w-full z-[100] flex justify-between items-center px-margin-mobile md:px-margin-desktop h-20 max-w-[1440px] mx-auto bg-surface/80 backdrop-blur-xl border-b border-primary/30 shadow-[0_0_15px_rgba(0,219,233,0.3)]">
-<div class="font-display-lg text-headline-lg font-black text-primary dark:text-primary-fixed-dim uppercase italic">
-            Into the Void 2.0
-        </div>
-<div class="hidden md:flex items-center gap-gutter">
-<a class="font-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Events</a>
-<a class="font-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Workshops</a>
-<a class="font-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Sponsors</a>
-<a class="font-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">FAQ</a>
-<a class="font-label-caps text-on-surface-variant hover:text-primary transition-colors duration-300" href="#">Contact</a>
-</div>
-<div class="flex items-center gap-4">
-<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/10 p-2 rounded-full transition-all">notifications</span>
-<span class="material-symbols-outlined text-primary cursor-pointer hover:bg-primary/10 p-2 rounded-full transition-all">terminal</span>
-<button class="hidden lg:block bg-primary-container text-on-primary-container px-6 py-2 font-label-caps hover:skew-x-12 hover:scale-95 transition-all">
-                COMMAND CENTER
-            </button>
-</div>
-</nav>
-<!-- Main Content Canvas -->
-<main class="relative min-h-screen pt-20 flex flex-col items-center justify-center px-margin-mobile md:px-margin-desktop bg-black">
-<!-- Cinematic Background Asset: Citadel at the End of Time -->
-<div class="absolute inset-0 z-0 overflow-hidden">
-<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 z-10"></div>
-<img class="w-full h-full object-cover filter saturate-[0.7] brightness-[0.4] contrast-125" data-alt="A high-fidelity cinematic representation of the Citadel at the End of Time. A grand, crumbling throne made of dark, veined gold and black stone sits in a vast hall. The background features a cosmic void with swirling temporal energy in gold and deep purple. Large cracked windows reveal a chaotic nebula. The floor is polished dark obsidian reflecting the golden light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbkmYg7tPaB-As55FTvB_8o77P3AvctGtutLiuyEnJMth3CvcSQ3IvLPjgYWounE3NYeMqGHjSOqyexD2c1-vQfmUXBpdDjEVLD8g_6AykdSGJwaUMkhYKb9cfJimitt-Is6Z5FRJO8xc7yBhCLeHd9JpRJATOwwhHYmyd5jZwljWYZ0JNXX9pWvin3nFCHM3nxhazzi7l3RATuk297VftaMYygPmgSlx8bH79pK46L-DfaOJzQUTu1MDt8MUqddb0dLL8nJwihvs"/>
-<!-- Dr. Doom Foreground Character -->
-<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-[80%] z-20 pointer-events-none doom-animation">
-<div class="relative w-full h-full">
-<img class="w-full h-full object-contain filter drop-shadow-[0_0_50px_rgba(208,91,255,0.4)]" data-alt="A high-quality, cinematic image of Dr. Doom in a commanding walking pose, wearing his iconic green hooded cloak and silver metallic armor, masked to fit seamlessly into the Citadel foreground." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKhf5oHnLDjQe1v2Ooxyo6KtT-2edm4vY50lEytoz8JUe39veumbPoN52zWtW1ewe-RRUkAUjTnAiM1sgvwaElx1At5iLu1AfKadYdyJ0hw7_a-gNpFjw1z0sk3xnf4lv0sDnuztTV21efaDpML6cq7YW47-ryaQBkBiI--qcwc7jaI1GTpnhTe_75Em1-oD9IIRVrXCkh3jQG0hA7ScbvsNoUV0akiN7bpqFAB4he85y_q11lbQ_oJoTWFfiKSVKp9DiFT0k6fl4"/>
-<!-- Mouth Animation Overlay (Conceptual) -->
-<div class="absolute top-[18%] left-[45%] w-10 h-6 bg-black/20 mix-blend-multiply talking-mask blur-sm"></div>
-</div>
-</div>
-</div>
-<!-- 404 Hero Section -->
-<div class="relative z-30 w-full max-w-4xl text-center space-y-8 py-12">
-<div class="inline-block px-4 py-1 glass-panel border-secondary/40 text-secondary font-label-caps text-[10px] mb-4">
-                STATUS: [TIMELINE_FRACTURED]
-            </div>
-<div class="relative inline-block">
-<h1 class="font-display-lg text-[120px] md:text-[220px] leading-none font-black tracking-tighter italic glitch-text text-primary opacity-90">
-                    404
-                </h1>
-<!-- Digital Dust Particles Decoration -->
-<div class="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 blur-2xl rounded-full"></div>
-<div class="absolute top-1/2 -left-12 w-32 h-1 bg-secondary shadow-[0_0_10px_#d05bff] rotate-12"></div>
-</div>
-<div class="space-y-4">
-<h2 class="font-headline-xl text-primary-fixed-dim uppercase tracking-widest glitch-text">
-                    PROTOCOL_FAILURE: DIMENSION_NOT_FOUND
-                </h2>
-<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto drop-shadow-lg">
-                    You have reached the <span class="text-secondary font-bold">Citadel at the End of Time</span>. Your presence has been neutralized. The coordinates you seek have disintegrated into the digital void.
-                </p>
-</div>
-<!-- Terminal Widget -->
-<div class="max-w-xl mx-auto glass-panel p-6 text-left font-body-md border-primary/20">
-<div class="flex items-center gap-2 mb-4 border-b border-primary/10 pb-2">
-<div class="w-3 h-3 rounded-full bg-error"></div>
-<div class="w-3 h-3 rounded-full bg-secondary"></div>
-<div class="w-3 h-3 rounded-full bg-primary-fixed-dim"></div>
-<span class="ml-auto text-[10px] text-primary/50 font-label-caps">VOID_KERNEL_v2.0.4</span>
-</div>
-<div class="space-y-2 text-primary-fixed-dim/80 text-sm">
-<p class="flex gap-2"><span class="text-secondary">SYSTEM:</span> Locating sector [7f-22-a9]...</p>
-<p class="flex gap-2"><span class="text-error">ERROR:</span> Segment not found in local cache.</p>
-<p class="flex gap-2"><span class="text-secondary">SYSTEM:</span> Initializing dimension collapse protocol.</p>
-<div class="flex items-center gap-1">
-<span class="text-primary-fixed-dim">&gt;</span>
-<span class="w-2 h-5 bg-primary animate-pulse"></span>
-</div>
-</div>
-</div>
-<!-- CTA -->
-<div class="pt-8">
-<a class="inline-flex items-center gap-3 bg-primary text-on-primary px-10 py-5 font-headline-lg-mobile text-headline-lg-mobile md:text-headline-lg font-bold tracking-tighter uppercase italic hover:skew-x-6 hover:bg-white transition-all shadow-[0_0_30px_rgba(0,219,233,0.4)] group" href="#">
-                    REBOOT_SIMULATION
-                    <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">restart_alt</span>
-</a>
-<div class="mt-6">
-<a class="font-label-caps text-on-surface-variant hover:text-secondary transition-all flex items-center justify-center gap-2" href="#">
-<span class="material-symbols-outlined text-sm">arrow_back</span>
-                        RETURN_TO_STABLE_VERSION
-                    </a>
-</div>
-</div>
-</div>
-<!-- Decorative Elements -->
-<div class="absolute bottom-20 left-20 hidden lg:block opacity-20 z-30">
-<div class="font-label-caps text-[120px] text-primary-fixed-dim select-none pointer-events-none opacity-10 rotate-90 origin-left">VOID</div>
-</div>
-<div class="absolute top-40 right-20 hidden lg:block opacity-20 z-30">
-<div class="border border-secondary w-40 h-40 flex items-center justify-center p-4">
-<span class="material-symbols-outlined text-secondary text-6xl">emergency_home</span>
-</div>
-</div>
-</main>
-<!-- Footer -->
-<footer class="w-full bg-black/95 border-t border-primary/20 py-12 z-40 relative">
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-8">
-<div class="flex flex-col items-center md:items-start gap-2">
-<div class="text-primary font-bold font-display-lg text-headline-lg-mobile uppercase italic">
-                    VOID_CORE
-                </div>
-<div class="font-body-md text-on-surface-variant/60 text-[10px] tracking-widest uppercase">
-                    © 2124 MULTIVERSE_CORE. ALL RIGHTS RESERVED. [RESTRICTED ACCESS]
-                </div>
-</div>
-<div class="flex flex-wrap justify-center gap-gutter">
-<a class="font-label-caps text-on-surface-variant/60 hover:text-primary hover:tracking-[0.3em] transition-all duration-500 uppercase text-xs" href="#">PROTOCOL_TC</a>
-<a class="font-label-caps text-on-surface-variant/60 hover:text-primary hover:tracking-[0.3em] transition-all duration-500 uppercase text-xs" href="#">CONTACT_NODE</a>
-<a class="font-label-caps text-on-surface-variant/60 hover:text-primary hover:tracking-[0.3em] transition-all duration-500 uppercase text-xs" href="#">PRIVACY_ENCRYPT</a>
-<a class="font-label-caps text-on-surface-variant/60 hover:text-primary hover:tracking-[0.3em] transition-all duration-500 uppercase text-xs" href="#">SITEMAP_DIR</a>
-</div>
-<div class="flex gap-4">
-<div class="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary/10 cursor-pointer transition-colors">
-<span class="material-symbols-outlined text-primary text-sm">terminal</span>
-</div>
-<div class="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary/10 cursor-pointer transition-colors">
-<span class="material-symbols-outlined text-primary text-sm">share</span>
-</div>
-</div>
-</div>
-<!-- Bottom Aesthetic Bar -->
-<div class="mt-8 h-1 w-full bg-gradient-to-r from-transparent via-primary/40 to-transparent"></div>
-</footer>
-</body></html>
+<body>
+<section class="page_404">
+	<div class="container">
+		<div class="row">	
+		<div class="col-sm-12 ">
+		<div class="col-sm-10 col-sm-offset-1  text-center">
+		<div class="four_zero_four_bg">
+			<h1 class="text-center ">404</h1>
+		
+		
+		</div>
+		
+		<div class="contant_box_404">
+		<h3 class="h2">
+		Look like you're lost
+		</h3>
+		
+		<p>the page you are looking for not avaible!</p>
+		
+		<a href="" class="link_404">Go to Home</a>
+	</div>
+		</div>
+		</div>
+		</div>
+	</div>
+</section>
+</body>
+</html>
