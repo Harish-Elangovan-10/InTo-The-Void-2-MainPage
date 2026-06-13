@@ -314,3 +314,32 @@ canvas {
         transform: rotate(360deg);
     }
 }
+
+/* Gaming Style Globals */
+@keyframes rgb-border {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.gaming-clip {
+    clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+}
+
+.gaming-input-clip {
+    clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.rgb-gradient-bg {
+    background-image: linear-gradient(to right, #00dbe9, #d05bff, #00dbe9);
+    background-size: 200% 200%;
+    animation: rgb-border 3s ease infinite;
+}
+
+.gaming-glow-cyan {
+    text-shadow: 2px 0 #00dbe9, -2px 0 #d05bff;
+}
+
+.gaming-glow-magenta {
+    text-shadow: 2px 0 #d05bff, -2px 0 #00dbe9;
+}

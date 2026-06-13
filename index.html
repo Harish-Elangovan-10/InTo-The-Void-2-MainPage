@@ -257,88 +257,167 @@
 
             </div>
         </section>
-        <!-- Bento Grid: Cyber Security Branding -->
-        <section class="py-24 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-                <!-- Large Feature Card -->
-                <div
-                    class="md:col-span-8 bg-surface-container-low/40 backdrop-blur-2xl border border-primary/10 p-8 flex flex-col justify-between min-h-[400px] relative overflow-hidden group">
-                    <div
-                        class="absolute top-0 right-0 p-4 font-body-md text-[10px] text-primary/20 uppercase tracking-widest">
-                        ENCRYPTION: AES-512_X</div>
-                    <div>
-                        <div class="w-12 h-1 bg-primary mb-6"></div>
-                        <h3 class="font-display-lg text-headline-xl text-white mb-4">Neural Architecture Security</h3>
-                        <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
-                            Protecting the collective consciousness of the multiverse requires more than traditional
-                            firewalls. Our proprietary Neural Grid defense system intercepts temporal anomalies before
-                            they manifest.
-                        </p>
+        <!-- ── HYPER SCROLL: Embedded Inline 3D Section ── -->
+        <!-- This container is TALL so scrolling drives the 3D camera. The viewport inside is sticky. -->
+        <section id="hyper-inline" style="position:relative; height:400vh; background:#030303;">
+
+            <!-- Sticky 3D viewport — stays pinned while user scrolls through the 400vh container -->
+            <div id="hi-viewport" style="
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                perspective: 1000px;
+                z-index: 2;
+                background: #030303;
+            ">
+                <!-- CRT Scanlines overlay -->
+                <div style="position:absolute;inset:0;background:repeating-linear-gradient(to bottom,transparent 0,transparent 2px,rgba(0,0,0,0.18) 2px,rgba(0,0,0,0.18) 4px);pointer-events:none;z-index:10;"></div>
+                <!-- Vignette overlay -->
+                <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 50%,#000 130%);pointer-events:none;z-index:11;"></div>
+
+                <!-- HUD -->
+                <div style="position:absolute;inset:2rem;z-index:20;pointer-events:none;display:flex;flex-direction:column;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:.1em;">
+                    <div style="display:flex;justify-content:space-between;align-items:center;width:100%;">
+                        <span>NEURAL_GRID // ACTIVE</span>
+                        <div style="flex:1;height:1px;background:rgba(255,255,255,0.2);margin:0 1rem;position:relative;"><div style="position:absolute;right:-1px;top:-2px;width:5px;height:5px;background:#ff003c;"></div></div>
+                        <span>VEL&nbsp;<strong id="hi-vel" style="color:#00f3ff;">0.00</strong></span>
                     </div>
-                    <div class="flex items-center gap-6 mt-8">
-                        <div class="flex flex-col">
-                            <span class="font-label-caps text-[10px] text-on-surface-variant">THREAT_LEVEL</span>
-                            <span class="font-body-lg text-error font-bold tracking-tighter">CRITICAL</span>
-                        </div>
-                        <div class="flex flex-col border-l border-white/10 pl-6">
-                            <span class="font-label-caps text-[10px] text-on-surface-variant">ACTIVE_NODES</span>
-                            <span class="font-body-lg text-primary font-bold tracking-tighter">1,024,892</span>
-                        </div>
+                    <div style="writing-mode:vertical-rl;transform:rotate(180deg);align-self:flex-start;margin:auto 0;">
+                        DEPTH // <strong id="hi-coord" style="color:#00f3ff;">0</strong>
                     </div>
-                    <div
-                        class="absolute bottom-0 right-0 opacity-10 pointer-events-none group-hover:opacity-20 transition-opacity">
-                        <span class="material-symbols-outlined text-[200px]"
-                            style="font-variation-settings: 'FILL' 1;">security</span>
-                    </div>
-                </div>
-                <!-- Small Info Card 1 -->
-                <div
-                    class="md:col-span-4 bg-surface-container-highest/30 backdrop-blur-xl border border-secondary/20 p-8 flex flex-col items-center text-center justify-center gap-4 group hover:border-secondary transition-all">
-                    <span class="material-symbols-outlined text-secondary text-5xl">key</span>
-                    <h4 class="font-headline-lg text-white">Encrypted Vaults</h4>
-                    <p class="font-body-md text-body-md text-on-surface-variant">Secure your digital assets in the
-                        deepest layers of the obsidian core.</p>
-                </div>
-                <!-- Small Info Card 2 -->
-                <div
-                    class="md:col-span-4 bg-surface-container-highest/30 backdrop-blur-xl border border-primary/20 p-8 flex flex-col items-center text-center justify-center gap-4 group hover:border-primary transition-all">
-                    <span class="material-symbols-outlined text-primary text-5xl">wifi_tethering</span>
-                    <h4 class="font-headline-lg text-white">Node Syncing</h4>
-                    <p class="font-body-md text-body-md text-on-surface-variant">Real-time synchronization across 24
-                        parallel dimensions.</p>
-                </div>
-                <!-- Medium Feature Card -->
-                <div
-                    class="md:col-span-8 bg-surface-container-low/40 backdrop-blur-2xl border border-tertiary/10 p-8 relative overflow-hidden">
-                    <div class="flex flex-col md:flex-row gap-8 items-center">
-                        <div class="w-full md:w-1/2">
-                            <h3 class="font-headline-xl text-white mb-4 italic">Operator HUD</h3>
-                            <p class="font-body-md text-body-md text-on-surface-variant mb-6">
-                                The ultimate dashboard for the modern multiverse architect. Monitor system vitals,
-                                deploy security patches, and manage inter-dimensional assets.
-                            </p>
-                            <button
-                                class="font-label-caps text-label-caps text-tertiary-fixed-dim flex items-center gap-2 hover:translate-x-2 transition-transform">
-                                ACCESS_DASHBOARD <span class="material-symbols-outlined">arrow_right_alt</span>
-                            </button>
-                        </div>
-                        <div
-                            class="w-full md:w-1/2 bg-black/60 p-4 border border-tertiary/20 font-body-md text-[12px] text-tertiary leading-relaxed">
-                            <div class="flex justify-between border-b border-tertiary/20 pb-1 mb-2">
-                                <span>$ root_access --force</span>
-                                <span class="text-on-surface-variant">PID: 8821</span>
-                            </div>
-                            <div class="text-on-surface-variant">
-                                &gt; scanning dimensions... [DONE]<br />
-                                &gt; detecting anomalies... [3 FOUND]<br />
-                                &gt; initiating containment... [98%]<br />
-                                &gt; <span class="animate-pulse">_</span>
-                            </div>
-                        </div>
+                    <div style="display:flex;justify-content:space-between;align-items:center;width:100%;">
+                        <span>INTO THE VOID 2.0</span>
+                        <div style="flex:1;height:1px;background:rgba(255,255,255,0.2);margin:0 1rem;position:relative;"><div style="position:absolute;right:-1px;top:-2px;width:5px;height:5px;background:#ff003c;"></div></div>
+                        <span>VER&nbsp;2.0.4&nbsp;[BETA]</span>
                     </div>
                 </div>
+
+                <!-- The 3D world -->
+                <div id="hi-world" style="position:absolute;top:50%;left:50%;transform-style:preserve-3d;will-change:transform;"></div>
             </div>
+
+            <style>
+                .hi-item { position:absolute;left:0;top:0;backface-visibility:hidden;transform-origin:center;display:flex;align-items:center;justify-content:center; }
+                .hi-card { width:300px;height:430px;background:rgba(8,8,8,0.5);border:1px solid rgba(255,255,255,0.1);padding:1.8rem;display:flex;flex-direction:column;justify-content:space-between;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 20px 60px rgba(0,0,0,0.6);transform:translate(-50%,-50%);transition:border-color .3s,box-shadow .3s;position:relative; }
+                .hi-card:hover { border-color:#ff003c;box-shadow:0 0 40px rgba(255,0,60,.25); }
+                .hi-big { font-size:14vw;font-weight:800;color:rgba(255,255,255,.06);-webkit-text-stroke:2px rgba(255,255,255,.85);text-transform:uppercase;white-space:nowrap;transform:translate(-50%,-50%);pointer-events:none;letter-spacing:-.05em;font-family:'Syncopate',sans-serif;user-select:none; }
+                .hi-star { position:absolute;width:2px;height:2px;background:rgba(255,255,255,.9);transform:translate(-50%,-50%);border-radius:50%; }
+            </style>
         </section>
+
+        <script>
+        (function() {
+            const ITEM_COUNT = 20, STAR_COUNT = 160, Z_GAP = 800;
+            const LOOP_SIZE = ITEM_COUNT * Z_GAP, CAM_SPEED = 2.2;
+            const TEXTS = ["IMPACT","VELOCITY","BRUTAL","SYSTEM","FUTURE","DESIGN","PIXEL","HYPER","NEON","VOID"];
+
+            let mouseX = 0, mouseY = 0, vel = 0, targetVel = 0;
+            const world = document.getElementById('hi-world');
+            const vp    = document.getElementById('hi-viewport');
+            const elVel = document.getElementById('hi-vel');
+            const elCo  = document.getElementById('hi-coord');
+            const items = [];
+
+            // Build items
+            for (let i = 0; i < ITEM_COUNT; i++) {
+                const wrap = document.createElement('div');
+                wrap.className = 'hi-item';
+                if (i % 4 === 0) {
+                    const t = document.createElement('div');
+                    t.className = 'hi-big';
+                    t.textContent = TEXTS[i % TEXTS.length];
+                    wrap.appendChild(t);
+                    items.push({ el: wrap, type: 'text', x: 0, y: 0, rot: 0, baseZ: -i * Z_GAP });
+                } else {
+                    const c = document.createElement('div');
+                    c.className = 'hi-card';
+                    c.innerHTML = `
+                        <div style="font-family:'JetBrains Mono',monospace;color:#ff003c;font-size:.75rem;letter-spacing:.1em;">ID-${Math.floor(Math.random()*9999).toString().padStart(4,'0')}</div>
+                        <div style="font-size:2rem;font-weight:700;text-transform:uppercase;color:#fff;line-height:.95;">${TEXTS[i % TEXTS.length]}</div>
+                        <div style="font-family:'JetBrains Mono',monospace;font-size:.65rem;color:rgba(255,255,255,.35);display:flex;justify-content:space-between;">
+                            <span>GRID ${Math.floor(Math.random()*9)}x${Math.floor(Math.random()*9)}</span>
+                            <span>${(Math.random()*100).toFixed(1)} MB</span>
+                        </div>
+                        <div style="position:absolute;bottom:1.5rem;right:1.5rem;font-size:3rem;font-weight:900;opacity:.06;line-height:1;">0${i}</div>`;
+                    wrap.appendChild(c);
+                    const angle = (i / ITEM_COUNT) * Math.PI * 6;
+                    items.push({ el: wrap, type: 'card',
+                        x: Math.cos(angle) * (window.innerWidth * .27),
+                        y: Math.sin(angle) * (window.innerHeight * .27),
+                        rot: (Math.random() - .5) * 28, baseZ: -i * Z_GAP });
+                }
+                world.appendChild(wrap);
+            }
+            for (let i = 0; i < STAR_COUNT; i++) {
+                const s = document.createElement('div');
+                s.className = 'hi-star';
+                world.appendChild(s);
+                items.push({ el: s, type: 'star',
+                    x: (Math.random()-.5)*3000, y: (Math.random()-.5)*3000,
+                    baseZ: -Math.random() * LOOP_SIZE });
+            }
+
+            window.addEventListener('mousemove', e => {
+                mouseX = (e.clientX / window.innerWidth  - .5) * 2;
+                mouseY = (e.clientY / window.innerHeight - .5) * 2;
+            });
+
+            const section = document.getElementById('hyper-inline');
+            let lastSY = window.scrollY;
+
+            function raf(t) {
+                const sy = window.scrollY;
+                const diff = sy - lastSY;
+                lastSY = sy;
+
+                targetVel = Math.min(Math.max(diff, -60), 60);
+                vel += (targetVel - vel) * .1;
+
+                if (elVel) elVel.textContent = Math.abs(vel).toFixed(2);
+                if (elCo)  elCo.textContent  = Math.round(sy);
+
+                // Camera tilt
+                world.style.transform = `rotateX(${mouseY * 4 - vel * .4}deg) rotateY(${mouseX * 4}deg)`;
+                vp.style.perspective = `${Math.max(400, 1000 - Math.abs(vel) * 8)}px`;
+
+                // Camera Z driven by scroll position relative to section
+                const sectionTop = section.offsetTop;
+                const progress = Math.max(0, sy - sectionTop);
+                const cameraZ = progress * CAM_SPEED;
+
+                items.forEach(item => {
+                    let vizZ = ((item.baseZ + cameraZ) % LOOP_SIZE + LOOP_SIZE) % LOOP_SIZE;
+                    if (vizZ > 600) vizZ -= LOOP_SIZE;
+
+                    let alpha = 1;
+                    if (vizZ < -3000)      alpha = 0;
+                    else if (vizZ < -2000) alpha = (vizZ + 3000) / 1000;
+                    if (vizZ > 100 && item.type !== 'star') alpha = 1 - (vizZ - 100) / 400;
+                    if (alpha <= 0) { item.el.style.opacity = 0; return; }
+                    item.el.style.opacity = alpha;
+
+                    let tr = `translate3d(${item.x}px,${item.y}px,${vizZ}px)`;
+                    if (item.type === 'star') {
+                        tr += ` scale3d(1,1,${Math.max(1, Math.min(1 + Math.abs(vel)*.15, 12))})`;
+                    } else if (item.type === 'text') {
+                        tr += ` rotateZ(${item.rot}deg)`;
+                        const ch = item.el.firstChild;
+                        if (ch) ch.style.textShadow = Math.abs(vel) > .5
+                            ? `${vel*2.5}px 0 #ff003c,${-vel*2.5}px 0 #00f3ff` : 'none';
+                    } else {
+                        tr += ` rotateZ(${item.rot}deg) rotateY(${Math.sin(t*.0008 + item.x*.01)*8}deg)`;
+                    }
+                    item.el.style.transform = tr;
+                });
+
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+        })();
+        </script>
+
         <!-- Holographic Wall: Sponsors -->
         <section class="py-24 bg-black/40 relative">
             <div class="absolute inset-0 bg-gradient-to-t from-secondary/5 to-transparent"></div>
