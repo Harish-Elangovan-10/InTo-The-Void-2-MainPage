@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Into the Void 2.0 | Multiverse of the Matrix</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="assets/css/responsive.css" rel="stylesheet"/>
-<style>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Into the Void 2.0</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Mono:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="assets/css/responsive.css" rel="stylesheet" />
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
+
         body {
             background-color: #000000;
             background-image: radial-gradient(circle at 50% 50%, #0a0a0b 0%, #000000 100%);
             overflow-x: hidden;
         }
+
         .scanline {
             position: fixed;
             top: 0;
@@ -28,9 +36,11 @@
             z-index: 999;
             pointer-events: none;
         }
+
         .glitch-border {
             position: relative;
         }
+
         .glitch-border::after {
             content: '';
             position: absolute;
@@ -40,389 +50,474 @@
             opacity: 0.3;
         }
     </style>
-<script id="tailwind-config">
+    <script id="tailwind-config">
         tailwind.config = {
-          darkMode: "class",
-          theme: {
-            extend: {
-              "colors": {
-                      "on-primary": "#00363a",
-                      "on-tertiary-fixed": "#380038",
-                      "tertiary-fixed-dim": "#ffabf3",
-                      "on-secondary-fixed-variant": "#75009e",
-                      "inverse-primary": "#006970",
-                      "secondary": "#ecb1ff",
-                      "on-background": "#e2e2e2",
-                      "on-error-container": "#ffdad6",
-                      "on-tertiary-container": "#a900a9",
-                      "inverse-on-surface": "#303030",
-                      "error": "#ffb4ab",
-                      "on-primary-container": "#006970",
-                      "surface-container": "#1f1f1f",
-                      "surface-container-highest": "#353535",
-                      "error-container": "#93000a",
-                      "secondary-container": "#d05bff",
-                      "primary-container": "#00f0ff",
-                      "surface-bright": "#393939",
-                      "surface-container-lowest": "#0e0e0e",
-                      "on-surface-variant": "#b9cacb",
-                      "tertiary-fixed": "#ffd7f5",
-                      "tertiary": "#fff3f9",
-                      "primary-fixed": "#7df4ff",
-                      "on-secondary": "#520070",
-                      "on-error": "#690005",
-                      "outline": "#849495",
-                      "surface-dim": "#131313",
-                      "on-primary-fixed-variant": "#004f54",
-                      "inverse-surface": "#e2e2e2",
-                      "tertiary-container": "#ffc9f4",
-                      "surface-container-low": "#1b1b1b",
-                      "background": "#131313",
-                      "surface-variant": "#353535",
-                      "on-secondary-container": "#480063",
-                      "surface-tint": "#00dbe9",
-                      "outline-variant": "#3b494b",
-                      "primary": "#dbfcff",
-                      "on-tertiary-fixed-variant": "#810081",
-                      "secondary-fixed-dim": "#ecb1ff",
-                      "primary-fixed-dim": "#00dbe9",
-                      "on-secondary-fixed": "#320046",
-                      "on-primary-fixed": "#002022",
-                      "surface-container-high": "#2a2a2a",
-                      "surface": "#131313",
-                      "on-tertiary": "#5b005b",
-                      "on-surface": "#e2e2e2",
-                      "secondary-fixed": "#f9d8ff"
-              },
-              "borderRadius": {
-                      "DEFAULT": "0.25rem",
-                      "lg": "0.5rem",
-                      "xl": "0.75rem",
-                      "full": "9999px"
-              },
-              "spacing": {
-                      "margin-mobile": "16px",
-                      "grid-columns": "12",
-                      "margin-desktop": "64px",
-                      "gutter": "24px",
-                      "base": "8px"
-              },
-              "fontFamily": {
-                      "body-md": ["JetBrains Mono"],
-                      "label-caps": ["Space Mono"],
-                      "headline-lg": ["Space Grotesk"],
-                      "headline-lg-mobile": ["Space Grotesk"],
-                      "display-lg": ["Space Grotesk"],
-                      "body-lg": ["JetBrains Mono"],
-                      "headline-xl": ["Space Grotesk"]
-              },
-              "fontSize": {
-                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                      "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.15em", "fontWeight": "700"}],
-                      "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                      "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
-                      "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
-                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                      "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
-              }
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary": "#00363a",
+                        "on-tertiary-fixed": "#380038",
+                        "tertiary-fixed-dim": "#ffabf3",
+                        "on-secondary-fixed-variant": "#75009e",
+                        "inverse-primary": "#006970",
+                        "secondary": "#ecb1ff",
+                        "on-background": "#e2e2e2",
+                        "on-error-container": "#ffdad6",
+                        "on-tertiary-container": "#a900a9",
+                        "inverse-on-surface": "#303030",
+                        "error": "#ffb4ab",
+                        "on-primary-container": "#006970",
+                        "surface-container": "#1f1f1f",
+                        "surface-container-highest": "#353535",
+                        "error-container": "#93000a",
+                        "secondary-container": "#d05bff",
+                        "primary-container": "#00f0ff",
+                        "surface-bright": "#393939",
+                        "surface-container-lowest": "#0e0e0e",
+                        "on-surface-variant": "#b9cacb",
+                        "tertiary-fixed": "#ffd7f5",
+                        "tertiary": "#fff3f9",
+                        "primary-fixed": "#7df4ff",
+                        "on-secondary": "#520070",
+                        "on-error": "#690005",
+                        "outline": "#849495",
+                        "surface-dim": "#131313",
+                        "on-primary-fixed-variant": "#004f54",
+                        "inverse-surface": "#e2e2e2",
+                        "tertiary-container": "#ffc9f4",
+                        "surface-container-low": "#1b1b1b",
+                        "background": "#131313",
+                        "surface-variant": "#353535",
+                        "on-secondary-container": "#480063",
+                        "surface-tint": "#00dbe9",
+                        "outline-variant": "#3b494b",
+                        "primary": "#dbfcff",
+                        "on-tertiary-fixed-variant": "#810081",
+                        "secondary-fixed-dim": "#ecb1ff",
+                        "primary-fixed-dim": "#00dbe9",
+                        "on-secondary-fixed": "#320046",
+                        "on-primary-fixed": "#002022",
+                        "surface-container-high": "#2a2a2a",
+                        "surface": "#131313",
+                        "on-tertiary": "#5b005b",
+                        "on-surface": "#e2e2e2",
+                        "secondary-fixed": "#f9d8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "grid-columns": "12",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["JetBrains Mono"],
+                        "label-caps": ["Space Mono"],
+                        "headline-lg": ["Space Grotesk"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "display-lg": ["Space Grotesk"],
+                        "body-lg": ["JetBrains Mono"],
+                        "headline-xl": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.15em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                },
             },
-          },
         }
     </script>
 </head>
+
 <body class="bg-black text-on-surface selection:bg-primary-container selection:text-on-primary-container">
-<div class="scanline"></div>
-<!-- TopNavBar -->
-<header class="liquid-navbar">
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-full border border-primary/40 bg-surface-container-lowest flex items-center justify-center shadow-[0_0_10px_rgba(0,219,233,0.2)]">
-<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">hive</span>
-</div>
-<span class="font-display-lg text-headline-lg font-black text-primary dark:text-primary-fixed-dim uppercase italic">Into the Void 2.0</span>
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-primary border-b-2 border-primary-container pb-1 drop-shadow-[0_0_8px_#00dbe9] font-label-caps text-label-caps" href="index.html">Home</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="event.html">Event</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="fee.html">Registration</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="sponsors.html">Sponser</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="contact.html">Contect</a>
-</nav>
-<div class="flex items-center">
-<div class="w-10 h-10 rounded-full border border-secondary/40 bg-secondary/10 flex items-center justify-center overflow-hidden shadow-[0_0_10px_rgba(208,91,255,0.2)]">
-<span class="material-symbols-outlined text-secondary text-xl">person</span>
-</div>
-</div>
-</div>
-</header>
-<main class="pt-20">
-<!-- Hero Section: Fractured Multiverse -->
-<section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-24 px-margin-mobile md:px-margin-desktop">
-<div class="absolute inset-0 z-0">
-<img alt="Hero Background" class="w-full h-full object-cover opacity-40 mix-blend-screen" data-alt="A cinematic, ultra-detailed cyberpunk landscape showing a fractured digital reality with floating obsidian shards. Intense neon cyan and deep magenta energy beams cut through a dark, foggy atmosphere. High contrast lighting creates a sharp, holographic workspace feel with subtle chromatic aberration at the edges of the frame." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK14tJeXq3wH4JVJt7ZOXRAvJ0jFQo0xBJleVqtoAlljACeGlnpHfleBsoBrHMWmVhWXtz0Ppwj0gdIJMyz9EEF3welJAVrioiZ77a5T_exEYxKG4HXtRujRfgTQFj4Ib084pbatD7yL024znrlIS8XHAUPg7hNsgJ8LvY-oekd9UMuYc5Wrhws6oh6nL4sN8RN9lqtz4UqTJZx5F92fplfxNHXc0elCh0I91aPJdQLHdCA6xZmUUBJskCNWrTEoktrctiGi0UuLk"/>
-<div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
-</div>
-<div class="relative z-10 text-center max-w-4xl">
-<div class="inline-block px-4 py-1 mb-6 border border-primary/50 bg-primary/10 backdrop-blur-md">
-<span class="font-label-caps text-label-caps text-primary uppercase tracking-[0.3em]">SYSTEM STATUS: BREACH DETECTED</span>
-</div>
-<h1 class="font-display-lg text-headline-lg-mobile md:text-[92px] leading-none font-bold tracking-tighter text-white mb-8">
-                    MULTIVERSE OF THE <span class="text-primary italic">MATRIX</span>
-</h1>
-<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-12">
-                    The simulation is collapsing. Data fragments from parallel nodes are converging into a single critical event. Enter the void and recalibrate the core protocol before synchronization failure.
-                </p>
-<!-- Enhanced Holographic Countdown Timer -->
-<div class="flex flex-wrap justify-center gap-6 md:gap-8 mb-16 px-4">
-    
-    <!-- Days -->
-    <div class="timer-block group">
-        <div class="timer-block-inner">
-            <div class="absolute top-4 font-label-caps text-[9px] text-primary/50 tracking-widest">NODE_01</div>
-            <div id="timer-days" class="font-display-lg text-4xl md:text-5xl text-primary font-black drop-shadow-[0_0_10px_rgba(0,219,233,0.8)]">24</div>
-            <div class="font-label-caps text-[10px] md:text-xs text-on-surface-variant uppercase tracking-[0.2em] mt-1">DAYS</div>
-        </div>
-    </div>
 
-    <!-- Hours -->
-    <div class="timer-block secondary-theme group" style="box-shadow: inset 0 0 20px rgba(208,91,255,0.2), 0 5px 15px rgba(0,0,0,0.6); border-color: rgba(208,91,255,0.3);">
-        <div class="timer-block-inner">
-            <div class="absolute top-4 font-label-caps text-[9px] text-secondary/50 tracking-widest">NODE_02</div>
-            <div id="timer-hours" class="font-display-lg text-4xl md:text-5xl text-secondary font-black drop-shadow-[0_0_10px_rgba(208,91,255,0.8)]">08</div>
-            <div class="font-label-caps text-[10px] md:text-xs text-on-surface-variant uppercase tracking-[0.2em] mt-1">HRS</div>
+    <!-- TopNavBar -->
+    <header class="liquid-navbar">
+        <div
+            class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 rounded-full border border-primary/40 bg-surface-container-lowest flex items-center justify-center shadow-[0_0_10px_rgba(0,219,233,0.2)]">
+                    <span class="material-symbols-outlined text-primary text-xl"
+                        style="font-variation-settings: 'FILL' 1;">hive</span>
+                </div>
+                <span
+                    class="font-display-lg text-headline-lg font-black text-primary dark:text-primary-fixed-dim uppercase italic">Into
+                    the Void 2.0</span>
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-primary border-b-2 border-primary-container pb-1 drop-shadow-[0_0_8px_#00dbe9] font-label-caps text-label-caps"
+                    href="index.html">Home</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
+                    href="event.html">Event</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
+                    href="fee.html">Registration</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
+                    href="sponsors.html">Sponser</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
+                    href="contact.html">Contect</a>
+            </nav>
+            <div class="flex items-center">
+                <div
+                    class="w-10 h-10 rounded-full border border-secondary/40 bg-secondary/10 flex items-center justify-center overflow-hidden shadow-[0_0_10px_rgba(208,91,255,0.2)]">
+                    <span class="material-symbols-outlined text-secondary text-xl">person</span>
+                </div>
+            </div>
         </div>
-    </div>
+    </header>
+    <main class="pt-20">
+        <!-- Hero Section: Fractured Multiverse -->
+        <section
+            class="relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-center overflow-hidden py-12 px-margin-mobile md:px-margin-desktop">
+            <div class="absolute inset-0 z-0">
+                <img alt="Hero Background" class="w-full h-full object-cover" src="assets/images/bg.jpeg"
+                    style="transform: translateY(-9px);" />
+                <div class="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
+            </div>
+            <div class="relative z-10 text-center max-w-4xl">
 
-    <!-- Minutes -->
-    <div class="timer-block group">
-        <div class="timer-block-inner">
-            <div class="absolute top-4 font-label-caps text-[9px] text-primary/50 tracking-widest">NODE_03</div>
-            <div id="timer-minutes" class="font-display-lg text-4xl md:text-5xl text-primary font-black drop-shadow-[0_0_10px_rgba(0,219,233,0.8)]">42</div>
-            <div class="font-label-caps text-[10px] md:text-xs text-on-surface-variant uppercase tracking-[0.2em] mt-1">MIN</div>
-        </div>
-    </div>
 
-    <!-- Seconds -->
-    <div class="timer-block error-theme group" style="box-shadow: inset 0 0 20px rgba(255,180,171,0.2), 0 5px 15px rgba(0,0,0,0.6); border-color: rgba(255,180,171,0.3);">
-        <div class="timer-block-inner">
-            <div class="absolute top-4 font-label-caps text-[9px] text-error/50 tracking-widest animate-pulse">ERR_SYNC</div>
-            <div id="timer-seconds" class="font-display-lg text-4xl md:text-5xl text-error font-black drop-shadow-[0_0_10px_rgba(255,180,171,0.8)] animate-[pulse_1s_ease-in-out_infinite]">15</div>
-            <div class="font-label-caps text-[10px] md:text-xs text-on-surface-variant uppercase tracking-[0.2em] mt-1">SEC</div>
-        </div>
-    </div>
 
-</div>
-<div class="flex flex-col md:flex-row items-center justify-center gap-6">
-<button class="group relative px-10 py-5 bg-primary-fixed-dim text-on-primary font-label-caps text-label-caps font-bold overflow-hidden transition-all hover:scale-105 active:skew-x-12">
-<span class="relative z-10">INITIALIZE_ENTRY_PROTOCOL</span>
-<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform"></div>
-</button>
-<button class="px-10 py-5 border border-secondary text-secondary font-label-caps text-label-caps hover:bg-secondary/10 transition-all">
-                        VIEW_DATA_LOGS
-                    </button>
-</div>
-</div>
-</section>
-<!-- Bento Grid: Cyber Security Branding -->
-<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-<!-- Large Feature Card -->
-<div class="md:col-span-8 bg-surface-container-low/40 backdrop-blur-2xl border border-primary/10 p-8 flex flex-col justify-between min-h-[400px] relative overflow-hidden group">
-<div class="absolute top-0 right-0 p-4 font-body-md text-[10px] text-primary/20 uppercase tracking-widest">ENCRYPTION: AES-512_X</div>
-<div>
-<div class="w-12 h-1 bg-primary mb-6"></div>
-<h3 class="font-display-lg text-headline-xl text-white mb-4">Neural Architecture Security</h3>
-<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
-                            Protecting the collective consciousness of the multiverse requires more than traditional firewalls. Our proprietary Neural Grid defense system intercepts temporal anomalies before they manifest.
+
+            </div>
+
+            <!-- Enhanced Holographic Countdown Timer -->
+            <div class="absolute bottom-10 left-0 w-full flex flex-wrap justify-center gap-6 md:gap-8 px-4 z-20">
+
+                <!-- Days -->
+                <div class="timer-block group">
+                    <div class="timer-block-inner">
+                        <div class="absolute top-4 font-label-caps text-[9px] text-primary/50 tracking-widest">
+                            NODE_01</div>
+                        <div id="timer-days"
+                            class="font-display-lg text-4xl md:text-5xl text-primary font-black drop-shadow-[0_0_10px_rgba(0,219,233,0.8)]">
+                            24</div>
+                        <div
+                            class="font-label-caps text-[10px] md:text-xs text-on-surface-variant uppercase tracking-[0.2em] mt-1">
+                            DAYS</div>
+                    </div>
+                </div>
+
+                <!-- Hours -->
+                <div class="timer-block secondary-theme group"
+                    style="box-shadow: inset 0 0 20px rgba(208,91,255,0.2), 0 5px 15px rgba(0,0,0,0.6); border-color: rgba(208,91,255,0.3);">
+                    <div class="timer-block-inner">
+                        <div class="absolute top-4 font-label-caps text-[9px] text-secondary/50 tracking-widest">
+                            NODE_02</div>
+                        <div id="timer-hours"
+                            class="font-display-lg text-4xl md:text-5xl text-secondary font-black drop-shadow-[0_0_10px_rgba(208,91,255,0.8)]">
+                            08</div>
+                        <div
+                            class="font-label-caps text-[10px] md:text-xs text-on-surface-variant uppercase tracking-[0.2em] mt-1">
+                            HRS</div>
+                    </div>
+                </div>
+
+                <!-- Minutes -->
+                <div class="timer-block group">
+                    <div class="timer-block-inner">
+                        <div class="absolute top-4 font-label-caps text-[9px] text-primary/50 tracking-widest">
+                            NODE_03</div>
+                        <div id="timer-minutes"
+                            class="font-display-lg text-4xl md:text-5xl text-primary font-black drop-shadow-[0_0_10px_rgba(0,219,233,0.8)]">
+                            42</div>
+                        <div
+                            class="font-label-caps text-[10px] md:text-xs text-on-surface-variant uppercase tracking-[0.2em] mt-1">
+                            MIN</div>
+                    </div>
+                </div>
+
+                <!-- Seconds -->
+                <div class="timer-block error-theme group"
+                    style="box-shadow: inset 0 0 20px rgba(255,180,171,0.2), 0 5px 15px rgba(0,0,0,0.6); border-color: rgba(255,180,171,0.3);">
+                    <div class="timer-block-inner">
+                        <div
+                            class="absolute top-4 font-label-caps text-[9px] text-error/50 tracking-widest animate-pulse">
+                            ERR_SYNC</div>
+                        <div id="timer-seconds"
+                            class="font-display-lg text-4xl md:text-5xl text-error font-black drop-shadow-[0_0_10px_rgba(255,180,171,0.8)] animate-[pulse_1s_ease-in-out_infinite]">
+                            15</div>
+                        <div
+                            class="font-label-caps text-[10px] md:text-xs text-on-surface-variant uppercase tracking-[0.2em] mt-1">
+                            SEC</div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <!-- Bento Grid: Cyber Security Branding -->
+        <section class="py-24 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+                <!-- Large Feature Card -->
+                <div
+                    class="md:col-span-8 bg-surface-container-low/40 backdrop-blur-2xl border border-primary/10 p-8 flex flex-col justify-between min-h-[400px] relative overflow-hidden group">
+                    <div
+                        class="absolute top-0 right-0 p-4 font-body-md text-[10px] text-primary/20 uppercase tracking-widest">
+                        ENCRYPTION: AES-512_X</div>
+                    <div>
+                        <div class="w-12 h-1 bg-primary mb-6"></div>
+                        <h3 class="font-display-lg text-headline-xl text-white mb-4">Neural Architecture Security</h3>
+                        <p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                            Protecting the collective consciousness of the multiverse requires more than traditional
+                            firewalls. Our proprietary Neural Grid defense system intercepts temporal anomalies before
+                            they manifest.
                         </p>
-</div>
-<div class="flex items-center gap-6 mt-8">
-<div class="flex flex-col">
-<span class="font-label-caps text-[10px] text-on-surface-variant">THREAT_LEVEL</span>
-<span class="font-body-lg text-error font-bold tracking-tighter">CRITICAL</span>
-</div>
-<div class="flex flex-col border-l border-white/10 pl-6">
-<span class="font-label-caps text-[10px] text-on-surface-variant">ACTIVE_NODES</span>
-<span class="font-body-lg text-primary font-bold tracking-tighter">1,024,892</span>
-</div>
-</div>
-<div class="absolute bottom-0 right-0 opacity-10 pointer-events-none group-hover:opacity-20 transition-opacity">
-<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">security</span>
-</div>
-</div>
-<!-- Small Info Card 1 -->
-<div class="md:col-span-4 bg-surface-container-highest/30 backdrop-blur-xl border border-secondary/20 p-8 flex flex-col items-center text-center justify-center gap-4 group hover:border-secondary transition-all">
-<span class="material-symbols-outlined text-secondary text-5xl">key</span>
-<h4 class="font-headline-lg text-white">Encrypted Vaults</h4>
-<p class="font-body-md text-body-md text-on-surface-variant">Secure your digital assets in the deepest layers of the obsidian core.</p>
-</div>
-<!-- Small Info Card 2 -->
-<div class="md:col-span-4 bg-surface-container-highest/30 backdrop-blur-xl border border-primary/20 p-8 flex flex-col items-center text-center justify-center gap-4 group hover:border-primary transition-all">
-<span class="material-symbols-outlined text-primary text-5xl">wifi_tethering</span>
-<h4 class="font-headline-lg text-white">Node Syncing</h4>
-<p class="font-body-md text-body-md text-on-surface-variant">Real-time synchronization across 24 parallel dimensions.</p>
-</div>
-<!-- Medium Feature Card -->
-<div class="md:col-span-8 bg-surface-container-low/40 backdrop-blur-2xl border border-tertiary/10 p-8 relative overflow-hidden">
-<div class="flex flex-col md:flex-row gap-8 items-center">
-<div class="w-full md:w-1/2">
-<h3 class="font-headline-xl text-white mb-4 italic">Operator HUD</h3>
-<p class="font-body-md text-body-md text-on-surface-variant mb-6">
-                                The ultimate dashboard for the modern multiverse architect. Monitor system vitals, deploy security patches, and manage inter-dimensional assets.
+                    </div>
+                    <div class="flex items-center gap-6 mt-8">
+                        <div class="flex flex-col">
+                            <span class="font-label-caps text-[10px] text-on-surface-variant">THREAT_LEVEL</span>
+                            <span class="font-body-lg text-error font-bold tracking-tighter">CRITICAL</span>
+                        </div>
+                        <div class="flex flex-col border-l border-white/10 pl-6">
+                            <span class="font-label-caps text-[10px] text-on-surface-variant">ACTIVE_NODES</span>
+                            <span class="font-body-lg text-primary font-bold tracking-tighter">1,024,892</span>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute bottom-0 right-0 opacity-10 pointer-events-none group-hover:opacity-20 transition-opacity">
+                        <span class="material-symbols-outlined text-[200px]"
+                            style="font-variation-settings: 'FILL' 1;">security</span>
+                    </div>
+                </div>
+                <!-- Small Info Card 1 -->
+                <div
+                    class="md:col-span-4 bg-surface-container-highest/30 backdrop-blur-xl border border-secondary/20 p-8 flex flex-col items-center text-center justify-center gap-4 group hover:border-secondary transition-all">
+                    <span class="material-symbols-outlined text-secondary text-5xl">key</span>
+                    <h4 class="font-headline-lg text-white">Encrypted Vaults</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Secure your digital assets in the
+                        deepest layers of the obsidian core.</p>
+                </div>
+                <!-- Small Info Card 2 -->
+                <div
+                    class="md:col-span-4 bg-surface-container-highest/30 backdrop-blur-xl border border-primary/20 p-8 flex flex-col items-center text-center justify-center gap-4 group hover:border-primary transition-all">
+                    <span class="material-symbols-outlined text-primary text-5xl">wifi_tethering</span>
+                    <h4 class="font-headline-lg text-white">Node Syncing</h4>
+                    <p class="font-body-md text-body-md text-on-surface-variant">Real-time synchronization across 24
+                        parallel dimensions.</p>
+                </div>
+                <!-- Medium Feature Card -->
+                <div
+                    class="md:col-span-8 bg-surface-container-low/40 backdrop-blur-2xl border border-tertiary/10 p-8 relative overflow-hidden">
+                    <div class="flex flex-col md:flex-row gap-8 items-center">
+                        <div class="w-full md:w-1/2">
+                            <h3 class="font-headline-xl text-white mb-4 italic">Operator HUD</h3>
+                            <p class="font-body-md text-body-md text-on-surface-variant mb-6">
+                                The ultimate dashboard for the modern multiverse architect. Monitor system vitals,
+                                deploy security patches, and manage inter-dimensional assets.
                             </p>
-<button class="font-label-caps text-label-caps text-tertiary-fixed-dim flex items-center gap-2 hover:translate-x-2 transition-transform">
+                            <button
+                                class="font-label-caps text-label-caps text-tertiary-fixed-dim flex items-center gap-2 hover:translate-x-2 transition-transform">
                                 ACCESS_DASHBOARD <span class="material-symbols-outlined">arrow_right_alt</span>
-</button>
-</div>
-<div class="w-full md:w-1/2 bg-black/60 p-4 border border-tertiary/20 font-body-md text-[12px] text-tertiary leading-relaxed">
-<div class="flex justify-between border-b border-tertiary/20 pb-1 mb-2">
-<span>$ root_access --force</span>
-<span class="text-on-surface-variant">PID: 8821</span>
-</div>
-<div class="text-on-surface-variant">
-                                &gt; scanning dimensions... [DONE]<br/>
-                                &gt; detecting anomalies... [3 FOUND]<br/>
-                                &gt; initiating containment... [98%]<br/>
+                            </button>
+                        </div>
+                        <div
+                            class="w-full md:w-1/2 bg-black/60 p-4 border border-tertiary/20 font-body-md text-[12px] text-tertiary leading-relaxed">
+                            <div class="flex justify-between border-b border-tertiary/20 pb-1 mb-2">
+                                <span>$ root_access --force</span>
+                                <span class="text-on-surface-variant">PID: 8821</span>
+                            </div>
+                            <div class="text-on-surface-variant">
+                                &gt; scanning dimensions... [DONE]<br />
+                                &gt; detecting anomalies... [3 FOUND]<br />
+                                &gt; initiating containment... [98%]<br />
                                 &gt; <span class="animate-pulse">_</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Holographic Wall: Sponsors -->
-<section class="py-24 bg-black/40 relative">
-<div class="absolute inset-0 bg-gradient-to-t from-secondary/5 to-transparent"></div>
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
-<div class="flex items-center justify-between mb-12 holo-wall-header">
-<h2 class="font-display-lg text-headline-lg text-white flex items-center gap-4 holo-wall-title">
-<span class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
-<span class="material-symbols-outlined text-black text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Holographic Wall: Sponsors -->
+        <section class="py-24 bg-black/40 relative">
+            <div class="absolute inset-0 bg-gradient-to-t from-secondary/5 to-transparent"></div>
+            <div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+                <div class="flex items-center justify-between mb-12 holo-wall-header">
+                    <h2 class="font-display-lg text-headline-lg text-white flex items-center gap-4 holo-wall-title">
+                        <span class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
+                            <span class="material-symbols-outlined text-black text-sm"
+                                style="font-variation-settings: 'FILL' 1;">star</span>
+                        </span>
                         HOLOGRAPHIC_WALL
                     </h2>
-<div class="font-label-caps text-label-caps text-secondary/60 holo-wall-meta">SYSTEM_AUTHORS_v2.0</div>
-</div>
-<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-<!-- Sponsor Panel -->
-<div class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-secondary transition-all hover:shadow-[0_0_20px_rgba(208,91,255,0.2)]">
-<div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: ELITE</div>
-<img alt="Sponsor 1" class="w-20 h-20 object-contain grayscale brightness-200 group-hover:grayscale-0 transition-all" data-alt="A clean, minimalist tech company logo featuring abstract geometric shapes on a pitch-black background. The logo glows with a subtle neon cyan aura and is framed by thin holographic data lines. Professional, high-end cybersecurity aesthetic with deep purple lighting accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSAvAfr5rLk06Vmz9ERZH6ZlwhSdF6qNM15ypzFCdQuHt_m5oyrerzzr4cmKYyCjYvZkXauHDdU03-f05SexF1MRWj6wwMNeIsFkHFA6V6_wflGOarxi0JB-cGab_HaZqROm3Ii_03G_wF2RMnn1hlmpcLFWrqQuzneKodUna0Umq3TNGxouiH5srbu95dCUXCTBVfcnt-GhhmG0fHR5iKSOTg268SYLdUQgyHw3l49b77lOCwDPjaxOuCsI913PJiTgtU9KKTKEo"/>
-<div class="absolute bottom-2 font-label-caps text-[10px] text-secondary opacity-0 group-hover:opacity-100 transition-opacity uppercase">CYBER_DYNE_SYS</div>
-</div>
-<!-- Sponsor Panel -->
-<div class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-primary transition-all hover:shadow-[0_0_20px_rgba(0,219,233,0.2)]">
-<div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: ELITE</div>
-<img alt="Sponsor 2" class="w-20 h-20 object-contain grayscale brightness-200 group-hover:grayscale-0 transition-all" data-alt="A futuristic abstract corporate emblem composed of crystalline shards. The design is rendered in a high-tech obsidian finish with glowing magenta highlights. The background is a dark, textured metal surface with subtle blue noise grain and cinematic lens flare." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb-XJmitKMvla9wDxtNv27EtDRZBtpeeOuzi6NWgVfUNkZlTcjvpoOMQawp-bge8lVxYtgOC8rq_pGFfzyJXJElLUhs--kLCUlPJqbBKpzTB6JlXQxdlVJbynQFuM5qiErRkwIxRmsRwdJ6P5Y9yLtOLned0JW7FtF6OXO9_9dQhjHO8Bw4aOEhJaz4WUxpFFaTw1xpiq8POgjL6fy2jRCNyODMGnkehcuqo3_D9iL0nbqEc2FKkFl1KPExaaGIwQAXfJRqcfzl-o"/>
-<div class="absolute bottom-2 font-label-caps text-[10px] text-primary opacity-0 group-hover:opacity-100 transition-opacity uppercase">VOID_TECH_CORP</div>
-</div>
-<!-- Sponsor Panel -->
-<div class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-secondary transition-all">
-<div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: GOLD</div>
-<span class="material-symbols-outlined text-4xl text-on-surface-variant/40 group-hover:text-secondary">token</span>
-<div class="absolute bottom-2 font-label-caps text-[10px] text-secondary opacity-0 group-hover:opacity-100 transition-opacity uppercase">DATA_CORE</div>
-</div>
-<!-- Repeat panels for visual density -->
-<div class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-primary transition-all">
-<div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: GOLD</div>
-<span class="material-symbols-outlined text-4xl text-on-surface-variant/40 group-hover:text-primary">emergency_home</span>
-<div class="absolute bottom-2 font-label-caps text-[10px] text-primary opacity-0 group-hover:opacity-100 transition-opacity uppercase">SAFE_NODE</div>
-</div>
-<div class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-secondary transition-all">
-<div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: SILVER</div>
-<span class="material-symbols-outlined text-4xl text-on-surface-variant/40 group-hover:text-secondary">public</span>
-<div class="absolute bottom-2 font-label-caps text-[10px] text-secondary opacity-0 group-hover:opacity-100 transition-opacity uppercase">GLOBAL_LNK</div>
-</div>
-<div class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-primary transition-all">
-<div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: SILVER</div>
-<span class="material-symbols-outlined text-4xl text-on-surface-variant/40 group-hover:text-primary">hub</span>
-<div class="absolute bottom-2 font-label-caps text-[10px] text-primary opacity-0 group-hover:opacity-100 transition-opacity uppercase">HUB_CONNECT</div>
-</div>
-</div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="w-full bg-black/95 border-t border-primary/20 py-10">
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop flex flex-col lg:flex-row items-center justify-between gap-8">
-<a class="flex items-center gap-4 group" data-env="CLUB_URL" href="#" aria-label="ExploitX official club page">
-<img src="assets/images/exploitx-logo.png" alt="ExploitX club logo" class="w-12 h-12 rounded-full border border-primary/30 bg-black/40 object-contain"/>
-<div class="flex flex-col">
-<span class="text-primary font-bold font-display-lg text-sm uppercase tracking-wider">ExploitX</span>
-<span class="text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">Official club page</span>
-</div>
-</a>
-<div class="flex flex-wrap items-center justify-center gap-4">
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="INSTAGRAM_URL" href="#" aria-label="Instagram">
-<span class="material-symbols-outlined text-base">photo_camera</span>
-<span>Instagram</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="LINKEDIN_URL" href="#" aria-label="LinkedIn">
-<span class="material-symbols-outlined text-base">work</span>
-<span>LinkedIn</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="X_URL" href="#" aria-label="X">
-<span class="material-symbols-outlined text-base">close</span>
-<span>X</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="REDDIT_URL" href="#" aria-label="Reddit">
-<span class="material-symbols-outlined text-base">forum</span>
-<span>Reddit</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="GITHUB_URL" href="#" aria-label="GitHub">
-<span class="material-symbols-outlined text-base">code</span>
-<span>GitHub</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="MASTATON_URL" href="#" aria-label="Mastaton">
-<span class="material-symbols-outlined text-base">hub</span>
-<span>Mastaton</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="MAIL_URL" href="#" aria-label="Email">
-<span class="material-symbols-outlined text-base">mail</span>
-<span>Mail</span>
-</a>
-</div>
-</div>
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">
-<div>© 2124 MULTIVERSE_CORE. ALL RIGHTS RESERVED. [RESTRICTED ACCESS]</div>
-<div class="flex flex-wrap items-center justify-center gap-6">
-<a class="hover:text-primary transition-all" href="terms.html">PROTOCOL_TC</a>
-<a class="hover:text-primary transition-all" href="contact.html">CONTACT_NODE</a>
-<a class="hover:text-primary transition-all" href="privacy.html">PRIVACY_ENCRYPT</a>
-<a class="hover:text-primary transition-all" href="sitemap.html">SITEMAP_DIR</a>
-</div>
-</div>
-</footer>
-<script src="assets/js/footer-links.js"></script>
-<script>
-    // Initialize countdown target
-    const eventDate = new Date();
-    eventDate.setDate(eventDate.getDate() + 24);
-    eventDate.setHours(eventDate.getHours() + 8);
-    eventDate.setMinutes(eventDate.getMinutes() + 42);
-    eventDate.setSeconds(eventDate.getSeconds() + 15);
+                    <div class="font-label-caps text-label-caps text-secondary/60 holo-wall-meta">SYSTEM_AUTHORS_v2.0
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                    <!-- Sponsor Panel -->
+                    <div
+                        class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-secondary transition-all hover:shadow-[0_0_20px_rgba(208,91,255,0.2)]">
+                        <div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: ELITE</div>
+                        <img alt="Sponsor 1"
+                            class="w-20 h-20 object-contain grayscale brightness-200 group-hover:grayscale-0 transition-all"
+                            data-alt="A clean, minimalist tech company logo featuring abstract geometric shapes on a pitch-black background. The logo glows with a subtle neon cyan aura and is framed by thin holographic data lines. Professional, high-end cybersecurity aesthetic with deep purple lighting accents."
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSAvAfr5rLk06Vmz9ERZH6ZlwhSdF6qNM15ypzFCdQuHt_m5oyrerzzr4cmKYyCjYvZkXauHDdU03-f05SexF1MRWj6wwMNeIsFkHFA6V6_wflGOarxi0JB-cGab_HaZqROm3Ii_03G_wF2RMnn1hlmpcLFWrqQuzneKodUna0Umq3TNGxouiH5srbu95dCUXCTBVfcnt-GhhmG0fHR5iKSOTg268SYLdUQgyHw3l49b77lOCwDPjaxOuCsI913PJiTgtU9KKTKEo" />
+                        <div
+                            class="absolute bottom-2 font-label-caps text-[10px] text-secondary opacity-0 group-hover:opacity-100 transition-opacity uppercase">
+                            CYBER_DYNE_SYS</div>
+                    </div>
+                    <!-- Sponsor Panel -->
+                    <div
+                        class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-primary transition-all hover:shadow-[0_0_20px_rgba(0,219,233,0.2)]">
+                        <div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: ELITE</div>
+                        <img alt="Sponsor 2"
+                            class="w-20 h-20 object-contain grayscale brightness-200 group-hover:grayscale-0 transition-all"
+                            data-alt="A futuristic abstract corporate emblem composed of crystalline shards. The design is rendered in a high-tech obsidian finish with glowing magenta highlights. The background is a dark, textured metal surface with subtle blue noise grain and cinematic lens flare."
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb-XJmitKMvla9wDxtNv27EtDRZBtpeeOuzi6NWgVfUNkZlTcjvpoOMQawp-bge8lVxYtgOC8rq_pGFfzyJXJElLUhs--kLCUlPJqbBKpzTB6JlXQxdlVJbynQFuM5qiErRkwIxRmsRwdJ6P5Y9yLtOLned0JW7FtF6OXO9_9dQhjHO8Bw4aOEhJaz4WUxpFFaTw1xpiq8POgjL6fy2jRCNyODMGnkehcuqo3_D9iL0nbqEc2FKkFl1KPExaaGIwQAXfJRqcfzl-o" />
+                        <div
+                            class="absolute bottom-2 font-label-caps text-[10px] text-primary opacity-0 group-hover:opacity-100 transition-opacity uppercase">
+                            VOID_TECH_CORP</div>
+                    </div>
+                    <!-- Sponsor Panel -->
+                    <div
+                        class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-secondary transition-all">
+                        <div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: GOLD</div>
+                        <span
+                            class="material-symbols-outlined text-4xl text-on-surface-variant/40 group-hover:text-secondary">token</span>
+                        <div
+                            class="absolute bottom-2 font-label-caps text-[10px] text-secondary opacity-0 group-hover:opacity-100 transition-opacity uppercase">
+                            DATA_CORE</div>
+                    </div>
+                    <!-- Repeat panels for visual density -->
+                    <div
+                        class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-primary transition-all">
+                        <div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: GOLD</div>
+                        <span
+                            class="material-symbols-outlined text-4xl text-on-surface-variant/40 group-hover:text-primary">emergency_home</span>
+                        <div
+                            class="absolute bottom-2 font-label-caps text-[10px] text-primary opacity-0 group-hover:opacity-100 transition-opacity uppercase">
+                            SAFE_NODE</div>
+                    </div>
+                    <div
+                        class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-secondary transition-all">
+                        <div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: SILVER</div>
+                        <span
+                            class="material-symbols-outlined text-4xl text-on-surface-variant/40 group-hover:text-secondary">public</span>
+                        <div
+                            class="absolute bottom-2 font-label-caps text-[10px] text-secondary opacity-0 group-hover:opacity-100 transition-opacity uppercase">
+                            GLOBAL_LNK</div>
+                    </div>
+                    <div
+                        class="group relative aspect-square bg-surface-container-lowest/60 border border-white/5 backdrop-blur-md flex flex-col items-center justify-center hover:border-primary transition-all">
+                        <div class="absolute top-2 left-2 text-[8px] font-body-md text-white/20">TIER: SILVER</div>
+                        <span
+                            class="material-symbols-outlined text-4xl text-on-surface-variant/40 group-hover:text-primary">hub</span>
+                        <div
+                            class="absolute bottom-2 font-label-caps text-[10px] text-primary opacity-0 group-hover:opacity-100 transition-opacity uppercase">
+                            HUB_CONNECT</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full bg-black/95 border-t border-primary/20 py-10">
+        <div
+            class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop flex flex-col lg:flex-row items-center justify-between gap-8">
+            <a class="flex items-center gap-4 group" data-env="CLUB_URL" href="#"
+                aria-label="ExploitX official club page">
+                <img src="assets/images/exploitx-logo.png" alt="ExploitX club logo"
+                    class="w-12 h-12 rounded-full border border-primary/30 bg-black/40 object-contain" />
+                <div class="flex flex-col">
+                    <span
+                        class="text-primary font-bold font-display-lg text-sm uppercase tracking-wider">ExploitX</span>
+                    <span class="text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">Official
+                        club page</span>
+                </div>
+            </a>
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="INSTAGRAM_URL" href="#" aria-label="Instagram">
+                    <span class="material-symbols-outlined text-base">photo_camera</span>
+                    <span>Instagram</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="LINKEDIN_URL" href="#" aria-label="LinkedIn">
+                    <span class="material-symbols-outlined text-base">work</span>
+                    <span>LinkedIn</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="X_URL" href="#" aria-label="X">
+                    <span class="material-symbols-outlined text-base">close</span>
+                    <span>X</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="REDDIT_URL" href="#" aria-label="Reddit">
+                    <span class="material-symbols-outlined text-base">forum</span>
+                    <span>Reddit</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="GITHUB_URL" href="#" aria-label="GitHub">
+                    <span class="material-symbols-outlined text-base">code</span>
+                    <span>GitHub</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="MASTATON_URL" href="#" aria-label="Mastaton">
+                    <span class="material-symbols-outlined text-base">hub</span>
+                    <span>Mastaton</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="MAIL_URL" href="#" aria-label="Email">
+                    <span class="material-symbols-outlined text-base">mail</span>
+                    <span>Mail</span>
+                </a>
+            </div>
+        </div>
+        <div
+            class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">
+            <div>© 2124 MULTIVERSE_CORE. ALL RIGHTS RESERVED. [RESTRICTED ACCESS]</div>
+            <div class="flex flex-wrap items-center justify-center gap-6">
+                <a class="hover:text-primary transition-all" href="terms.html">PROTOCOL_TC</a>
+                <a class="hover:text-primary transition-all" href="contact.html">CONTACT_NODE</a>
+                <a class="hover:text-primary transition-all" href="privacy.html">PRIVACY_ENCRYPT</a>
+                <a class="hover:text-primary transition-all" href="sitemap.html">SITEMAP_DIR</a>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/footer-links.js"></script>
+    <script>
+        // Initialize countdown target
+        const eventDate = new Date();
+        eventDate.setDate(eventDate.getDate() + 24);
+        eventDate.setHours(eventDate.getHours() + 8);
+        eventDate.setMinutes(eventDate.getMinutes() + 42);
+        eventDate.setSeconds(eventDate.getSeconds() + 15);
 
-    function updateTimer() {
-        const now = new Date().getTime();
-        const distance = eventDate.getTime() - now;
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = eventDate.getTime() - now;
 
-        if (distance < 0) {
-            return; // Timer reached zero
+            if (distance < 0) {
+                return; // Timer reached zero
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("timer-days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("timer-hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("timer-minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("timer-seconds").innerText = seconds.toString().padStart(2, '0');
         }
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        // Update the timer every second
+        setInterval(updateTimer, 1000);
+        updateTimer(); // Initial call to avoid 1s delay
+    </script>
+<script src="assets/js/smooth-scroll.js"></script>
+</body>
 
-        document.getElementById("timer-days").innerText = days.toString().padStart(2, '0');
-        document.getElementById("timer-hours").innerText = hours.toString().padStart(2, '0');
-        document.getElementById("timer-minutes").innerText = minutes.toString().padStart(2, '0');
-        document.getElementById("timer-seconds").innerText = seconds.toString().padStart(2, '0');
-    }
-
-    // Update the timer every second
-    setInterval(updateTimer, 1000);
-    updateTimer(); // Initial call to avoid 1s delay
-</script>
-</body></html>
+</html>
