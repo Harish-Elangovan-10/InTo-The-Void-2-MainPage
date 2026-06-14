@@ -1,0 +1,56 @@
+/* Liquid Crystal Navbar */
+.liquid-navbar {
+    position: fixed;
+    top: 16px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 85%;
+    max-width: 1200px;
+    z-index: 100;
+    border-radius: 40px;
+    background: rgba(19, 19, 19, 0.4);
+    backdrop-filter: blur(20px) saturate(200%);
+    -webkit-backdrop-filter: blur(20px) saturate(200%);
+    border: 1px solid rgba(0, 219, 233, 0.2);
+    box-shadow: 
+        0 4px 30px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(0, 219, 233, 0.1),
+        inset 0 0 20px rgba(0, 219, 233, 0.05);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.liquid-navbar:hover {
+    background: rgba(19, 19, 19, 0.6);
+    backdrop-filter: blur(28px) saturate(250%);
+    -webkit-backdrop-filter: blur(28px) saturate(250%);
+    border: 1px solid rgba(0, 219, 233, 0.5);
+    box-shadow: 
+        0 8px 40px rgba(0, 0, 0, 0.4),
+        0 0 25px rgba(0, 219, 233, 0.3),
+        inset 0 0 30px rgba(0, 219, 233, 0.1);
+}
+
+/* Navigation links and hover effects */
+.liquid-navbar nav a {
+    font-size: 16px !important;
+    letter-spacing: 0.1em !important;
+    padding: 8px 20px !important;
+    border-radius: 25px !important;
+    transition: all 0.6s ease !important;
+    border: 2px solid transparent !important;
+}
+
+.liquid-navbar nav a:hover {
+    color: rgb(38,47,54) !important;
+    background-color: white !important;
+    border-radius: 25px !important;
+}
+
+.liquid-navbar nav a.active {
+    color: white !important;
+    font-weight: bold !important;
+    border: 2px solid white !important;
+    background-color: transparent !important;
+    border-radius: 25px !important;
+}

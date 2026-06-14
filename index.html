@@ -14,6 +14,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <link href="assets/css/responsive.css" rel="stylesheet" />
+    <link href="assets/css/navbar.css" rel="stylesheet" />
     <style>
         html {
             scroll-behavior: smooth;
@@ -200,40 +201,8 @@
 <body
     class="bg-black text-on-surface selection:bg-primary-container selection:text-on-primary-container font-body-md overflow-x-hidden">
 
-    <!-- TopNavBar -->
-    <header class="liquid-navbar">
-        <div
-            class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div
-                    class="w-10 h-10 rounded-full border border-primary/40 bg-surface-container-lowest flex items-center justify-center shadow-[0_0_10px_rgba(0,219,233,0.2)]">
-                    <span class="material-symbols-outlined text-primary text-xl"
-                        style="font-variation-settings: 'FILL' 1;">hive</span>
-                </div>
-
-            </div>
-            <nav class="hidden md:flex items-center gap-8">
-                <a class="nav-link active text-primary border-b-2 border-primary-container pb-1 drop-shadow-[0_0_8px_#00dbe9] font-label-caps text-label-caps"
-                    href="#home">Home</a>
-                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
-                    href="#event">Event</a>
-                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
-                    href="#registration">Registration</a>
-                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
-                    href="#hyper-inline">Category</a>
-                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
-                    href="#sponsors">Sponser</a>
-                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
-                    href="#contact">Contect</a>
-            </nav>
-            <div class="flex items-center">
-                <div
-                    class="w-10 h-10 rounded-full border border-secondary/40 bg-secondary/10 flex items-center justify-center overflow-hidden shadow-[0_0_10px_rgba(208,91,255,0.2)]">
-                    <span class="material-symbols-outlined text-secondary text-xl">person</span>
-                </div>
-            </div>
-        </div>
-    </header>
+    <!-- TopNavBar Placeholder -->
+    <div id="navbar-placeholder"></div>
     <main class="pt-20">
         <!-- Hero Section: Fractured Multiverse -->
         <section id="home"
@@ -241,7 +210,8 @@
             <div class="absolute inset-0 z-0 overflow-hidden">
                 <iframe src="particle.html" class="w-full h-full border-none pointer-events-auto"
                     style="transform: translateY(-9px);"></iframe>
-                <div class="absolute inset-0 bg-gradient-to-b from-black from-10% via-transparent via-30% to-black to-70% pointer-events-none">
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-black from-10% via-transparent via-30% to-black to-70% pointer-events-none">
                 </div>
             </div>
             <div class="relative z-10 text-center max-w-4xl">
@@ -249,7 +219,8 @@
             </div>
 
             <!-- Enhanced Holographic Countdown Timer -->
-            <div class="absolute top-[75vh] left-0 w-full flex flex-wrap justify-center gap-6 md:gap-8 px-4 z-20 -translate-y-1/2">
+            <div
+                class="absolute top-[75vh] left-0 w-full flex flex-wrap justify-center gap-6 md:gap-8 px-4 z-20 -translate-y-1/2">
 
                 <!-- Days -->
                 <div class="timer-block group">
@@ -644,7 +615,7 @@
                 (function () {
                     const ITEM_COUNT = 20, STAR_COUNT = 160, Z_GAP = 800;
                     const LOOP_SIZE = ITEM_COUNT * Z_GAP, CAM_SPEED = 2.2;
-                    const TEXTS = ["cloud", "VELOCITY", "BRUTAL", "SYSTEM", "FUTURE", "DESIGN", "PIXEL", "HYPER", "NEON", "VOID"];
+                    const TEXTS = ["cloud", "web", "fornsics", "SYSTEM", "FUTURE", "DESIGN", "PIXEL", "HYPER", "NEON", "VOID"];
 
                     let mouseX = 0, mouseY = 0, vel = 0, targetVel = 0;
                     const world = document.getElementById('hi-world');
@@ -1226,9 +1197,20 @@
         updateTimer(); // Initial call to avoid 1s delay
     </script>
     <script src="assets/js/smooth-scroll.js"></script>
+    <script src="assets/js/navbar.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-placeholder').innerHTML = data;
+                    initNavbar();
+                })
+                .catch(err => console.error('Error loading navbar:', err));
+        });
+
+        function initNavbar() {
             const sections = document.querySelectorAll("section[id], div[id]");
             const navLinks = document.querySelectorAll(".nav-link");
 
@@ -1266,7 +1248,7 @@
                     observer.observe(sec);
                 }
             });
-        });
+        }
     </script>
 
 </body>
