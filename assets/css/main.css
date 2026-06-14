@@ -87,3 +87,81 @@
         .animate-marquee:hover {
             animation-play-state: paused;
         }
+        
+#multiverse-scene{
+            position:absolute;
+            inset:0;
+            width:100%;
+            height:100%;
+            pointer-events:none;
+            z-index:2;
+        }
+        .realm{
+            position:absolute;
+            will-change:transform;
+        }
+        #multiverse-scene{
+            position:absolute;
+            inset:0;
+            width:100%;
+            height:100%;
+            pointer-events:none;
+            z-index:2;
+        }
+
+        .realm{
+            position:absolute;
+            will-change:transform;
+        }
+
+        /* LEFT SIDE */
+
+        .castle{
+            top:-10%;
+            left:-6%;
+            width:50vw;
+        }
+
+        .orange{
+            top:17%;
+            left:-6%;
+            width:50vw;
+        }
+
+        .cyber{
+            top:49%;
+            left:-4%;
+            width:42vw;
+        }
+
+        .dino{
+            top:68%;
+            left:0;
+            width:31vw;
+        }
+
+        /* RIGHT SIDE */
+
+        .ironman{
+            top:-2%;
+            right:-2%;
+            width:39vw;
+        }
+
+        .pyramid{
+            top:26%;
+            right:-4%;
+            width:42vw;
+        }
+
+        .galaxy{
+            top:55%;
+            right:-4%;
+            width:39vw;
+        }
+
+        .robot{
+            top:68%;
+            right:0;
+            width:31vw;
+        }
