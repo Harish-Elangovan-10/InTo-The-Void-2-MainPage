@@ -1,0 +1,22 @@
+/* assets/css/sticky-scroll.css */
+
+/* Enable scroll snapping on the entire page */
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
+}
+
+/* Target all major sections and the footer as snap points */
+main > section, 
+footer {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    /* Offset for the fixed navigation bar */
+    scroll-margin-top: 80px;
+}
+
+/* Special handling for the tall 3D hyper-scroll section */
+/* We remove snap alignment so it scrolls freely */
+#hyper-inline {
+    scroll-snap-align: none;
+}
