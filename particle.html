@@ -489,7 +489,7 @@
                 let pixelData = getImagePixels(img);
 
                 // Cap at 30K particles for performance
-                const MAX_PARTICLES = 30000;
+                const MAX_PARTICLES = 5000;
                 if (pixelData.length > MAX_PARTICLES) {
                     // Evenly downsample
                     const ratio = Math.ceil(pixelData.length / MAX_PARTICLES);
@@ -603,11 +603,15 @@
 
             // ── RENDER LOOP (ImageData buffer for perf) ─────────────
             let frameCount = 0, fpsTime = 0;
+            let pageVisible = true;
+            document.addEventListener('visibilitychange', () => { pageVisible = !document.hidden; });
             const elFps = document.getElementById('hud-fps');
             const elMouse = document.getElementById('hud-mouse');
 
             function animate(t) {
                 requestAnimationFrame(animate);
+
+                if (!pageVisible) return;
 
                 frameCount++;
                 if (t - fpsTime >= 500) {

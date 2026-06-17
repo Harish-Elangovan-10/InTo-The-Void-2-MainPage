@@ -1,17 +1,17 @@
 (function () {
-    const ITEM_COUNT = 20, STAR_COUNT = 160, Z_GAP = 800;
+    const ITEM_COUNT = 12, STAR_COUNT = 80, Z_GAP = 800;
     const LOOP_SIZE = ITEM_COUNT * Z_GAP, CAM_SPEED = 2.2;
     const TEXTS =["WEB", "FORENSICS","BINARY","ML", "MISC", "CRYPTO", "REVERSE", "OSINT", "NETWORK", "kernal"];
-;
 
     let mouseX = 0, mouseY = 0, vel = 0, targetVel = 0;
+    let paused = false;
+
     const world = document.getElementById('hi-world');
     const vp = document.getElementById('hi-viewport');
     const elVel = document.getElementById('hi-vel');
     const elCo = document.getElementById('hi-coord');
     const items = [];
 
-    // Build items
     for (let i = 0; i < ITEM_COUNT; i++) {
         const wrap = document.createElement('div');
         wrap.className = 'hi-item';
@@ -62,7 +62,23 @@
     const section = document.getElementById('hyper-inline');
     let lastSY = window.scrollY;
 
+    const obs = new IntersectionObserver(([entry]) => {
+        paused = !entry.isIntersecting;
+    }, { threshold: 0 });
+    if (section) obs.observe(section);
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) paused = true;
+        else if (section) {
+            const rect = section.getBoundingClientRect();
+            paused = rect.bottom < 0 || rect.top > window.innerHeight;
+        }
+    });
+
     function raf(t) {
+        requestAnimationFrame(raf);
+        if (paused) return;
+
         const sy = window.scrollY;
         const diff = sy - lastSY;
         lastSY = sy;
@@ -73,11 +89,9 @@
         if (elVel) elVel.textContent = Math.abs(vel).toFixed(2);
         if (elCo) elCo.textContent = Math.round(sy);
 
-        // Camera tilt
         world.style.transform = `rotateX(${mouseY * 4 - vel * .4}deg) rotateY(${mouseX * 4}deg)`;
         vp.style.perspective = `${Math.max(400, 1000 - Math.abs(vel) * 8)}px`;
 
-        // Camera Z driven by scroll position relative to section
         const sectionTop = section.offsetTop;
         const progress = Math.max(0, sy - sectionTop);
         const cameraZ = progress * CAM_SPEED;
@@ -106,8 +120,6 @@
             }
             item.el.style.transform = tr;
         });
-
-        requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
 })();

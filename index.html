@@ -492,6 +492,8 @@
         composer.addPass(bloom);
 
         // ── STATE ─────────────────────────────────────────
+        let pageHidden = false;
+        document.addEventListener('visibilitychange', () => { pageHidden = document.hidden; });
         const clock = new THREE.Clock();
         const LOAD_TIME = 10;   // seconds for phase 1
         const FLASH_DUR  = 1.5;
@@ -501,6 +503,7 @@
         // ── ANIMATE ───────────────────────────────────────
         function animate() {
             requestAnimationFrame(animate);
+            if (pageHidden) return;
             const t = clock.getElapsedTime();
 
             // Draw rain every frame
