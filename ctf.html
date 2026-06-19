@@ -21,76 +21,149 @@
     <link href="assets/css/navbar.css" rel="stylesheet" />
     <script src="assets/js/register.js"></script>
     <style>
-        /* Cyber border glows and feedback animations */
+        /* ================================================
+           Shared card animations  (matches main page rhythm)
+           ================================================ */
         .feedback-fade-in {
             animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-4px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-4px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Card pop-in animation */
+        /* Spring pop — same feel as main-page card reveals */
         @keyframes cardPop {
-            0%   { opacity: 0; transform: scale(0.88) translateY(24px); }
-            60%  { opacity: 1; transform: scale(1.03) translateY(-4px); }
+            0%   { opacity: 0; transform: scale(0.86) translateY(28px); }
+            65%  { opacity: 1; transform: scale(1.025) translateY(-5px); }
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
-        .card-pop {
-            animation: cardPop 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-        }
+        .card-pop { animation: cardPop 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 
-        /* OTP digit boxes */
+        /* ================================================
+           OTP  —  6-box digit strip
+           ================================================ */
+        .otp-strip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .otp-sep {
+            color: rgba(0,219,233,0.25);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.4rem;
+            user-select: none;
+        }
         .otp-box {
-            width: 52px;
-            height: 64px;
-            background: rgba(0,0,0,0.5);
-            border: 1.5px solid rgba(0,219,233,0.3);
-            border-radius: 12px;
+            width: 56px;
+            height: 70px;
+            background: rgba(0,0,0,0.65);
+            border: 1.5px solid rgba(0,219,233,0.22);
+            border-radius: 14px;
             color: #00dbe9;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.75rem;
+            font-size: 1.9rem;
             font-weight: 700;
             text-align: center;
             caret-color: #00dbe9;
             outline: none;
-            transition: border-color 0.2s, box-shadow 0.2s;
+            transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+            /* subtle grid texture inside each box */
+            background-image:
+                linear-gradient(rgba(0,219,233,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,219,233,0.04) 1px, transparent 1px);
+            background-size: 8px 8px;
         }
         .otp-box:focus {
             border-color: #00dbe9;
-            box-shadow: 0 0 18px rgba(0,219,233,0.45);
+            box-shadow: 0 0 0 3px rgba(0,219,233,0.18), 0 0 22px rgba(0,219,233,0.5);
+            background-color: rgba(0,219,233,0.05);
         }
         .otp-box.filled {
-            border-color: rgba(0,219,233,0.7);
-            box-shadow: 0 0 10px rgba(0,219,233,0.3);
+            border-color: rgba(0,219,233,0.75);
+            box-shadow: 0 0 14px rgba(0,219,233,0.35);
         }
 
-        /* Payment card rows */
+        /* Scanning beam under OTP strip */
+        @keyframes scanBeam {
+            0%   { left: 0; opacity: 0.7; }
+            100% { left: 100%; opacity: 0; }
+        }
+        .otp-scan-wrap { position: relative; overflow: hidden; border-radius: 16px; }
+        .otp-scan-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: -10%;
+            width: 40%; height: 2px;
+            background: linear-gradient(90deg, transparent, #00dbe9, transparent);
+            animation: scanBeam 2.4s ease-in-out infinite;
+        }
+
+        /* Error shake */
+        @keyframes shake {
+            0%,100%{ transform:translateX(0); }
+            20%    { transform:translateX(-6px); }
+            40%    { transform:translateX(6px); }
+            60%    { transform:translateX(-4px); }
+            80%    { transform:translateX(4px); }
+        }
+        .otp-error-shake { animation: shake 0.4s ease; }
+
+        /* ================================================
+           Payment card rows  (site secondary = #ecb1ff / #d05bff)
+           ================================================ */
         .pay-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
+            padding: 10px 0;
         }
         .pay-row + .pay-row {
-            border-top: 1px solid rgba(178,102,255,0.12);
+            border-top: 1px solid rgba(208,91,255,0.12);
         }
         .pay-total-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 0 0;
-            margin-top: 6px;
-            border-top: 1.5px solid rgba(178,102,255,0.35);
-        }        .group.relative {
+            padding: 14px 0 0;
+            margin-top: 8px;
+            border-top: 1.5px solid rgba(208,91,255,0.4);
+        }
+
+        /* Referral input */
+        .referral-input {
+            width: 100%;
+            background: rgba(0,0,0,0.5);
+            border: 1.5px solid rgba(0,219,233,0.2);
+            border-radius: 10px;
+            color: #00dbe9;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            padding: 10px 14px;
+            outline: none;
+            text-transform: uppercase;
+            transition: border-color 0.18s, box-shadow 0.18s;
+        }
+        .referral-input::placeholder { color: rgba(0,219,233,0.25); letter-spacing: 0.1em; }
+        .referral-input:focus {
+            border-color: #00dbe9;
+            box-shadow: 0 0 14px rgba(0,219,233,0.3);
+        }
+        .referral-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 10px;
+            border-radius: 99px;
+            font-size: 9px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .group.relative {
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
     </style>
@@ -551,92 +624,133 @@
 
                 </div>
 
-                <!-- OTP CARD -->
-                <div id="otpCard" class="hidden flex-col items-center justify-center py-14 gap-8">
+                <!-- OTP CARD  ─── matches main-page aesthetic -->
+                <div id="otpCard" class="hidden flex-col items-center justify-center py-14 gap-10">
 
+                    <!-- Header badge -->
                     <div class="text-center">
-                        <p class="text-[10px] font-mono tracking-[0.3em] uppercase text-cyan-400/50 mb-2">VERIFICATION NODE</p>
-                        <h2 class="font-display-lg text-3xl tracking-tighter italic"
-                            style="color:#00dbe9; text-shadow:0 0 28px rgba(0,219,233,.55);">VERIFY UPLINK</h2>
-                        <p class="text-on-surface-variant/50 font-mono text-xs mt-2">Enter the 6-digit code sent to your registered contact</p>
+                        <p class="text-[9px] font-mono tracking-[0.4em] uppercase mb-3"
+                           style="color:rgba(0,219,233,0.45);">[ VERIFICATION NODE :: 0xFF ]</p>
+                        <h2 class="font-display-lg text-4xl tracking-tighter italic mb-2"
+                           style="color:#00dbe9; text-shadow:0 0 32px rgba(0,219,233,.6), 0 0 60px rgba(0,219,233,.2);">
+                           VERIFY_UPLINK
+                        </h2>
+                        <p class="font-mono text-xs" style="color:rgba(185,202,203,0.5);">6-digit access code dispatched to registered contact</p>
                     </div>
 
-                    <!-- 6-box OTP input -->
-                    <div id="otpBoxes" class="flex items-center gap-3">
-                        <input class="otp-box" id="otp0" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" autocomplete="one-time-code" />
-                        <input class="otp-box" id="otp1" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
-                        <input class="otp-box" id="otp2" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
-                        <span class="text-primary/30 font-mono text-xl">-</span>
-                        <input class="otp-box" id="otp3" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
-                        <input class="otp-box" id="otp4" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
-                        <input class="otp-box" id="otp5" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                    <!-- Decorative glitch line -->
+                    <div class="w-48 h-px" style="background: linear-gradient(90deg, transparent, #00dbe9, transparent);"></div>
+
+                    <!-- 6-box OTP strip -->
+                    <div class="otp-scan-wrap p-4">
+                        <div id="otpBoxes" class="otp-strip">
+                            <input class="otp-box" id="otp0" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" autocomplete="one-time-code" />
+                            <input class="otp-box" id="otp1" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                            <input class="otp-box" id="otp2" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                            <span class="otp-sep">—</span>
+                            <input class="otp-box" id="otp3" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                            <input class="otp-box" id="otp4" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                            <input class="otp-box" id="otp5" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                        </div>
                     </div>
 
-                    <div id="otpError" class="hidden text-red-400 font-mono text-xs tracking-widest">⚠ INVALID CODE — RETRY</div>
+                    <!-- Error -->
+                    <div id="otpError" class="hidden font-mono text-xs tracking-widest" style="color:#ffb4ab;">⚠ INVALID CODE — RETRY</div>
 
+                    <!-- Verify button -->
                     <button onclick="verifyOtp()" type="button"
-                        class="px-16 py-4 rounded-xl bg-primary-container text-on-primary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(0,219,233,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_50px_rgba(0,219,233,.7)] active:scale-[0.97]">
+                        class="px-20 py-4 rounded-xl font-body-md font-bold uppercase tracking-[0.3em] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
+                        style="background:rgba(0,219,233,0.12); color:#00dbe9; border:1.5px solid rgba(0,219,233,0.4); box-shadow:0 0 30px rgba(0,219,233,0.3), inset 0 0 20px rgba(0,219,233,0.08); text-shadow:0 0 12px rgba(0,219,233,0.8);">
                         VERIFY
                     </button>
 
                 </div>
 
-                <!-- PAYMENT CARD -->
-                <div id="paymentCard" class="hidden flex-col items-center justify-center py-10 gap-6 w-full max-w-md mx-auto">
+                <!-- PAYMENT CARD  ─── main-page theme -->
+                <div id="paymentCard" class="hidden flex-col items-center justify-center py-10 gap-6 w-full max-w-lg mx-auto">
 
                     <!-- Header -->
                     <div class="text-center">
-                        <p class="text-[10px] font-mono tracking-[0.3em] uppercase text-purple-400/50 mb-2">PAYMENT GATEWAY</p>
-                        <h2 class="font-display-lg text-3xl tracking-tighter italic"
-                            style="color:#b266ff; text-shadow:0 0 28px rgba(178,102,255,.55);">SECURE CHANNEL</h2>
+                        <p class="text-[9px] font-mono tracking-[0.4em] uppercase mb-3"
+                           style="color:rgba(208,91,255,0.45);">[ PAYMENT GATEWAY :: SECURE ]</p>
+                        <h2 class="font-display-lg text-4xl tracking-tighter italic"
+                           style="color:#ecb1ff; text-shadow:0 0 32px rgba(208,91,255,.55), 0 0 60px rgba(208,91,255,.15);">
+                           SECURE_CHANNEL
+                        </h2>
                     </div>
 
-                    <!-- Payment Panel -->
-                    <div class="w-full rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, rgba(178,102,255,0.07) 0%, rgba(0,0,0,0.6) 100%); border: 1px solid rgba(178,102,255,0.25); box-shadow: 0 0 40px rgba(178,102,255,0.12);">
+                    <!-- Main panel -->
+                    <div class="w-full rounded-2xl overflow-hidden glitch-border"
+                         style="background: linear-gradient(145deg, rgba(208,91,255,0.06) 0%, rgba(0,0,0,0.75) 100%);
+                                border: 1px solid rgba(208,91,255,0.22);
+                                box-shadow: 0 0 50px rgba(208,91,255,0.1), inset 0 0 30px rgba(0,0,0,0.4);">
 
-                        <!-- Top bar with name badge -->
-                        <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(178,102,255,0.15); background: rgba(178,102,255,0.05);">
+                        <!-- Top identity bar -->
+                        <div class="px-6 py-4 flex items-center justify-between"
+                             style="border-bottom:1px solid rgba(208,91,255,0.15); background:rgba(208,91,255,0.04);">
                             <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined text-secondary" style="font-size:1.3rem;">verified_user</span>
+                                <span class="material-symbols-outlined" style="color:#ecb1ff; font-size:1.4rem;">verified_user</span>
                                 <div>
-                                    <p class="text-[9px] uppercase tracking-widest text-purple-400/50 font-mono">REGISTERED NODE</p>
-                                    <p id="payName" class="text-primary font-bold font-mono text-sm">—</p>
+                                    <p class="text-[9px] uppercase tracking-[0.25em] font-mono" style="color:rgba(208,91,255,0.5);">REGISTERED NODE</p>
+                                    <p id="payName" class="font-bold font-mono text-sm" style="color:#dbfcff;">—</p>
                                 </div>
                             </div>
-                            <span class="px-3 py-1 rounded-full text-[9px] font-mono font-bold uppercase tracking-widest" style="background: rgba(0,219,233,0.1); color:#00dbe9; border:1px solid rgba(0,219,233,0.3);">EARLY BIRD</span>
+                            <!-- Early bird badge using site primary color -->
+                            <span class="referral-badge" style="background:rgba(0,219,233,0.1); color:#00dbe9; border:1px solid rgba(0,219,233,0.3);">
+                                <span class="material-symbols-outlined" style="font-size:11px;">bolt</span>
+                                EARLY BIRD
+                            </span>
                         </div>
 
                         <!-- Fee breakdown -->
                         <div class="px-6 py-5 flex flex-col font-mono text-sm">
-                            <h3 class="text-[9px] uppercase tracking-[0.25em] text-purple-400/50 mb-4">PAYMENT DETAILS</h3>
+                            <p class="text-[9px] uppercase tracking-[0.25em] mb-4" style="color:rgba(208,91,255,0.45);">PAYMENT DETAILS</p>
 
                             <div class="pay-row">
-                                <span class="text-on-surface-variant/60">Original Fee</span>
-                                <span id="payOriginal" class="text-on-surface-variant/80">₹ 400</span>
+                                <span style="color:rgba(185,202,203,0.55);">Original Fee</span>
+                                <span id="payOriginal" style="color:rgba(185,202,203,0.75);">₹ 400</span>
                             </div>
                             <div class="pay-row">
-                                <span class="text-on-surface-variant/60">Early Bird Discount</span>
-                                <span id="payDiscount" class="text-green-400">- ₹ 200</span>
+                                <span style="color:rgba(185,202,203,0.55);">Early Bird Discount</span>
+                                <span id="payDiscount" class="glow-cyan" style="color:#00dbe9;">- ₹ 200</span>
                             </div>
 
                             <!-- Total -->
                             <div class="pay-total-row">
-                                <span class="text-primary font-bold text-base uppercase tracking-wider">Bill Amount</span>
-                                <span id="payTotal" class="font-bold text-2xl" style="color:#b266ff; text-shadow: 0 0 16px rgba(178,102,255,0.6);">₹ 200</span>
+                                <span class="font-bold text-base uppercase tracking-wider" style="color:#dbfcff;">Bill Amount</span>
+                                <span id="payTotal" class="font-bold text-2xl glow-magenta" style="color:#ecb1ff;">₹ 200</span>
                             </div>
                         </div>
 
-                        <!-- QR placeholder footer -->
-                        <div class="px-6 py-4 flex items-center gap-3" style="border-top: 1px solid rgba(178,102,255,0.15); background: rgba(0,0,0,0.3);">
-                            <span class="material-symbols-outlined text-secondary/50" style="font-size:1.1rem;">qr_code_scanner</span>
-                            <p class="text-[10px] font-mono text-on-surface-variant/40">Scan QR or click proceed to complete via payment gateway</p>
+                        <!-- Referral code section (replaces QR footer) -->
+                        <div class="px-6 py-5"
+                             style="border-top:1px solid rgba(208,91,255,0.15); background:rgba(0,0,0,0.35);">
+                            <p class="text-[9px] uppercase tracking-[0.25em] font-mono mb-3" style="color:rgba(0,219,233,0.45);">REFERRAL CODE <span style="color:rgba(185,202,203,0.3);">(optional — unlocks bonus XP)</span></p>
+                            <div class="flex gap-3 items-center">
+                                <input
+                                    id="referralCode"
+                                    type="text"
+                                    placeholder="ENTER-REF-CODE"
+                                    maxlength="20"
+                                    class="referral-input"
+                                />
+                                <button
+                                    onclick="applyReferral()"
+                                    type="button"
+                                    class="shrink-0 px-4 py-2 rounded-lg font-mono text-xs font-bold uppercase tracking-widest transition-all duration-200 hover:scale-105 active:scale-95"
+                                    style="background:rgba(0,219,233,0.1); color:#00dbe9; border:1px solid rgba(0,219,233,0.35); white-space:nowrap;">
+                                    APPLY
+                                </button>
+                            </div>
+                            <p id="referralStatus" class="hidden mt-2 font-mono text-[10px] tracking-wider"></p>
                         </div>
 
                     </div>
 
+                    <!-- CTA button -->
                     <button onclick="processPayment()" type="button"
-                        class="w-full py-4 rounded-xl text-on-secondary-container uppercase tracking-[0.25em] font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.97]"
-                        style="background: linear-gradient(90deg, rgba(178,102,255,0.8), rgba(100,60,200,0.9)); box-shadow: 0 0 30px rgba(178,102,255,.5);">
+                        class="w-full py-4 rounded-xl font-body-md font-bold uppercase tracking-[0.3em] transition-all duration-300 hover:scale-[1.02] active:scale-[0.97]"
+                        style="background:linear-gradient(90deg, rgba(208,91,255,0.75), rgba(140,40,220,0.85)); color:#f9d8ff; box-shadow:0 0 35px rgba(208,91,255,.45), inset 0 0 20px rgba(0,0,0,0.3); text-shadow:0 0 10px rgba(208,91,255,0.5);">
                         PROCEED TO PAY
                     </button>
 
@@ -1212,6 +1326,35 @@
             alert('Payment processing initiated. Uplink establishing...');
             // Example redirect or final submission:
             // document.getElementById('soloFormEl').submit();
+        }
+
+        function applyReferral() {
+            const input = document.getElementById('referralCode');
+            const status = document.getElementById('referralStatus');
+            const code = input ? input.value.trim().toUpperCase() : '';
+
+            status.classList.remove('hidden');
+
+            if (!code) {
+                status.style.color = '#ffb4ab';
+                status.innerText = '⚠ Enter a referral code first.';
+                return;
+            }
+
+            // Simulate checking: in a real app, call your API here
+            // For demo, accept any 6+ character code
+            if (code.length >= 6) {
+                status.style.color = '#00dbe9';
+                status.innerText = `✅ CODE ${code} ACCEPTED — Bonus XP unlocked`;
+                input.style.borderColor = 'rgba(0,219,233,0.7)';
+                input.style.boxShadow = '0 0 14px rgba(0,219,233,0.35)';
+                input.disabled = true;
+            } else {
+                status.style.color = '#ffb4ab';
+                status.innerText = `❌ INVALID CODE — Must be at least 6 characters`;
+                input.style.borderColor = 'rgba(255,180,171,0.5)';
+                input.style.boxShadow = '0 0 14px rgba(255,180,171,0.2)';
+            }
         }
 
         // Attach listeners on load
