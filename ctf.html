@@ -60,28 +60,39 @@
         .otp-box {
             width: 54px;
             height: 54px;
-            background: rgba(10,10,10,0.9);
+            background-color: #0a0a0a !important;
+            background-image: none !important;
             border: 1.5px solid rgba(255,255,255,0.1);
             border-radius: 50%;
-            color: #e2e2e2;
+            color: #e2e2e2 !important;
             font-family: 'JetBrains Mono', monospace;
             font-size: 1.5rem;
             font-weight: 700;
             text-align: center;
             caret-color: transparent;
             outline: none;
-            transition: border-color 0.15s, box-shadow 0.15s, background 0.15s, transform 0.15s;
+            appearance: none;
+            -webkit-appearance: none;
+            transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s, transform 0.15s;
+        }
+        /* Kill browser autofill white flash */
+        .otp-box:-webkit-autofill,
+        .otp-box:-webkit-autofill:hover,
+        .otp-box:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0 100px #0a0a0a inset !important;
+            -webkit-text-fill-color: #e2e2e2 !important;
+            caret-color: transparent;
         }
         .otp-box:focus {
             border-color: rgba(0,219,233,0.6);
             box-shadow: 0 0 0 3px rgba(0,219,233,0.12), 0 0 16px rgba(0,219,233,0.3);
-            background: rgba(0,219,233,0.06);
-            color: #00dbe9;
+            background-color: rgba(0,219,233,0.06) !important;
+            color: #00dbe9 !important;
         }
         .otp-box.filled {
             border-color: rgba(0,219,233,0.5);
-            background: rgba(0,219,233,0.08);
-            color: #00dbe9;
+            background-color: rgba(0,219,233,0.08) !important;
+            color: #00dbe9 !important;
             animation: otpPop 0.25s ease forwards;
         }
 
@@ -117,22 +128,32 @@
         /* Referral input */
         .referral-input {
             width: 100%;
-            background: rgba(0,0,0,0.5);
-            border: 1.5px solid rgba(0,219,233,0.2);
-            border-radius: 10px;
-            color: #00dbe9;
+            background-color: #0d0d0d !important;
+            background-image: none !important;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            color: rgba(185,202,203,0.85) !important;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            letter-spacing: 0.15em;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
             padding: 10px 14px;
             outline: none;
             text-transform: uppercase;
+            appearance: none;
+            -webkit-appearance: none;
             transition: border-color 0.18s, box-shadow 0.18s;
         }
-        .referral-input::placeholder { color: rgba(0,219,233,0.25); letter-spacing: 0.1em; }
+        .referral-input::placeholder { color: rgba(185,202,203,0.25); letter-spacing: 0.08em; }
         .referral-input:focus {
-            border-color: #00dbe9;
-            box-shadow: 0 0 14px rgba(0,219,233,0.3);
+            border-color: rgba(255,255,255,0.2);
+            box-shadow: 0 0 0 2px rgba(255,255,255,0.05);
+        }
+        /* Kill browser autofill white flash on referral input */
+        .referral-input:-webkit-autofill,
+        .referral-input:-webkit-autofill:hover,
+        .referral-input:-webkit-autofill:focus {
+            -webkit-box-shadow: 0 0 0 100px #0d0d0d inset !important;
+            -webkit-text-fill-color: rgba(185,202,203,0.85) !important;
         }
         .referral-badge {
             display: inline-flex;
