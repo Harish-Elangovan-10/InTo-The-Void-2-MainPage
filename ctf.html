@@ -38,7 +38,59 @@
             }
         }
 
-        .group.relative {
+        /* Card pop-in animation */
+        @keyframes cardPop {
+            0%   { opacity: 0; transform: scale(0.88) translateY(24px); }
+            60%  { opacity: 1; transform: scale(1.03) translateY(-4px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .card-pop {
+            animation: cardPop 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        /* OTP digit boxes */
+        .otp-box {
+            width: 52px;
+            height: 64px;
+            background: rgba(0,0,0,0.5);
+            border: 1.5px solid rgba(0,219,233,0.3);
+            border-radius: 12px;
+            color: #00dbe9;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.75rem;
+            font-weight: 700;
+            text-align: center;
+            caret-color: #00dbe9;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .otp-box:focus {
+            border-color: #00dbe9;
+            box-shadow: 0 0 18px rgba(0,219,233,0.45);
+        }
+        .otp-box.filled {
+            border-color: rgba(0,219,233,0.7);
+            box-shadow: 0 0 10px rgba(0,219,233,0.3);
+        }
+
+        /* Payment card rows */
+        .pay-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+        .pay-row + .pay-row {
+            border-top: 1px solid rgba(178,102,255,0.12);
+        }
+        .pay-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0 0;
+            margin-top: 6px;
+            border-top: 1.5px solid rgba(178,102,255,0.35);
+        }        .group.relative {
             transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
     </style>
@@ -500,59 +552,94 @@
                 </div>
 
                 <!-- OTP CARD -->
-                <div id="otpCard" class="hidden flex-col items-center justify-center py-10">
-                    <h2 class="font-display-lg text-headline-md tracking-tighter italic mb-4"
-                        style="color:#00dbe9; text-shadow:0 0 20px rgba(0,219,233,.4);">VERIFY UPLINK</h2>
-                    <div
-                        class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden mb-8 w-full max-w-sm">
-                        <label
-                            class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70 text-center">
-                            6-DIGIT OTP
-                        </label>
-                        <input type="text" placeholder="______"
-                            class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary text-center text-2xl tracking-[0.5em] font-mono">
+                <div id="otpCard" class="hidden flex-col items-center justify-center py-14 gap-8">
+
+                    <div class="text-center">
+                        <p class="text-[10px] font-mono tracking-[0.3em] uppercase text-cyan-400/50 mb-2">VERIFICATION NODE</p>
+                        <h2 class="font-display-lg text-3xl tracking-tighter italic"
+                            style="color:#00dbe9; text-shadow:0 0 28px rgba(0,219,233,.55);">VERIFY UPLINK</h2>
+                        <p class="text-on-surface-variant/50 font-mono text-xs mt-2">Enter the 6-digit code sent to your registered contact</p>
                     </div>
+
+                    <!-- 6-box OTP input -->
+                    <div id="otpBoxes" class="flex items-center gap-3">
+                        <input class="otp-box" id="otp0" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" autocomplete="one-time-code" />
+                        <input class="otp-box" id="otp1" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                        <input class="otp-box" id="otp2" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                        <span class="text-primary/30 font-mono text-xl">-</span>
+                        <input class="otp-box" id="otp3" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                        <input class="otp-box" id="otp4" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                        <input class="otp-box" id="otp5" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                    </div>
+
+                    <div id="otpError" class="hidden text-red-400 font-mono text-xs tracking-widest">⚠ INVALID CODE — RETRY</div>
+
                     <button onclick="verifyOtp()" type="button"
-                        class="px-16 py-4 rounded-xl bg-primary-container text-on-primary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(0,219,233,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,219,233,.6)] active:scale-[0.98]">
+                        class="px-16 py-4 rounded-xl bg-primary-container text-on-primary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(0,219,233,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_50px_rgba(0,219,233,.7)] active:scale-[0.97]">
                         VERIFY
                     </button>
+
                 </div>
 
                 <!-- PAYMENT CARD -->
-                <div id="paymentCard" class="hidden flex-col items-center justify-center py-10">
-                    <h2 class="font-display-lg text-headline-md tracking-tighter italic mb-4"
-                        style="color:#b266ff; text-shadow:0 0 20px rgba(178,102,255,.4);">SECURE CHANNEL</h2>
-                    <div
-                        class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden mb-8 w-full max-w-sm p-6 text-center">
-                        <span class="material-symbols-outlined text-secondary text-5xl mb-4">qr_code_scanner</span>
-                        <p class="text-secondary/70 font-mono text-sm mb-4">Awaiting payment verification to complete node registration.</p>
-                        
-                        <!-- Payment Details Section -->
-                        <div class="flex flex-col gap-2 mt-4 text-left font-mono text-sm text-secondary/80 bg-black/60 p-4 rounded-lg border border-secondary/20">
-                            <h3 class="text-secondary font-bold text-base mb-1 border-b border-secondary/20 pb-1 uppercase">Payment Details</h3>
-                            <div class="flex justify-between text-cyan-400/80">
-                                <span>Registered As</span>
-                                <span id="payName" class="font-bold text-primary">—</span>
+                <div id="paymentCard" class="hidden flex-col items-center justify-center py-10 gap-6 w-full max-w-md mx-auto">
+
+                    <!-- Header -->
+                    <div class="text-center">
+                        <p class="text-[10px] font-mono tracking-[0.3em] uppercase text-purple-400/50 mb-2">PAYMENT GATEWAY</p>
+                        <h2 class="font-display-lg text-3xl tracking-tighter italic"
+                            style="color:#b266ff; text-shadow:0 0 28px rgba(178,102,255,.55);">SECURE CHANNEL</h2>
+                    </div>
+
+                    <!-- Payment Panel -->
+                    <div class="w-full rounded-2xl overflow-hidden" style="background: linear-gradient(135deg, rgba(178,102,255,0.07) 0%, rgba(0,0,0,0.6) 100%); border: 1px solid rgba(178,102,255,0.25); box-shadow: 0 0 40px rgba(178,102,255,0.12);">
+
+                        <!-- Top bar with name badge -->
+                        <div class="px-6 py-4 flex items-center justify-between" style="border-bottom: 1px solid rgba(178,102,255,0.15); background: rgba(178,102,255,0.05);">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-secondary" style="font-size:1.3rem;">verified_user</span>
+                                <div>
+                                    <p class="text-[9px] uppercase tracking-widest text-purple-400/50 font-mono">REGISTERED NODE</p>
+                                    <p id="payName" class="text-primary font-bold font-mono text-sm">—</p>
+                                </div>
                             </div>
-                            <div class="flex justify-between mt-2">
-                                <span>Original Fee</span>
-                                <span id="payOriginal">₹ 400</span>
+                            <span class="px-3 py-1 rounded-full text-[9px] font-mono font-bold uppercase tracking-widest" style="background: rgba(0,219,233,0.1); color:#00dbe9; border:1px solid rgba(0,219,233,0.3);">EARLY BIRD</span>
+                        </div>
+
+                        <!-- Fee breakdown -->
+                        <div class="px-6 py-5 flex flex-col font-mono text-sm">
+                            <h3 class="text-[9px] uppercase tracking-[0.25em] text-purple-400/50 mb-4">PAYMENT DETAILS</h3>
+
+                            <div class="pay-row">
+                                <span class="text-on-surface-variant/60">Original Fee</span>
+                                <span id="payOriginal" class="text-on-surface-variant/80">₹ 400</span>
                             </div>
-                            <div class="flex justify-between">
-                                <span>Early Bird Discount</span>
-                                <span id="payDiscount">- ₹ 200</span>
+                            <div class="pay-row">
+                                <span class="text-on-surface-variant/60">Early Bird Discount</span>
+                                <span id="payDiscount" class="text-green-400">- ₹ 200</span>
                             </div>
-                            <div class="flex justify-between font-bold text-primary mt-2 pt-2 border-t border-secondary/20 text-lg">
-                                <span>Bill Amount</span>
-                                <span id="payTotal">₹ 200</span>
+
+                            <!-- Total -->
+                            <div class="pay-total-row">
+                                <span class="text-primary font-bold text-base uppercase tracking-wider">Bill Amount</span>
+                                <span id="payTotal" class="font-bold text-2xl" style="color:#b266ff; text-shadow: 0 0 16px rgba(178,102,255,0.6);">₹ 200</span>
                             </div>
                         </div>
 
+                        <!-- QR placeholder footer -->
+                        <div class="px-6 py-4 flex items-center gap-3" style="border-top: 1px solid rgba(178,102,255,0.15); background: rgba(0,0,0,0.3);">
+                            <span class="material-symbols-outlined text-secondary/50" style="font-size:1.1rem;">qr_code_scanner</span>
+                            <p class="text-[10px] font-mono text-on-surface-variant/40">Scan QR or click proceed to complete via payment gateway</p>
+                        </div>
+
                     </div>
+
                     <button onclick="processPayment()" type="button"
-                        class="px-16 py-4 rounded-xl bg-secondary-container text-on-secondary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(178,102,255,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(178,102,255,.6)] active:scale-[0.98]">
+                        class="w-full py-4 rounded-xl text-on-secondary-container uppercase tracking-[0.25em] font-bold transition-all duration-300 hover:scale-[1.02] active:scale-[0.97]"
+                        style="background: linear-gradient(90deg, rgba(178,102,255,0.8), rgba(100,60,200,0.9)); box-shadow: 0 0 30px rgba(178,102,255,.5);">
                         PROCEED TO PAY
                     </button>
+
                 </div>
 
             </div>
@@ -1002,6 +1089,54 @@
         }
 
         // --- OTP and Payment UI Transitions ---
+        function initOtpBoxes() {
+            const ids = ['otp0','otp1','otp2','otp3','otp4','otp5'];
+            ids.forEach((id, idx) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+
+                el.addEventListener('input', (e) => {
+                    // Allow only numeric
+                    el.value = el.value.replace(/[^0-9]/g, '');
+                    el.classList.toggle('filled', el.value.length > 0);
+                    // Auto-advance to next box
+                    if (el.value.length === 1 && idx < ids.length - 1) {
+                        document.getElementById(ids[idx + 1]).focus();
+                    }
+                    // Hide error on input
+                    document.getElementById('otpError').classList.add('hidden');
+                });
+
+                el.addEventListener('keydown', (e) => {
+                    // Backspace: clear current or go back
+                    if (e.key === 'Backspace') {
+                        if (el.value === '' && idx > 0) {
+                            const prev = document.getElementById(ids[idx - 1]);
+                            prev.value = '';
+                            prev.classList.remove('filled');
+                            prev.focus();
+                        }
+                    }
+                    // Left/Right arrow navigation
+                    if (e.key === 'ArrowLeft' && idx > 0) document.getElementById(ids[idx - 1]).focus();
+                    if (e.key === 'ArrowRight' && idx < ids.length - 1) document.getElementById(ids[idx + 1]).focus();
+                });
+
+                // Handle paste into first box
+                el.addEventListener('paste', (e) => {
+                    e.preventDefault();
+                    const pasted = (e.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 6);
+                    pasted.split('').forEach((char, i) => {
+                        const box = document.getElementById(ids[i]);
+                        if (box) { box.value = char; box.classList.add('filled'); }
+                    });
+                    const nextEmpty = ids.find(id => !document.getElementById(id).value);
+                    if (nextEmpty) document.getElementById(nextEmpty).focus();
+                    else document.getElementById(ids[5]).focus();
+                });
+            });
+        }
+
         function showOtpCard() {
             document.getElementById('formTabsWrapper').classList.add('hidden');
             document.getElementById('soloForm').classList.add('hidden');
@@ -1009,21 +1144,32 @@
 
             const otpCard = document.getElementById('otpCard');
             otpCard.classList.remove('hidden');
-            otpCard.classList.add('flex', 'feedback-fade-in');
+            otpCard.classList.add('flex', 'card-pop');
+            // Focus first box
+            setTimeout(() => document.getElementById('otp0').focus(), 100);
         }
 
         function verifyOtp() {
+            // Collect OTP from 6 boxes
+            const otpValue = ['otp0','otp1','otp2','otp3','otp4','otp5']
+                .map(id => document.getElementById(id).value)
+                .join('');
+
+            if (otpValue.length < 6) {
+                document.getElementById('otpError').classList.remove('hidden');
+                document.getElementById('otp0').focus();
+                return;
+            }
+
             // Detect active form (solo vs team)
             const isSolo = document.getElementById('soloTab').classList.contains('active-tab');
 
             // --- Fetch registrant name ---
             let registrantName = "—";
             if (isSolo) {
-                // Solo: first text input = Full Name (second input in the grid)
                 const nameInputs = document.querySelectorAll('#soloFormEl input[type="text"]');
                 if (nameInputs.length > 0) registrantName = nameInputs[0].value.trim() || "—";
             } else {
-                // Team: leader name input
                 const nameInputs = document.querySelectorAll('#teamFormEl input[type="text"]');
                 if (nameInputs.length > 0) registrantName = nameInputs[0].value.trim() || "—";
             }
@@ -1052,14 +1198,13 @@
             document.getElementById('payDiscount').innerText = `- ₹ ${discount} (${discountLabel})`;
             document.getElementById('payTotal').innerText = '₹ ' + finalPrice;
 
-            // In a real app, call your API to verify OTP here.
-            // For now, simulate success and show payment card:
+            // Hide OTP card, show payment card with pop animation
             document.getElementById('otpCard').classList.add('hidden');
-            document.getElementById('otpCard').classList.remove('flex');
+            document.getElementById('otpCard').classList.remove('flex', 'card-pop');
 
             const paymentCard = document.getElementById('paymentCard');
             paymentCard.classList.remove('hidden');
-            paymentCard.classList.add('flex', 'feedback-fade-in');
+            paymentCard.classList.add('flex', 'card-pop');
         }
 
         function processPayment() {
@@ -1071,6 +1216,8 @@
 
         // Attach listeners on load
         document.addEventListener("DOMContentLoaded", () => {
+            initOtpBoxes();
+
             const soloForm = document.getElementById('soloFormEl');
             const teamForm = document.getElementById('teamFormEl');
 
