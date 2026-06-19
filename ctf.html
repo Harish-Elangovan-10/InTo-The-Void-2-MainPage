@@ -1,43 +1,56 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="assets/css/responsive.css" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script src="assets/js/tailwind-config.js"></script>
-<link href="assets/css/main.css" rel="stylesheet"/>
-<link href="assets/css/navbar.css" rel="stylesheet"/>
-<script src="assets/js/register.js"></script>
-<style>
-    /* Cyber border glows and feedback animations */
-    .feedback-fade-in {
-        animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(-4px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    .group.relative {
-        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-</style>
-</head>
-<body class="bg-background text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen font-body-md overflow-x-hidden">
-<div class="scanline"></div>
-<!-- TopNavBar -->
-<!-- TopNavBar Placeholder -->
+<html class="dark" lang="en">
 
-        <!-- TopNavBar -->
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=Space+Mono:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="assets/css/responsive.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="assets/js/tailwind-config.js"></script>
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <link href="assets/css/navbar.css" rel="stylesheet" />
+    <script src="assets/js/register.js"></script>
+    <style>
+        /* Cyber border glows and feedback animations */
+        .feedback-fade-in {
+            animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-4px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .group.relative {
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen font-body-md overflow-x-hidden">
+    <div class="scanline"></div>
+    <!-- TopNavBar -->
+    <!-- TopNavBar Placeholder -->
+
+    <!-- TopNavBar -->
     <header class="liquid-navbar">
         <div class="w-full max-w-[1080px] mx-auto px-4 md:px-6 h-12 flex items-center justify-between gap-4">
             <!-- Brand Logo & Name -->
@@ -49,23 +62,28 @@
             </a>
              -->
             <nav class="flex items-center gap-1 sm:gap-2 md:gap-4 lg:gap-6">
-                <a class="nav-link active text-primary border-b-2 border-primary-container pb-1 drop-shadow-[0_0_8px_#00dbe9] font-label-caps text-label-caps flex items-center justify-center" href="home.html">
+                <a class="nav-link active text-primary border-b-2 border-primary-container pb-1 drop-shadow-[0_0_8px_#00dbe9] font-label-caps text-label-caps flex items-center justify-center"
+                    href="home.html">
                     <span class="material-symbols-outlined md:hidden text-lg">home</span>
                     <span class="hidden md:inline">Home</span>
                 </a>
-                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps flex items-center justify-center" href="home.html#event">
+                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps flex items-center justify-center"
+                    href="home.html#event">
                     <span class="material-symbols-outlined md:hidden text-lg">event</span>
                     <span class="hidden md:inline">Event</span>
                 </a>
-                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps flex items-center justify-center" href="home.html#registration">
+                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps flex items-center justify-center"
+                    href="home.html#registration">
                     <span class="material-symbols-outlined md:hidden text-lg">app_registration</span>
                     <span class="hidden md:inline">Registration</span>
                 </a>
-                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps flex items-center justify-center" href="home.html#hyper-inline">
+                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps flex items-center justify-center"
+                    href="home.html#hyper-inline">
                     <span class="material-symbols-outlined md:hidden text-lg">category</span>
                     <span class="hidden md:inline">Category</span>
                 </a>
-                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps flex items-center justify-center" href="home.html#sponsors">
+                <a class="nav-link text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps flex items-center justify-center"
+                    href="home.html#sponsors">
                     <span class="material-symbols-outlined md:hidden text-lg">workspace_premium</span>
                     <span class="hidden md:inline">Sponsor</span>
                 </a>
@@ -74,667 +92,687 @@
     </header>
 
 
-<!-- SideNavBar Shell (Suppressed as this is a focused Task/Contact Page) -->
-<main class="pt-32  pb-32 mb-20 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto min-h-screen">
-<div class="max-w-6xl mx-auto">
+    <!-- SideNavBar Shell (Suppressed as this is a focused Task/Contact Page) -->
+    <main class="pt-32  pb-32 mb-20 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto min-h-screen">
+        <div class="max-w-6xl mx-auto">
 
-    <!-- Header -->
-    <div class="flex flex-col gap-2 mb-12 text-center">
-        <span class="font-label-caps text-label-caps tracking-[0.3em] uppercase text-secondary">
-            Registration Node: 0x1A_CTF
-        </span>
+            <!-- Header -->
+            <div class="flex flex-col gap-2 mb-12 text-center">
+                <span class="font-label-caps text-label-caps tracking-[0.3em] uppercase text-secondary">
+                    Registration Node: 0x1A_CTF
+                </span>
 
-        <h1 class="font-display-lg text-headline-xl tracking-tighter italic"
-            style="color:#00dbe9; text-shadow:0 0 20px rgba(0,219,233,.4);">
-            CTF_REGISTRATION
-        </h1>
-    </div>
-
-    <!-- Glass Panel -->
-    <div class="glass-panel relative rounded-2xl border-t-2 border-primary p-10">
-
-        <!-- Status -->
-        <div class="absolute top-6 right-8 text-[10px] font-mono tracking-widest text-secondary/40">
-            STATUS: UPLINK_READY
-        </div>
-
-        <!-- Tabs -->
-        <div id="formTabsWrapper" class="flex justify-center mb-16">
-
-            <div class="tab-container">
-
-                <button
-                    id="soloTab"
-                    type="button"
-                    class="tab-btn active-tab"
-                    onclick="switchTab('solo')">
-                    SOLO
-                </button>
-
-                <button
-                    id="teamTab"
-                    type="button"
-                    class="tab-btn"
-                    onclick="switchTab('team')">
-                    TEAM
-                </button>
-
+                <h1 class="font-display-lg text-headline-xl tracking-tighter italic"
+                    style="color:#00dbe9; text-shadow:0 0 20px rgba(0,219,233,.4);">
+                    CTF_REGISTRATION
+                </h1>
             </div>
 
-        </div>
+            <!-- Glass Panel -->
+            <div class="glass-panel relative rounded-2xl border-t-2 border-primary p-10">
 
-        <!-- SOLO FORM -->
-        <div id="soloForm">
-
-            <form id="soloFormEl" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-                 <div id="soloTeamNameContainer" class="md:col-span-2 group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Team_Name
-                    </label>
-                    <input type="text"
-                           id="soloTeamName"
-                           placeholder="Enter Team Name"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                    <div id="soloTeamNameFeedback" class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
-                </div>
-                <!-- Full Name -->
-                <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Full_Name
-                    </label>
-                    <input type="text"
-                           placeholder="Enter your full name"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                <!-- Status -->
+                <div class="absolute top-6 right-8 text-[10px] font-mono tracking-widest text-secondary/40">
+                    STATUS: UPLINK_READY
                 </div>
 
-                <!-- Gender -->
-                <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Gender
-                    </label>
-                    <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                        <option class="bg-black">Male</option>
-                        <option class="bg-black">Female</option>
-                        <option class="bg-black">Other</option>
-                    </select>
+                <!-- Tabs -->
+                <div id="formTabsWrapper" class="flex justify-center mb-16">
+
+                    <div class="tab-container">
+
+                        <button id="soloTab" type="button" class="tab-btn active-tab" onclick="switchTab('solo')">
+                            SOLO
+                        </button>
+
+                        <button id="teamTab" type="button" class="tab-btn" onclick="switchTab('team')">
+                            TEAM
+                        </button>
+
+                    </div>
+
                 </div>
 
-                <!-- Email -->
-                <div id="soloEmailContainer" class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-                        Email_ID
-                    </label>
-                    <input type="email"
-                           id="soloEmail"
-                           placeholder="user@domain.com"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
-                    <div id="soloEmailFeedback" class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
+                <!-- SOLO FORM -->
+                <div id="soloForm">
+
+                    <form id="soloFormEl" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div id="soloTeamNameContainer"
+                            class="md:col-span-2 group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Team_Name
+                            </label>
+                            <input type="text" id="soloTeamName" placeholder="Enter Team Name"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                            <div id="soloTeamNameFeedback"
+                                class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
+                        </div>
+                        <!-- Full Name -->
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Full_Name
+                            </label>
+                            <input type="text" placeholder="Enter your full name"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Gender
+                            </label>
+                            <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                                <option class="bg-black">Male</option>
+                                <option class="bg-black">Female</option>
+                                <option class="bg-black">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Email -->
+                        <div id="soloEmailContainer"
+                            class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                Email_ID
+                            </label>
+                            <input type="email" id="soloEmail" placeholder="user@domain.com"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
+                            <div id="soloEmailFeedback"
+                                class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
+                        </div>
+
+                        <!-- Mobile -->
+                        <div id="soloPhoneContainer"
+                            class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Mobile_Number
+                            </label>
+                            <input type="tel" id="soloPhone" placeholder="+91 9876543210"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                            <div id="soloPhoneFeedback"
+                                class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
+                        </div>
+
+                        <!-- College -->
+                        <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                College_Name
+                            </label>
+
+                            <input id="collegeName" list="collegeList" placeholder="Select or type your college"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary outline-none" />
+
+                            <datalist id="collegeList">
+                                <option value="Chennai Institute of Technology"></option>
+
+                            </datalist>
+                        </div>
+                        <!-- Degree -->
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Degree
+                            </label>
+                            <input type="text" placeholder="B.Tech, B.E, B.Sc"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                        </div>
+
+                        <!-- Department -->
+                        <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                Department
+                            </label>
+                            <input type="text" placeholder="Computer Science, IT"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
+                        </div>
+
+                        <!-- Year -->
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Year_of_Study
+                            </label>
+                            <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                                <option class="bg-black">Select Year</option>
+                                <option class="bg-black">1st Year</option>
+                                <option class="bg-black">2nd Year</option>
+                                <option class="bg-black">3rd Year</option>
+                                <option class="bg-black">4th Year</option>
+                                <option class="bg-black">5th Year</option>
+                            </select>
+                        </div>
+
+                        <!-- Location -->
+                        <div
+                            class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden md:col-span-2">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                Location
+                            </label>
+                            <input type="text" placeholder="City / District"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="md:col-span-2 flex flex-col items-center pt-8">
+                            <div id="soloSubmitError"
+                                class="w-full max-w-md text-center text-red-500 font-mono text-[11px] mb-4 p-3 border border-red-500/30 bg-red-950/40 rounded-xl hidden feedback-fade-in">
+                            </div>
+                            <button type="submit"
+                                class="px-16 py-4 rounded-xl bg-primary-container text-on-primary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(0,219,233,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,219,233,.6)] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed">
+                                I'M READY TO HACK
+                            </button>
+                        </div>
+
+                    </form>
+
                 </div>
 
-                <!-- Mobile -->
-                <div id="soloPhoneContainer" class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Mobile_Number
-                    </label>
-                    <input type="tel"
-                           id="soloPhone"
-                           placeholder="+91 9876543210"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                    <div id="soloPhoneFeedback" class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
+                <!-- TEAM FORM -->
+                <div id="teamForm" class="hidden">
+
+                    <form id="teamFormEl" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                        <div id="teamTeamNameContainer"
+                            class="md:col-span-2 group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Team_Name
+                            </label>
+                            <input type="text" id="teamTeamName" placeholder="Enter Team Name"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                            <div id="teamTeamNameFeedback"
+                                class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
+                        </div>
+
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Team_Leader
+                            </label>
+                            <input type="text" placeholder="Leader Name"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                        </div>
+
+                        <div id="teamLeaderEmailContainer"
+                            class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                Leader_Email
+                            </label>
+                            <input type="email" id="teamLeaderEmail" placeholder="leader@domain.com"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
+                            <div id="teamLeaderEmailFeedback"
+                                class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
+                        </div>
+                        <div
+                            class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden md:col-span-2">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                Location
+                            </label>
+                            <input type="text" placeholder="City / District"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
+                        </div>
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Year_of_Study
+                            </label>
+                            <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                                <option class="bg-black">Select Year</option>
+                                <option class="bg-black">1st Year</option>
+                                <option class="bg-black">2nd Year</option>
+                                <option class="bg-black">3rd Year</option>
+                                <option class="bg-black">4th Year</option>
+                            </select>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Gender
+                            </label>
+                            <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                                <option class="bg-black">Male</option>
+                                <option class="bg-black">Female</option>
+                                <option class="bg-black">Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Mobile -->
+                        <div id="teamLeaderPhoneContainer"
+                            class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Mobile_Number
+                            </label>
+                            <input type="tel" id="teamLeaderPhone" placeholder="+91 9876543210"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                            <div id="teamLeaderPhoneFeedback"
+                                class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
+                        </div>
+
+                        <!-- College -->
+                        <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                College_Name
+                            </label>
+
+                            <input id="collegeName" list="collegeList" placeholder="Select or type your college"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary outline-none" />
+
+                            <datalist id="collegeList">
+                                <option value="Chennai Institute of Technology"></option>
+                            </datalist>
+                        </div>
+
+                        <!-- Degree -->
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Degree
+                            </label>
+                            <input type="text" placeholder="B.Tech, B.E, B.Sc"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                        </div>
+
+                        <!-- Department -->
+                        <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                Department
+                            </label>
+                            <input type="text" placeholder="Computer Science, IT"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
+                        </div>
+                        <div
+                            class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden md:col-span-2">
+
+                        </div>
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Team_Member
+                            </label>
+                            <input type="text" placeholder="Team Member Name"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                        </div>
+
+                        <div id="teamMemberEmailContainer"
+                            class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                Member_Email
+                            </label>
+                            <input type="email" id="teamMemberEmail" placeholder="member@domain.com"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
+                            <div id="teamMemberEmailFeedback"
+                                class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
+                        </div>
+                        <div
+                            class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden md:col-span-2">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                Location
+                            </label>
+                            <input type="text" placeholder="City / District"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
+                        </div>
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Year_of_Study
+                            </label>
+                            <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                                <option class="bg-black">Select Year</option>
+                                <option class="bg-black">1st Year</option>
+                                <option class="bg-black">2nd Year</option>
+                                <option class="bg-black">3rd Year</option>
+                                <option class="bg-black">4th Year</option>
+                            </select>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Gender
+                            </label>
+                            <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                                <option class="bg-black">Male</option>
+                                <option class="bg-black">Female</option>
+                                <option class="bg-black">Other</option>
+                            </select>
+                        </div>
+
+
+                        <!-- Mobile -->
+                        <div id="teamMemberPhoneContainer"
+                            class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Mobile_Number
+                            </label>
+                            <input type="tel" id="teamMemberPhone" placeholder="+91 9876543210"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                            <div id="teamMemberPhoneFeedback"
+                                class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
+                        </div>
+
+                        <!-- College -->
+                        <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                College_Name
+                            </label>
+
+                            <input id="collegeName" list="collegeList" placeholder="Select or type your college"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary outline-none" />
+
+                            <datalist id="collegeList">
+                                <option value="Chennai Institute of Technology"></option>
+                            </datalist>
+                        </div>
+                        <!-- Degree -->
+                        <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
+                                Degree
+                            </label>
+                            <input type="text" placeholder="B.Tech, B.E, B.Sc"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
+                        </div>
+
+                        <!-- Department -->
+                        <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
+                            <label
+                                class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
+                                Department
+                            </label>
+                            <input type="text" placeholder="Computer Science, IT"
+                                class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
+                        </div>
+
+                        <div class="md:col-span-2 flex flex-col items-center pt-8">
+                            <div id="teamSubmitError"
+                                class="w-full max-w-md text-center text-red-500 font-mono text-[11px] mb-4 p-3 border border-red-500/30 bg-red-950/40 rounded-xl hidden feedback-fade-in">
+                            </div>
+                            <button type="submit"
+                                class="px-16 py-4 rounded-xl bg-primary-container text-on-primary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(0,219,233,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,219,233,.6)] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed">
+                                REGISTER_TEAM
+                            </button>
+                        </div>
+
+                    </form>
+
                 </div>
 
-                <!-- College -->
-               <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
-    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-        College_Name
-    </label>
-
-    <input
-        id="collegeName"
-        list="collegeList"
-        placeholder="Select or type your college"
-        class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary outline-none"
-    />
-
-    <datalist id="collegeList">
-        <option value="Chennai Institute of Technology"></option>
-        
-    </datalist>
-</div>
-                <!-- Degree -->
-                <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Degree
-                    </label>
-                    <input type="text"
-                           placeholder="B.Tech, B.E, B.Sc"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                </div>
-
-                <!-- Department -->
-                <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-                        Department
-                    </label>
-                    <input type="text"
-                           placeholder="Computer Science, IT"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
-                </div>
-
-                <!-- Year -->
-                <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Year_of_Study
-                    </label>
-                    <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                        <option class="bg-black">Select Year</option>
-                        <option class="bg-black">1st Year</option>
-                        <option class="bg-black">2nd Year</option>
-                        <option class="bg-black">3rd Year</option>
-                        <option class="bg-black">4th Year</option>
-                        <option class="bg-black">5th Year</option>
-                    </select>
-                </div>
-
-                <!-- Location -->
-                <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden md:col-span-2">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-                        Location
-                    </label>
-                    <input type="text"
-                           placeholder="City / District"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
-                </div>
-
-                <!-- Submit -->
-                <div class="md:col-span-2 flex flex-col items-center pt-8">
-                    <div id="soloSubmitError" class="w-full max-w-md text-center text-red-500 font-mono text-[11px] mb-4 p-3 border border-red-500/30 bg-red-950/40 rounded-xl hidden feedback-fade-in"></div>
-                    <button
-                        type="submit"
-                        class="px-16 py-4 rounded-xl bg-primary-container text-on-primary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(0,219,233,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,219,233,.6)] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed">
-                        I'M READY TO HACK
+                <!-- OTP CARD -->
+                <div id="otpCard" class="hidden flex-col items-center justify-center py-10">
+                    <h2 class="font-display-lg text-headline-md tracking-tighter italic mb-4"
+                        style="color:#00dbe9; text-shadow:0 0 20px rgba(0,219,233,.4);">VERIFY UPLINK</h2>
+                    <div
+                        class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden mb-8 w-full max-w-sm">
+                        <label
+                            class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70 text-center">
+                            6-DIGIT OTP
+                        </label>
+                        <input type="text" placeholder="______"
+                            class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary text-center text-2xl tracking-[0.5em] font-mono">
+                    </div>
+                    <button onclick="verifyOtp()" type="button"
+                        class="px-16 py-4 rounded-xl bg-primary-container text-on-primary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(0,219,233,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,219,233,.6)] active:scale-[0.98]">
+                        VERIFY
                     </button>
                 </div>
-            
-            </form>
 
-        </div>
+                <!-- PAYMENT CARD -->
+                <div id="paymentCard" class="hidden flex-col items-center justify-center py-10">
+                    <h2 class="font-display-lg text-headline-md tracking-tighter italic mb-4"
+                        style="color:#b266ff; text-shadow:0 0 20px rgba(178,102,255,.4);">SECURE CHANNEL</h2>
+                    <div
+                        class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden mb-8 w-full max-w-sm p-6 text-center">
+                        <span class="material-symbols-outlined text-secondary text-5xl mb-4">qr_code_scanner</span>
+                        <p class="text-secondary/70 font-mono text-sm mb-4">Awaiting payment verification to complete node registration.</p>
+                        
+                        <!-- Payment Details Section -->
+                        <div class="flex flex-col gap-2 mt-4 text-left font-mono text-sm text-secondary/80 bg-black/60 p-4 rounded-lg border border-secondary/20">
+                            <h3 class="text-secondary font-bold text-base mb-1 border-b border-secondary/20 pb-1 uppercase">Payment Details</h3>
+                            <div class="flex justify-between text-cyan-400/80">
+                                <span>Registered As</span>
+                                <span id="payName" class="font-bold text-primary">—</span>
+                            </div>
+                            <div class="flex justify-between mt-2">
+                                <span>Original Fee</span>
+                                <span id="payOriginal">₹ 400</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Early Bird Discount</span>
+                                <span id="payDiscount">- ₹ 200</span>
+                            </div>
+                            <div class="flex justify-between font-bold text-primary mt-2 pt-2 border-t border-secondary/20 text-lg">
+                                <span>Bill Amount</span>
+                                <span id="payTotal">₹ 200</span>
+                            </div>
+                        </div>
 
-        <!-- TEAM FORM -->
-        <div id="teamForm" class="hidden">
-
-            <form id="teamFormEl" class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-
-                <div id="teamTeamNameContainer" class="md:col-span-2 group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Team_Name
-                    </label>
-                    <input type="text"
-                           id="teamTeamName"
-                           placeholder="Enter Team Name"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                    <div id="teamTeamNameFeedback" class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
-                </div>
-
-                <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Team_Leader
-                    </label>
-                    <input type="text"
-                           placeholder="Leader Name"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                </div>
-
-                <div id="teamLeaderEmailContainer" class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-                        Leader_Email
-                    </label>
-                    <input type="email"
-                           id="teamLeaderEmail"
-                           placeholder="leader@domain.com"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
-                    <div id="teamLeaderEmailFeedback" class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
-                </div>
-                 <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden md:col-span-2">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-                        Location
-                    </label>
-                    <input type="text"
-                           placeholder="City / District"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
-                </div>
-                 <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Year_of_Study
-                    </label>
-                    <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                        <option class="bg-black">Select Year</option>
-                        <option class="bg-black">1st Year</option>
-                        <option class="bg-black">2nd Year</option>
-                        <option class="bg-black">3rd Year</option>
-                        <option class="bg-black">4th Year</option>
-                    </select>
-                </div>
-
-                 <!-- Gender -->
-                <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Gender
-                    </label>
-                    <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                        <option class="bg-black">Male</option>
-                        <option class="bg-black">Female</option>
-                        <option class="bg-black">Other</option>
-                    </select>
-                </div>
-
-                <!-- Mobile -->
-                <div id="teamLeaderPhoneContainer" class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Mobile_Number
-                    </label>
-                    <input type="tel"
-                           id="teamLeaderPhone"
-                           placeholder="+91 9876543210"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                    <div id="teamLeaderPhoneFeedback" class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
-                </div>
-
-                <!-- College -->
-               <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
-    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-        College_Name
-    </label>
-
-    <input
-        id="collegeName"
-        list="collegeList"
-        placeholder="Select or type your college"
-        class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary outline-none"
-    />
-
-    <datalist id="collegeList">
-        <option value="Chennai Institute of Technology"></option>
-    </datalist>
-</div>
-
-                <!-- Degree -->
-                <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Degree
-                    </label>
-                    <input type="text"
-                           placeholder="B.Tech, B.E, B.Sc"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                </div>
-
-                <!-- Department -->
-                <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-                        Department
-                    </label>
-                    <input type="text"
-                           placeholder="Computer Science, IT"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
-                </div>
-                <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden md:col-span-2">
-                   
-                </div>
-<div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Team_Member
-                    </label>
-                    <input type="text"
-                           placeholder="Team Member Name"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                </div>
-
-                <div id="teamMemberEmailContainer" class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-                        Member_Email
-                    </label>
-                    <input type="email"
-                           id="teamMemberEmail"
-                           placeholder="member@domain.com"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
-                    <div id="teamMemberEmailFeedback" class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
-                </div>
-                 <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden md:col-span-2">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-                        Location
-                    </label>
-                    <input type="text"
-                           placeholder="City / District"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
-                </div>
-                 <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Year_of_Study
-                    </label>
-                    <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                        <option class="bg-black">Select Year</option>
-                        <option class="bg-black">1st Year</option>
-                        <option class="bg-black">2nd Year</option>
-                        <option class="bg-black">3rd Year</option>
-                        <option class="bg-black">4th Year</option>
-                    </select>
-                </div>
-
-                 <!-- Gender -->
-                <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Gender
-                    </label>
-                    <select class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                        <option class="bg-black">Male</option>
-                        <option class="bg-black">Female</option>
-                        <option class="bg-black">Other</option>
-                    </select>
-                </div>
-
-
-                <!-- Mobile -->
-                <div id="teamMemberPhoneContainer" class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden transition-all duration-300">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Mobile_Number
-                    </label>
-                    <input type="tel"
-                           id="teamMemberPhone"
-                           placeholder="+91 9876543210"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                    <div id="teamMemberPhoneFeedback" class="px-4 pb-2 text-[11px] font-mono transition-all duration-300 hidden"></div>
-                </div>
-
-                <!-- College -->
-                <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
-    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-        College_Name
-    </label>
-
-    <input
-        id="collegeName"
-        list="collegeList"
-        placeholder="Select or type your college"
-        class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary outline-none"
-    />
-
-    <datalist id="collegeList">
-        <option value="Chennai Institute of Technology"></option>
-           </datalist>
-</div>
-                <!-- Degree -->
-                <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70">
-                        Degree
-                    </label>
-                    <input type="text"
-                           placeholder="B.Tech, B.E, B.Sc"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary">
-                </div>
-
-                <!-- Department -->
-                <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden">
-                    <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-purple-400/70">
-                        Department
-                    </label>
-                    <input type="text"
-                           placeholder="Computer Science, IT"
-                           class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-secondary">
-                </div>
-
-                <div class="md:col-span-2 flex flex-col items-center pt-8">
-                    <div id="teamSubmitError" class="w-full max-w-md text-center text-red-500 font-mono text-[11px] mb-4 p-3 border border-red-500/30 bg-red-950/40 rounded-xl hidden feedback-fade-in"></div>
-                    <button
-                        type="submit"
-                        class="px-16 py-4 rounded-xl bg-primary-container text-on-primary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(0,219,233,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,219,233,.6)] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed">
-                        REGISTER_TEAM
+                    </div>
+                    <button onclick="processPayment()" type="button"
+                        class="px-16 py-4 rounded-xl bg-secondary-container text-on-secondary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(178,102,255,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(178,102,255,.6)] active:scale-[0.98]">
+                        PROCEED TO PAY
                     </button>
                 </div>
 
-            </form>
-
-        </div>
-
-        <!-- OTP CARD -->
-        <div id="otpCard" class="hidden flex-col items-center justify-center py-10">
-            <h2 class="font-display-lg text-headline-md tracking-tighter italic mb-4" style="color:#00dbe9; text-shadow:0 0 20px rgba(0,219,233,.4);">VERIFY UPLINK</h2>
-            <div class="group relative border border-primary/30 rounded-xl bg-black/40 overflow-hidden mb-8 w-full max-w-sm">
-                <label class="block px-4 pt-3 mb-2 text-[10px] uppercase tracking-widest text-cyan-400/70 text-center">
-                    6-DIGIT OTP
-                </label>
-                <input type="text"
-                       placeholder="______"
-                       class="w-full bg-transparent border-none focus:ring-0 px-4 pb-4 text-primary text-center text-2xl tracking-[0.5em] font-mono">
             </div>
-            <button
-                onclick="verifyOtp()"
-                type="button"
-                class="px-16 py-4 rounded-xl bg-primary-container text-on-primary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(0,219,233,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,219,233,.6)] active:scale-[0.98]">
-                VERIFY
-            </button>
+
         </div>
 
-        <!-- PAYMENT CARD -->
-        <div id="paymentCard" class="hidden flex-col items-center justify-center py-10">
-            <h2 class="font-display-lg text-headline-md tracking-tighter italic mb-4" style="color:#b266ff; text-shadow:0 0 20px rgba(178,102,255,.4);">SECURE CHANNEL</h2>
-            <div class="group relative border border-secondary/30 rounded-xl bg-black/40 overflow-hidden mb-8 w-full max-w-sm p-6 text-center">
-                <span class="material-symbols-outlined text-secondary text-5xl mb-4">qr_code_scanner</span>
-                <p class="text-secondary/70 font-mono text-sm mb-4">Awaiting payment verification to complete node registration.</p>
-                <div class="text-2xl text-secondary font-bold font-mono">₹ XXX.XX</div>
+    </main>
+    <footer class="w-full bg-black/95 border-t border-primary/20 py-10">
+        <div
+            class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop flex flex-col lg:flex-row items-center justify-between gap-8">
+            <a class="flex items-center gap-4 group" data-env="CLUB_URL" href="https://www.exploitx.org"
+                aria-label="ExploitX official club page">
+                <img src="assets/images/exploitx-logo.png" alt="ExploitX club logo"
+                    class="w-12 h-12 rounded-full border border-primary/30 bg-black/40 object-contain" />
+                <div class="flex flex-col">
+                    <span
+                        class="text-primary font-bold font-display-lg text-sm uppercase tracking-wider">ExploitX</span>
+                    <span class="text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">Official
+                        club page</span>
+                </div>
+            </a>
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="INSTAGRAM_URL" href="https://www.instagram.com/exploitxorg" aria-label="Instagram">
+                    <span class="material-symbols-outlined text-base">photo_camera</span>
+                    <span>Instagram</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="LINKEDIN_URL" href="https://www.linkedin.com/company/exploitxorg/" aria-label="LinkedIn">
+                    <span class="material-symbols-outlined text-base">work</span>
+                    <span>LinkedIn</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="X_URL" href="https://twitter.com/exploitxorg" aria-label="X">
+                    <span class="material-symbols-outlined text-base">close</span>
+                    <span>X</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="REDDIT_URL" href="https://www.reddit.com/user/exploitxorg" aria-label="Reddit">
+                    <span class="material-symbols-outlined text-base">forum</span>
+                    <span>Reddit</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="GITHUB_URL" href="https://github.com/exploitx-org" aria-label="GitHub">
+                    <span class="material-symbols-outlined text-base">code</span>
+                    <span>GitHub</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="MASTODON_URL" href="https://mastodon.social/@exploitxorg" aria-label="Mastodon">
+                    <span class="material-symbols-outlined text-base">hub</span>
+                    <span>Mastodon</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="MAIL_URL" href="mailto:exploitx@citchennai.net" aria-label="Email">
+                    <span class="material-symbols-outlined text-base">mail</span>
+                    <span>Mail</span>
+                </a>
             </div>
-            <button
-                onclick="processPayment()"
-                type="button"
-                class="px-16 py-4 rounded-xl bg-secondary-container text-on-secondary-container uppercase tracking-[0.25em] font-bold shadow-[0_0_30px_rgba(178,102,255,.4)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(178,102,255,.6)] active:scale-[0.98]">
-                PROCEED TO PAY
-            </button>
         </div>
+        <div
+            class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">
+            <div>© 2124 MULTIVERSE_CORE. ALL RIGHTS RESERVED. [RESTRICTED ACCESS]</div>
+            <div class="flex flex-wrap items-center justify-center gap-6">
+                <a class="hover:text-primary transition-all" href="terms.html">PROTOCOL_TC</a>
 
-    </div>
+                <a class="hover:text-primary transition-all" href="privacy.html">PRIVACY_ENCRYPT</a>
+                <a class="hover:text-primary transition-all" href="sitemap.html">SITEMAP_DIR</a>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/footer-links.js"></script>
 
-</div>
+    <script src="assets/js/navbar.js"></script>
+    <script>
+        // Live Verification API integration and field validations
 
-</main>
-<footer class="w-full bg-black/95 border-t border-primary/20 py-10">
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop flex flex-col lg:flex-row items-center justify-between gap-8">
-<a class="flex items-center gap-4 group" data-env="CLUB_URL" href="https://www.exploitx.org" aria-label="ExploitX official club page">
-<img src="assets/images/exploitx-logo.png" alt="ExploitX club logo" class="w-12 h-12 rounded-full border border-primary/30 bg-black/40 object-contain"/>
-<div class="flex flex-col">
-<span class="text-primary font-bold font-display-lg text-sm uppercase tracking-wider">ExploitX</span>
-<span class="text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">Official club page</span>
-</div>
-</a>
-<div class="flex flex-wrap items-center justify-center gap-4">
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="INSTAGRAM_URL" href="https://www.instagram.com/exploitxorg" aria-label="Instagram">
-<span class="material-symbols-outlined text-base">photo_camera</span>
-<span>Instagram</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="LINKEDIN_URL" href="https://www.linkedin.com/company/exploitxorg/" aria-label="LinkedIn">
-<span class="material-symbols-outlined text-base">work</span>
-<span>LinkedIn</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="X_URL" href="https://twitter.com/exploitxorg" aria-label="X">
-<span class="material-symbols-outlined text-base">close</span>
-<span>X</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="REDDIT_URL" href="https://www.reddit.com/user/exploitxorg" aria-label="Reddit">
-<span class="material-symbols-outlined text-base">forum</span>
-<span>Reddit</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="GITHUB_URL" href="https://github.com/exploitx-org" aria-label="GitHub">
-<span class="material-symbols-outlined text-base">code</span>
-<span>GitHub</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="MASTODON_URL" href="https://mastodon.social/@exploitxorg" aria-label="Mastodon">
-<span class="material-symbols-outlined text-base">hub</span>
-<span>Mastodon</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="MAIL_URL" href="mailto:exploitx@citchennai.net" aria-label="Email">
-<span class="material-symbols-outlined text-base">mail</span>
-<span>Mail</span>
-</a>
-</div>
-</div>
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">
-<div>© 2124 MULTIVERSE_CORE. ALL RIGHTS RESERVED. [RESTRICTED ACCESS]</div>
-<div class="flex flex-wrap items-center justify-center gap-6">
-<a class="hover:text-primary transition-all" href="terms.html">PROTOCOL_TC</a>
+        // Cache for verified items: type -> query -> result
+        const verificationCache = {
+            team_name: {},
+            email: {},
+            mobile: {}
+        };
 
-<a class="hover:text-primary transition-all" href="privacy.html">PRIVACY_ENCRYPT</a>
-<a class="hover:text-primary transition-all" href="sitemap.html">SITEMAP_DIR</a>
-</div>
-</div>
-</footer>
-<script src="assets/js/footer-links.js"></script>
+        // Tracking active AbortController requests per field to allow cancelling outdated queries
+        const activeRequests = {};
+        // Debounce timers per field
+        const debounceTimers = {};
 
-<script src="assets/js/navbar.js"></script>
-<script>
-    // Live Verification API integration and field validations
-    
-    // Cache for verified items: type -> query -> result
-    const verificationCache = {
-        team_name: {},
-        email: {},
-        mobile: {}
-    };
+        // Validation state dictionary
+        const fieldStates = {
+            soloTeamName: { status: 'default', value: '', error: '' },
+            soloEmail: { status: 'default', value: '', error: '' },
+            soloPhone: { status: 'default', value: '', error: '' },
 
-    // Tracking active AbortController requests per field to allow cancelling outdated queries
-    const activeRequests = {};
-    // Debounce timers per field
-    const debounceTimers = {};
+            teamTeamName: { status: 'default', value: '', error: '' },
+            teamLeaderEmail: { status: 'default', value: '', error: '' },
+            teamLeaderPhone: { status: 'default', value: '', error: '' },
+            teamMemberEmail: { status: 'default', value: '', error: '' },
+            teamMemberPhone: { status: 'default', value: '', error: '' }
+        };
 
-    // Validation state dictionary
-    const fieldStates = {
-        soloTeamName: { status: 'default', value: '', error: '' },
-        soloEmail: { status: 'default', value: '', error: '' },
-        soloPhone: { status: 'default', value: '', error: '' },
-        
-        teamTeamName: { status: 'default', value: '', error: '' },
-        teamLeaderEmail: { status: 'default', value: '', error: '' },
-        teamLeaderPhone: { status: 'default', value: '', error: '' },
-        teamMemberEmail: { status: 'default', value: '', error: '' },
-        teamMemberPhone: { status: 'default', value: '', error: '' }
-    };
+        const fieldsConfig = {
+            soloTeamName: { type: 'team_name', label: 'Team Name' },
+            soloEmail: { type: 'email', label: 'Email Address' },
+            soloPhone: { type: 'mobile', label: 'Phone Number' },
 
-    const fieldsConfig = {
-        soloTeamName: { type: 'team_name', label: 'Team Name' },
-        soloEmail: { type: 'email', label: 'Email Address' },
-        soloPhone: { type: 'mobile', label: 'Phone Number' },
-        
-        teamTeamName: { type: 'team_name', label: 'Team Name' },
-        teamLeaderEmail: { type: 'email', label: 'Leader Email' },
-        teamLeaderPhone: { type: 'mobile', label: 'Leader Phone Number' },
-        teamMemberEmail: { type: 'email', label: 'Member Email' },
-        teamMemberPhone: { type: 'mobile', label: 'Member Phone Number' }
-    };
+            teamTeamName: { type: 'team_name', label: 'Team Name' },
+            teamLeaderEmail: { type: 'email', label: 'Leader Email' },
+            teamLeaderPhone: { type: 'mobile', label: 'Leader Phone Number' },
+            teamMemberEmail: { type: 'email', label: 'Member Email' },
+            teamMemberPhone: { type: 'mobile', label: 'Member Phone Number' }
+        };
 
-    // Helper to parse phone numbers to +cc and number
-    function parsePhoneNumber(input) {
-        input = input.trim();
-        if (!input.startsWith('+')) {
-            if (input.length === 10 && /^\d+$/.test(input)) {
+        // Helper to parse phone numbers to +cc and number
+        function parsePhoneNumber(input) {
+            input = input.trim();
+            if (!input.startsWith('+')) {
+                if (input.length === 10 && /^\d+$/.test(input)) {
+                    return { cc: '+91', number: input };
+                }
                 return { cc: '+91', number: input };
             }
-            return { cc: '+91', number: input };
-        }
-        
-        let parts = input.split(/[\s\-]+/);
-        if (parts.length > 1) {
-            let cc = parts[0];
-            let number = parts.slice(1).join('').replace(/\D/g, '');
-            return { cc, number };
-        }
-        
-        if (input.startsWith('+91')) {
-            return { cc: '+91', number: input.substring(3).replace(/\D/g, '') };
-        }
-        if (input.startsWith('+1')) {
-            return { cc: '+1', number: input.substring(2).replace(/\D/g, '') };
-        }
-        
-        let match = input.match(/^\+(\d{1,3})(.*)$/);
-        if (match) {
-            return { cc: '+' + match[1], number: match[2].replace(/\D/g, '') };
-        }
-        
-        return { cc: '', number: input };
-    }
 
-    // Format validation helpers matching backend logic
-    function validateTeamName(value) {
-        if (!value || value.length < 1 || value.length > 100) {
-            return "Team name must be between 1 and 100 characters.";
-        }
-        if (!/^[a-zA-Z0-9\s\-_]+$/.test(value)) {
-            return "Team name can only contain letters, digits, spaces, hyphens, and underscores.";
-        }
-        return null;
-    }
+            let parts = input.split(/[\s\-]+/);
+            if (parts.length > 1) {
+                let cc = parts[0];
+                let number = parts.slice(1).join('').replace(/\D/g, '');
+                return { cc, number };
+            }
 
-    function validateEmail(value) {
-        value = value.trim();
-        if (!value) return "Email must not be empty.";
-        const parts = value.split('@');
-        if (parts.length !== 2 || parts[0].length === 0) {
-            return "Email must be in the format name@domain.tld.";
-        }
-        const local = parts[0];
-        const domain = parts[1];
-        if (local.length > 64) {
-            return "Email local part must be at most 64 characters.";
-        }
-        if (!/^[a-zA-Z0-9\.!\#$%&'\*\+\-\/=\?\^_`\{\|\}\~]+$/.test(local)) {
-            return "Email local part contains invalid characters.";
-        }
-        if (domain.length > 255) {
-            return "Email domain must be at most 255 characters.";
-        }
-        if (!domain.includes('.')) {
-            return "Email must have a valid domain with TLD (e.g., name@example.com).";
-        }
-        if (domain.startsWith('.') || domain.endsWith('.')) {
-            return "Email domain must not start or end with a dot.";
-        }
-        if (!/^[a-zA-Z0-9\.\-]+$/.test(domain)) {
-            return "Email domain contains invalid characters.";
-        }
-        return null;
-    }
+            if (input.startsWith('+91')) {
+                return { cc: '+91', number: input.substring(3).replace(/\D/g, '') };
+            }
+            if (input.startsWith('+1')) {
+                return { cc: '+1', number: input.substring(2).replace(/\D/g, '') };
+            }
 
-    function validatePhone(value) {
-        const { cc, number } = parsePhoneNumber(value);
-        if (!cc || !cc.startsWith('+') || cc.length < 2 || !/^\+\d+$/.test(cc)) {
-            return "Mobile country code must start with + (e.g., +91).";
-        }
-        if (!number || number.length < 1 || number.length > 15 || !/^\d+$/.test(number)) {
-            return "Mobile number must be between 1 and 15 digits.";
-        }
-        return null;
-    }
+            let match = input.match(/^\+(\d{1,3})(.*)$/);
+            if (match) {
+                return { cc: '+' + match[1], number: match[2].replace(/\D/g, '') };
+            }
 
-    // Update UI elements based on validation state
-    function updateFieldUI(fieldId, state, message, details = null) {
-        const container = document.getElementById(fieldId + 'Container');
-        const feedback = document.getElementById(fieldId + 'Feedback');
-        if (!container || !feedback) return;
-        
-        // Remove styling state classes
-        container.classList.remove('border-primary/30', 'border-secondary/30', 'border-red-500/50', 'border-green-500/50', 'border-yellow-500/50');
-        container.classList.remove('shadow-[0_0_15px_rgba(239,68,68,0.2)]', 'shadow-[0_0_15px_rgba(34,197,94,0.2)]', 'shadow-[0_0_15px_rgba(234,179,8,0.2)]');
-        
-        const isSecondary = container.classList.contains('border-secondary') || container.querySelector('label').classList.contains('text-purple-400/70');
-        const defaultBorderClass = isSecondary ? 'border-secondary/30' : 'border-primary/30';
-        
-        if (state === 'default') {
-            container.classList.add(defaultBorderClass);
-            feedback.classList.add('hidden');
-            feedback.innerHTML = '';
-        } else if (state === 'typing' || state === 'checking') {
-            container.classList.add('border-yellow-500/50');
-            container.classList.add('shadow-[0_0_15px_rgba(234,179,8,0.2)]');
-            feedback.classList.remove('hidden');
-            feedback.className = "px-4 pb-2 text-[11px] font-mono text-yellow-400 transition-all duration-300 feedback-fade-in";
-            feedback.innerHTML = `
+            return { cc: '', number: input };
+        }
+
+        // Format validation helpers matching backend logic
+        function validateTeamName(value) {
+            if (!value || value.length < 1 || value.length > 100) {
+                return "Team name must be between 1 and 100 characters.";
+            }
+            if (!/^[a-zA-Z0-9\s\-_]+$/.test(value)) {
+                return "Team name can only contain letters, digits, spaces, hyphens, and underscores.";
+            }
+            return null;
+        }
+
+        function validateEmail(value) {
+            value = value.trim();
+            if (!value) return "Email must not be empty.";
+            const parts = value.split('@');
+            if (parts.length !== 2 || parts[0].length === 0) {
+                return "Email must be in the format name@domain.tld.";
+            }
+            const local = parts[0];
+            const domain = parts[1];
+            if (local.length > 64) {
+                return "Email local part must be at most 64 characters.";
+            }
+            if (!/^[a-zA-Z0-9\.!\#$%&'\*\+\-\/=\?\^_`\{\|\}\~]+$/.test(local)) {
+                return "Email local part contains invalid characters.";
+            }
+            if (domain.length > 255) {
+                return "Email domain must be at most 255 characters.";
+            }
+            if (!domain.includes('.')) {
+                return "Email must have a valid domain with TLD (e.g., name@example.com).";
+            }
+            if (domain.startsWith('.') || domain.endsWith('.')) {
+                return "Email domain must not start or end with a dot.";
+            }
+            if (!/^[a-zA-Z0-9\.\-]+$/.test(domain)) {
+                return "Email domain contains invalid characters.";
+            }
+            return null;
+        }
+
+        function validatePhone(value) {
+            const { cc, number } = parsePhoneNumber(value);
+            if (!cc || !cc.startsWith('+') || cc.length < 2 || !/^\+\d+$/.test(cc)) {
+                return "Mobile country code must start with + (e.g., +91).";
+            }
+            if (!number || number.length < 1 || number.length > 15 || !/^\d+$/.test(number)) {
+                return "Mobile number must be between 1 and 15 digits.";
+            }
+            return null;
+        }
+
+        // Update UI elements based on validation state
+        function updateFieldUI(fieldId, state, message, details = null) {
+            const container = document.getElementById(fieldId + 'Container');
+            const feedback = document.getElementById(fieldId + 'Feedback');
+            if (!container || !feedback) return;
+
+            // Remove styling state classes
+            container.classList.remove('border-primary/30', 'border-secondary/30', 'border-red-500/50', 'border-green-500/50', 'border-yellow-500/50');
+            container.classList.remove('shadow-[0_0_15px_rgba(239,68,68,0.2)]', 'shadow-[0_0_15px_rgba(34,197,94,0.2)]', 'shadow-[0_0_15px_rgba(234,179,8,0.2)]');
+
+            const isSecondary = container.classList.contains('border-secondary') || container.querySelector('label').classList.contains('text-purple-400/70');
+            const defaultBorderClass = isSecondary ? 'border-secondary/30' : 'border-primary/30';
+
+            if (state === 'default') {
+                container.classList.add(defaultBorderClass);
+                feedback.classList.add('hidden');
+                feedback.innerHTML = '';
+            } else if (state === 'typing' || state === 'checking') {
+                container.classList.add('border-yellow-500/50');
+                container.classList.add('shadow-[0_0_15px_rgba(234,179,8,0.2)]');
+                feedback.classList.remove('hidden');
+                feedback.className = "px-4 pb-2 text-[11px] font-mono text-yellow-400 transition-all duration-300 feedback-fade-in";
+                feedback.innerHTML = `
                 <span class="inline-flex items-center gap-2">
                     <svg class="animate-spin h-3 w-3 text-yellow-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -742,297 +780,338 @@
                     </svg>
                     Checking availability...
                 </span>`;
-        } else if (state === 'available') {
-            container.classList.add('border-green-500/50');
-            container.classList.add('shadow-[0_0_15px_rgba(34,197,94,0.2)]');
-            feedback.classList.remove('hidden');
-            feedback.className = "px-4 pb-2 text-[11px] font-mono text-green-400 transition-all duration-300 feedback-fade-in";
-            feedback.innerHTML = message;
-        } else if (state === 'error' || state === 'invalid' || state === 'network_error') {
-            container.classList.add('border-red-500/50');
-            container.classList.add('shadow-[0_0_15px_rgba(239,68,68,0.2)]');
-            feedback.classList.remove('hidden');
-            feedback.className = "px-4 pb-2 text-[11px] font-mono text-red-400 transition-all duration-300 feedback-fade-in";
-            
-            let html = message;
-            if (details) {
-                html += `<div class="mt-1 pl-3 border-l border-red-500/30 text-[10px] text-gray-400 leading-relaxed">${details}</div>`;
-            }
-            feedback.innerHTML = html;
-        }
-    }
+            } else if (state === 'available') {
+                container.classList.add('border-green-500/50');
+                container.classList.add('shadow-[0_0_15px_rgba(34,197,94,0.2)]');
+                feedback.classList.remove('hidden');
+                feedback.className = "px-4 pb-2 text-[11px] font-mono text-green-400 transition-all duration-300 feedback-fade-in";
+                feedback.innerHTML = message;
+            } else if (state === 'error' || state === 'invalid' || state === 'network_error') {
+                container.classList.add('border-red-500/50');
+                container.classList.add('shadow-[0_0_15px_rgba(239,68,68,0.2)]');
+                feedback.classList.remove('hidden');
+                feedback.className = "px-4 pb-2 text-[11px] font-mono text-red-400 transition-all duration-300 feedback-fade-in";
 
-    // Main verification logic with aborting and debouncing
-    function performVerification(fieldId) {
-        const inputEl = document.getElementById(fieldId);
-        const value = inputEl ? inputEl.value.trim() : '';
-        const config = fieldsConfig[fieldId];
-        if (!config) return;
-
-        // Clear existing debounce and abort active fetches for this field
-        if (debounceTimers[fieldId]) clearTimeout(debounceTimers[fieldId]);
-        if (activeRequests[fieldId]) {
-            activeRequests[fieldId].abort();
-            activeRequests[fieldId] = null;
-        }
-
-        if (value === '') {
-            fieldStates[fieldId] = { status: 'default', value: '', error: '' };
-            updateFieldUI(fieldId, 'default');
-            return;
-        }
-
-        // Format validation check
-        let validationError = null;
-        if (config.type === 'team_name') validationError = validateTeamName(value);
-        else if (config.type === 'email') validationError = validateEmail(value);
-        else if (config.type === 'mobile') validationError = validatePhone(value);
-
-        if (validationError) {
-            fieldStates[fieldId] = { status: 'invalid', value: value, error: validationError };
-            updateFieldUI(fieldId, 'invalid', `⚠ ${validationError}`);
-            return;
-        }
-
-        // Show typing/checking status immediately
-        fieldStates[fieldId] = { status: 'typing', value: value, error: '' };
-        updateFieldUI(fieldId, 'typing');
-
-        // Debounce actual API request (400ms)
-        debounceTimers[fieldId] = setTimeout(async () => {
-            fieldStates[fieldId].status = 'checking';
-            updateFieldUI(fieldId, 'checking');
-
-            // Format cache key
-            const cacheKey = config.type === 'mobile' ? JSON.stringify(parsePhoneNumber(value)) : value;
-            const cached = verificationCache[config.type][cacheKey];
-            if (cached !== undefined) {
-                if (cached.found) {
-                    fieldStates[fieldId] = { status: 'error', value: value, error: cached.error, details: cached.details };
-                    updateFieldUI(fieldId, 'error', cached.error, cached.details);
-                } else {
-                    fieldStates[fieldId] = { status: 'available', value: value, error: '' };
-                    updateFieldUI(fieldId, 'available', `✅ ${config.label} is available`);
+                let html = message;
+                if (details) {
+                    html += `<div class="mt-1 pl-3 border-l border-red-500/30 text-[10px] text-gray-400 leading-relaxed">${details}</div>`;
                 }
+                feedback.innerHTML = html;
+            }
+        }
+
+        // Main verification logic with aborting and debouncing
+        function performVerification(fieldId) {
+            const inputEl = document.getElementById(fieldId);
+            const value = inputEl ? inputEl.value.trim() : '';
+            const config = fieldsConfig[fieldId];
+            if (!config) return;
+
+            // Clear existing debounce and abort active fetches for this field
+            if (debounceTimers[fieldId]) clearTimeout(debounceTimers[fieldId]);
+            if (activeRequests[fieldId]) {
+                activeRequests[fieldId].abort();
+                activeRequests[fieldId] = null;
+            }
+
+            if (value === '') {
+                fieldStates[fieldId] = { status: 'default', value: '', error: '' };
+                updateFieldUI(fieldId, 'default');
                 return;
             }
 
-            const controller = new AbortController();
-            activeRequests[fieldId] = controller;
+            // Format validation check
+            let validationError = null;
+            if (config.type === 'team_name') validationError = validateTeamName(value);
+            else if (config.type === 'email') validationError = validateEmail(value);
+            else if (config.type === 'mobile') validationError = validatePhone(value);
 
-            try {
-                let requestBody;
-                if (config.type === 'mobile') {
-                    const { cc, number } = parsePhoneNumber(value);
-                    requestBody = { type: 'mobile', query: { cc, number } };
-                } else {
-                    requestBody = { type: config.type, query: value };
-                }
+            if (validationError) {
+                fieldStates[fieldId] = { status: 'invalid', value: value, error: validationError };
+                updateFieldUI(fieldId, 'invalid', `⚠ ${validationError}`);
+                return;
+            }
 
-                const response = await fetch("http://localhost:3000/_/api/v1/pub/preflight", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(requestBody),
-                    signal: controller.signal
-                });
+            // Show typing/checking status immediately
+            fieldStates[fieldId] = { status: 'typing', value: value, error: '' };
+            updateFieldUI(fieldId, 'typing');
 
-                activeRequests[fieldId] = null;
+            // Debounce actual API request (400ms)
+            debounceTimers[fieldId] = setTimeout(async () => {
+                fieldStates[fieldId].status = 'checking';
+                updateFieldUI(fieldId, 'checking');
 
-                if (response.status === 422) {
-                    const errData = await response.json();
-                    const msg = errData.message || `Invalid ${config.label} format.`;
-                    fieldStates[fieldId] = { status: 'invalid', value: value, error: msg };
-                    updateFieldUI(fieldId, 'invalid', `⚠ ${msg}`);
-                    verificationCache[config.type][cacheKey] = { found: true, error: `⚠ ${msg}`, details: '' };
+                // Format cache key
+                const cacheKey = config.type === 'mobile' ? JSON.stringify(parsePhoneNumber(value)) : value;
+                const cached = verificationCache[config.type][cacheKey];
+                if (cached !== undefined) {
+                    if (cached.found) {
+                        fieldStates[fieldId] = { status: 'error', value: value, error: cached.error, details: cached.details };
+                        updateFieldUI(fieldId, 'error', cached.error, cached.details);
+                    } else {
+                        fieldStates[fieldId] = { status: 'available', value: value, error: '' };
+                        updateFieldUI(fieldId, 'available', `✅ ${config.label} is available`);
+                    }
                     return;
                 }
 
-                if (!response.ok) {
-                    throw new Error(`Server error: ${response.status}`);
+                const controller = new AbortController();
+                activeRequests[fieldId] = controller;
+
+                try {
+                    let requestBody;
+                    if (config.type === 'mobile') {
+                        const { cc, number } = parsePhoneNumber(value);
+                        requestBody = { type: 'mobile', query: { cc, number } };
+                    } else {
+                        requestBody = { type: config.type, query: value };
+                    }
+
+                    const response = await fetch("http://localhost:3000/_/api/v1/pub/preflight", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(requestBody),
+                        signal: controller.signal
+                    });
+
+                    activeRequests[fieldId] = null;
+
+                    if (response.status === 422) {
+                        const errData = await response.json();
+                        const msg = errData.message || `Invalid ${config.label} format.`;
+                        fieldStates[fieldId] = { status: 'invalid', value: value, error: msg };
+                        updateFieldUI(fieldId, 'invalid', `⚠ ${msg}`);
+                        verificationCache[config.type][cacheKey] = { found: true, error: `⚠ ${msg}`, details: '' };
+                        return;
+                    }
+
+                    if (!response.ok) {
+                        throw new Error(`Server error: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    if (data.found) {
+                        const errMsg = `❌ ${config.label} already registered`;
+
+                        // Parse metadata if available
+                        const detailsArr = [];
+                        if (data.team_name) detailsArr.push(`Team: ${data.team_name}`);
+                        if (data.registration_type) detailsArr.push(`Type: ${data.registration_type}`);
+                        if (data.payment_status) detailsArr.push(`Payment: ${data.payment_status}`);
+
+                        const vStatus = data.leader_status || data.member_status || (data.leader_verified ? 'verified' : 'pending');
+                        if (vStatus) detailsArr.push(`Verification: ${vStatus}`);
+                        const detailsStr = detailsArr.length > 0 ? detailsArr.join(' | ') : '';
+
+                        fieldStates[fieldId] = { status: 'error', value: value, error: errMsg, details: detailsStr };
+                        updateFieldUI(fieldId, 'error', errMsg, detailsStr);
+                        verificationCache[config.type][cacheKey] = { found: true, error: errMsg, details: detailsStr };
+                    } else {
+                        fieldStates[fieldId] = { status: 'available', value: value, error: '' };
+                        updateFieldUI(fieldId, 'available', `✅ ${config.label} is available`);
+                        verificationCache[config.type][cacheKey] = { found: false };
+                    }
+                } catch (err) {
+                    if (err.name === 'AbortError') return;
+                    activeRequests[fieldId] = null;
+                    fieldStates[fieldId] = { status: 'network_error', value: value, error: 'Network Error' };
+                    updateFieldUI(fieldId, 'network_error', `⚠ Network Error: Connection to verification server failed.`);
                 }
+            }, 400);
+        }
 
-                const data = await response.json();
-                if (data.found) {
-                    const errMsg = `❌ ${config.label} already registered`;
-                    
-                    // Parse metadata if available
-                    const detailsArr = [];
-                    if (data.team_name) detailsArr.push(`Team: ${data.team_name}`);
-                    if (data.registration_type) detailsArr.push(`Type: ${data.registration_type}`);
-                    if (data.payment_status) detailsArr.push(`Payment: ${data.payment_status}`);
-                    
-                    const vStatus = data.leader_status || data.member_status || (data.leader_verified ? 'verified' : 'pending');
-                    if (vStatus) detailsArr.push(`Verification: ${vStatus}`);
-                    const detailsStr = detailsArr.length > 0 ? detailsArr.join(' | ') : '';
+        // Validate form prior to final submission
+        function validateFormBeforeSubmit(formType) {
+            const fieldsToValidate = formType === 'solo'
+                ? ['soloTeamName', 'soloEmail', 'soloPhone']
+                : ['teamTeamName', 'teamLeaderEmail', 'teamLeaderPhone', 'teamMemberEmail', 'teamMemberPhone'];
 
-                    fieldStates[fieldId] = { status: 'error', value: value, error: errMsg, details: detailsStr };
-                    updateFieldUI(fieldId, 'error', errMsg, detailsStr);
-                    verificationCache[config.type][cacheKey] = { found: true, error: errMsg, details: detailsStr };
-                } else {
-                    fieldStates[fieldId] = { status: 'available', value: value, error: '' };
-                    updateFieldUI(fieldId, 'available', `✅ ${config.label} is available`);
-                    verificationCache[config.type][cacheKey] = { found: false };
-                }
-            } catch (err) {
-                if (err.name === 'AbortError') return;
-                activeRequests[fieldId] = null;
-                fieldStates[fieldId] = { status: 'network_error', value: value, error: 'Network Error' };
-                updateFieldUI(fieldId, 'network_error', `⚠ Network Error: Connection to verification server failed.`);
-            }
-        }, 400);
-    }
+            let firstInvalidField = null;
+            let errorMessage = '';
 
-    // Validate form prior to final submission
-    function validateFormBeforeSubmit(formType) {
-        const fieldsToValidate = formType === 'solo' 
-            ? ['soloTeamName', 'soloEmail', 'soloPhone'] 
-            : ['teamTeamName', 'teamLeaderEmail', 'teamLeaderPhone', 'teamMemberEmail', 'teamMemberPhone'];
-            
-        let firstInvalidField = null;
-        let errorMessage = '';
+            for (const fieldId of fieldsToValidate) {
+                const inputEl = document.getElementById(fieldId);
+                const val = inputEl ? inputEl.value.trim() : '';
+                const state = fieldStates[fieldId];
 
-        for (const fieldId of fieldsToValidate) {
-            const inputEl = document.getElementById(fieldId);
-            const val = inputEl ? inputEl.value.trim() : '';
-            const state = fieldStates[fieldId];
-
-            if (val === '') {
-                fieldStates[fieldId] = { status: 'invalid', value: '', error: 'Required field.' };
-                updateFieldUI(fieldId, 'invalid', `⚠ ${fieldsConfig[fieldId].label} is required.`);
-                if (!firstInvalidField) firstInvalidField = inputEl;
-                if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} is required.`;
-                continue;
-            }
-
-            // If input changed or was never checked
-            if (state.status === 'default' || state.value !== val) {
-                let formatError = null;
-                const config = fieldsConfig[fieldId];
-                if (config.type === 'team_name') formatError = validateTeamName(val);
-                else if (config.type === 'email') formatError = validateEmail(val);
-                else if (config.type === 'mobile') formatError = validatePhone(val);
-
-                if (formatError) {
-                    fieldStates[fieldId] = { status: 'invalid', value: val, error: formatError };
-                    updateFieldUI(fieldId, 'invalid', `⚠ ${formatError}`);
+                if (val === '') {
+                    fieldStates[fieldId] = { status: 'invalid', value: '', error: 'Required field.' };
+                    updateFieldUI(fieldId, 'invalid', `⚠ ${fieldsConfig[fieldId].label} is required.`);
                     if (!firstInvalidField) firstInvalidField = inputEl;
-                    if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} has invalid format.`;
-                } else {
-                    // Start checking
-                    fieldStates[fieldId] = { status: 'checking', value: val, error: '' };
-                    updateFieldUI(fieldId, 'checking');
-                    performVerification(fieldId);
+                    if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} is required.`;
+                    continue;
+                }
+
+                // If input changed or was never checked
+                if (state.status === 'default' || state.value !== val) {
+                    let formatError = null;
+                    const config = fieldsConfig[fieldId];
+                    if (config.type === 'team_name') formatError = validateTeamName(val);
+                    else if (config.type === 'email') formatError = validateEmail(val);
+                    else if (config.type === 'mobile') formatError = validatePhone(val);
+
+                    if (formatError) {
+                        fieldStates[fieldId] = { status: 'invalid', value: val, error: formatError };
+                        updateFieldUI(fieldId, 'invalid', `⚠ ${formatError}`);
+                        if (!firstInvalidField) firstInvalidField = inputEl;
+                        if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} has invalid format.`;
+                    } else {
+                        // Start checking
+                        fieldStates[fieldId] = { status: 'checking', value: val, error: '' };
+                        updateFieldUI(fieldId, 'checking');
+                        performVerification(fieldId);
+                        if (!firstInvalidField) firstInvalidField = inputEl;
+                        if (!errorMessage) errorMessage = `Submission blocked: Checking ${fieldsConfig[fieldId].label} availability. Please wait.`;
+                    }
+                    continue;
+                }
+
+                // Inspect validation results
+                if (state.status === 'typing' || state.status === 'checking') {
                     if (!firstInvalidField) firstInvalidField = inputEl;
                     if (!errorMessage) errorMessage = `Submission blocked: Checking ${fieldsConfig[fieldId].label} availability. Please wait.`;
+                } else if (state.status === 'invalid') {
+                    if (!firstInvalidField) firstInvalidField = inputEl;
+                    if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} has invalid format.`;
+                } else if (state.status === 'error') {
+                    if (!firstInvalidField) firstInvalidField = inputEl;
+                    if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} is already registered.`;
+                } else if (state.status === 'network_error') {
+                    if (!firstInvalidField) firstInvalidField = inputEl;
+                    if (!errorMessage) errorMessage = `Submission blocked: Verification server connection failed. Please retry.`;
                 }
-                continue;
             }
 
-            // Inspect validation results
-            if (state.status === 'typing' || state.status === 'checking') {
-                if (!firstInvalidField) firstInvalidField = inputEl;
-                if (!errorMessage) errorMessage = `Submission blocked: Checking ${fieldsConfig[fieldId].label} availability. Please wait.`;
-            } else if (state.status === 'invalid') {
-                if (!firstInvalidField) firstInvalidField = inputEl;
-                if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} has invalid format.`;
-            } else if (state.status === 'error') {
-                if (!firstInvalidField) firstInvalidField = inputEl;
-                if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} is already registered.`;
-            } else if (state.status === 'network_error') {
-                if (!firstInvalidField) firstInvalidField = inputEl;
-                if (!errorMessage) errorMessage = `Submission blocked: Verification server connection failed. Please retry.`;
+            const bannerId = formType === 'solo' ? 'soloSubmitError' : 'teamSubmitError';
+            const banner = document.getElementById(bannerId);
+
+            if (firstInvalidField) {
+                firstInvalidField.focus();
+                if (banner) {
+                    banner.innerText = errorMessage;
+                    banner.classList.remove('hidden');
+                }
+                return false;
             }
-        }
 
-        const bannerId = formType === 'solo' ? 'soloSubmitError' : 'teamSubmitError';
-        const banner = document.getElementById(bannerId);
-
-        if (firstInvalidField) {
-            firstInvalidField.focus();
             if (banner) {
-                banner.innerText = errorMessage;
-                banner.classList.remove('hidden');
+                banner.classList.add('hidden');
+                banner.innerText = '';
             }
-            return false;
+            return true;
         }
 
-        if (banner) {
-            banner.classList.add('hidden');
-            banner.innerText = '';
+        // --- OTP and Payment UI Transitions ---
+        function showOtpCard() {
+            document.getElementById('formTabsWrapper').classList.add('hidden');
+            document.getElementById('soloForm').classList.add('hidden');
+            document.getElementById('teamForm').classList.add('hidden');
+
+            const otpCard = document.getElementById('otpCard');
+            otpCard.classList.remove('hidden');
+            otpCard.classList.add('flex', 'feedback-fade-in');
         }
-        return true;
-    }
 
-    // --- OTP and Payment UI Transitions ---
-    function showOtpCard() {
-        document.getElementById('formTabsWrapper').classList.add('hidden');
-        document.getElementById('soloForm').classList.add('hidden');
-        document.getElementById('teamForm').classList.add('hidden');
-        
-        const otpCard = document.getElementById('otpCard');
-        otpCard.classList.remove('hidden');
-        otpCard.classList.add('flex', 'feedback-fade-in');
-    }
+        function verifyOtp() {
+            // Detect active form (solo vs team)
+            const isSolo = document.getElementById('soloTab').classList.contains('active-tab');
 
-    function verifyOtp() {
-        // In a real app, call your API to verify OTP here.
-        // For now, simulate success and show payment:
-        document.getElementById('otpCard').classList.add('hidden');
-        document.getElementById('otpCard').classList.remove('flex');
-        
-        const paymentCard = document.getElementById('paymentCard');
-        paymentCard.classList.remove('hidden');
-        paymentCard.classList.add('flex', 'feedback-fade-in');
-    }
+            // --- Fetch registrant name ---
+            let registrantName = "—";
+            if (isSolo) {
+                // Solo: first text input = Full Name (second input in the grid)
+                const nameInputs = document.querySelectorAll('#soloFormEl input[type="text"]');
+                if (nameInputs.length > 0) registrantName = nameInputs[0].value.trim() || "—";
+            } else {
+                // Team: leader name input
+                const nameInputs = document.querySelectorAll('#teamFormEl input[type="text"]');
+                if (nameInputs.length > 0) registrantName = nameInputs[0].value.trim() || "—";
+            }
 
-    function processPayment() {
-        // In a real app, integrate payment gateway here.
-        alert('Payment processing initiated. Uplink establishing...');
-        // Example redirect or final submission:
-        // document.getElementById('soloFormEl').submit();
-    }
+            // --- Fetch college value ---
+            let collegeInputValue = "";
+            if (isSolo) {
+                const inputs = document.querySelectorAll('#soloFormEl input[list="collegeList"]');
+                if (inputs.length > 0) collegeInputValue = inputs[0].value;
+            } else {
+                const inputs = document.querySelectorAll('#teamFormEl input[list="collegeList"]');
+                if (inputs.length > 0) collegeInputValue = inputs[0].value;
+            }
 
-    // Attach listeners on load
-    document.addEventListener("DOMContentLoaded", () => {
-        const soloForm = document.getElementById('soloFormEl');
-        const teamForm = document.getElementById('teamFormEl');
+            const isCIT = collegeInputValue.toLowerCase().includes('chennai institute of technology') || collegeInputValue.toLowerCase() === 'cit';
 
-        if (soloForm) {
-            soloForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                if (!validateFormBeforeSubmit('solo')) {
-                    e.stopPropagation();
-                } else {
-                    showOtpCard();
+            // CIT: ₹400 original, 75% off → ₹300 discount → ₹100 final
+            // Others: ₹400 original, ₹200 discount → ₹200 final
+            const originalPrice = 400;
+            const discount = isCIT ? 300 : 200;
+            const finalPrice = originalPrice - discount;
+            const discountLabel = isCIT ? '75% Early Bird' : 'Early Bird';
+
+            document.getElementById('payName').innerText = registrantName;
+            document.getElementById('payOriginal').innerText = '₹ ' + originalPrice;
+            document.getElementById('payDiscount').innerText = `- ₹ ${discount} (${discountLabel})`;
+            document.getElementById('payTotal').innerText = '₹ ' + finalPrice;
+
+            // In a real app, call your API to verify OTP here.
+            // For now, simulate success and show payment card:
+            document.getElementById('otpCard').classList.add('hidden');
+            document.getElementById('otpCard').classList.remove('flex');
+
+            const paymentCard = document.getElementById('paymentCard');
+            paymentCard.classList.remove('hidden');
+            paymentCard.classList.add('flex', 'feedback-fade-in');
+        }
+
+        function processPayment() {
+            // In a real app, integrate payment gateway here.
+            alert('Payment processing initiated. Uplink establishing...');
+            // Example redirect or final submission:
+            // document.getElementById('soloFormEl').submit();
+        }
+
+        // Attach listeners on load
+        document.addEventListener("DOMContentLoaded", () => {
+            const soloForm = document.getElementById('soloFormEl');
+            const teamForm = document.getElementById('teamFormEl');
+
+            if (soloForm) {
+                soloForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (!validateFormBeforeSubmit('solo')) {
+                        e.stopPropagation();
+                    } else {
+                        showOtpCard();
+                    }
+                });
+            }
+
+            if (teamForm) {
+                teamForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (!validateFormBeforeSubmit('team')) {
+                        e.stopPropagation();
+                    } else {
+                        showOtpCard();
+                    }
+                });
+            }
+
+            // Attach input listeners
+            Object.keys(fieldsConfig).forEach(fieldId => {
+                const inputEl = document.getElementById(fieldId);
+                if (inputEl) {
+                    const triggerVerify = () => {
+                        const formType = fieldId.startsWith('solo') ? 'solo' : 'team';
+                        const banner = document.getElementById(formType + 'SubmitError');
+                        if (banner) banner.classList.add('hidden');
+                        performVerification(fieldId);
+                    };
+                    inputEl.addEventListener('input', triggerVerify);
+                    inputEl.addEventListener('change', triggerVerify);
                 }
             });
-        }
-
-        if (teamForm) {
-            teamForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                if (!validateFormBeforeSubmit('team')) {
-                    e.stopPropagation();
-                } else {
-                    showOtpCard();
-                }
-            });
-        }
-
-        // Attach input listeners
-        Object.keys(fieldsConfig).forEach(fieldId => {
-            const inputEl = document.getElementById(fieldId);
-            if (inputEl) {
-                const triggerVerify = () => {
-                    const formType = fieldId.startsWith('solo') ? 'solo' : 'team';
-                    const banner = document.getElementById(formType + 'SubmitError');
-                    if (banner) banner.classList.add('hidden');
-                    performVerification(fieldId);
-                };
-                inputEl.addEventListener('input', triggerVerify);
-                inputEl.addEventListener('change', triggerVerify);
-            }
         });
-    });
-</script>
-</body></html>
+    </script>
+</body>
+
+</html>
