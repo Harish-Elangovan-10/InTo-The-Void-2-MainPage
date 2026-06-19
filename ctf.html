@@ -41,93 +41,77 @@
         .card-pop { animation: cardPop 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 
         /* ================================================
-           OTP  —  6-box digit strip
+           OTP — Pill / circle digit inputs
            ================================================ */
-        .otp-strip {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .otp-strip { display: flex; align-items: center; gap: 12px; }
         .otp-sep {
-            color: rgba(0,219,233,0.25);
+            color: rgba(255,255,255,0.15);
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             user-select: none;
+            padding-bottom: 4px;
+        }
+        @keyframes otpPop {
+            0%   { transform: scale(1); }
+            40%  { transform: scale(1.18); }
+            70%  { transform: scale(0.95); }
+            100% { transform: scale(1); }
         }
         .otp-box {
-            width: 56px;
-            height: 70px;
-            background: rgba(0,0,0,0.65);
-            border: 1.5px solid rgba(0,219,233,0.22);
-            border-radius: 14px;
-            color: #00dbe9;
+            width: 54px;
+            height: 54px;
+            background: rgba(10,10,10,0.9);
+            border: 1.5px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: #e2e2e2;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 1.9rem;
+            font-size: 1.5rem;
             font-weight: 700;
             text-align: center;
-            caret-color: #00dbe9;
+            caret-color: transparent;
             outline: none;
-            transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
-            /* subtle grid texture inside each box */
-            background-image:
-                linear-gradient(rgba(0,219,233,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,219,233,0.04) 1px, transparent 1px);
-            background-size: 8px 8px;
+            transition: border-color 0.15s, box-shadow 0.15s, background 0.15s, transform 0.15s;
         }
         .otp-box:focus {
-            border-color: #00dbe9;
-            box-shadow: 0 0 0 3px rgba(0,219,233,0.18), 0 0 22px rgba(0,219,233,0.5);
-            background-color: rgba(0,219,233,0.05);
+            border-color: rgba(0,219,233,0.6);
+            box-shadow: 0 0 0 3px rgba(0,219,233,0.12), 0 0 16px rgba(0,219,233,0.3);
+            background: rgba(0,219,233,0.06);
+            color: #00dbe9;
         }
         .otp-box.filled {
-            border-color: rgba(0,219,233,0.75);
-            box-shadow: 0 0 14px rgba(0,219,233,0.35);
-        }
-
-        /* Scanning beam under OTP strip */
-        @keyframes scanBeam {
-            0%   { left: 0; opacity: 0.7; }
-            100% { left: 100%; opacity: 0; }
-        }
-        .otp-scan-wrap { position: relative; overflow: hidden; border-radius: 16px; }
-        .otp-scan-wrap::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: -10%;
-            width: 40%; height: 2px;
-            background: linear-gradient(90deg, transparent, #00dbe9, transparent);
-            animation: scanBeam 2.4s ease-in-out infinite;
+            border-color: rgba(0,219,233,0.5);
+            background: rgba(0,219,233,0.08);
+            color: #00dbe9;
+            animation: otpPop 0.25s ease forwards;
         }
 
         /* Error shake */
         @keyframes shake {
             0%,100%{ transform:translateX(0); }
-            20%    { transform:translateX(-6px); }
-            40%    { transform:translateX(6px); }
-            60%    { transform:translateX(-4px); }
-            80%    { transform:translateX(4px); }
+            20%    { transform:translateX(-5px); }
+            40%    { transform:translateX(5px); }
+            60%    { transform:translateX(-3px); }
+            80%    { transform:translateX(3px); }
         }
-        .otp-error-shake { animation: shake 0.4s ease; }
+        .otp-error-shake { animation: shake 0.35s ease; }
 
         /* ================================================
-           Payment card rows  (site secondary = #ecb1ff / #d05bff)
+           Payment card — clean minimal receipt style
            ================================================ */
         .pay-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
+            padding: 11px 0;
         }
-        .pay-row + .pay-row {
-            border-top: 1px solid rgba(208,91,255,0.12);
-        }
+        .pay-row + .pay-row { border-top: 1px solid rgba(255,255,255,0.06); }
         .pay-total-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 14px 0 0;
             margin-top: 8px;
-            border-top: 1.5px solid rgba(208,91,255,0.4);
+            border-top: 1px solid rgba(255,255,255,0.15);
         }
 
         /* Referral input */
@@ -624,121 +608,95 @@
 
                 </div>
 
-                <!-- OTP CARD  ─── matches main-page aesthetic -->
+                <!-- OTP CARD -->
                 <div id="otpCard" class="hidden flex-col items-center justify-center py-14 gap-10">
 
-                    <!-- Header badge -->
                     <div class="text-center">
-                        <p class="text-[9px] font-mono tracking-[0.4em] uppercase mb-3"
-                           style="color:rgba(0,219,233,0.45);">[ VERIFICATION NODE :: 0xFF ]</p>
-                        <h2 class="font-display-lg text-4xl tracking-tighter italic mb-2"
-                           style="color:#00dbe9; text-shadow:0 0 32px rgba(0,219,233,.6), 0 0 60px rgba(0,219,233,.2);">
-                           VERIFY_UPLINK
+                        <p class="text-[9px] font-mono tracking-[0.4em] uppercase mb-3" style="color:rgba(0,219,233,0.4);">VERIFICATION NODE</p>
+                        <h2 class="font-display-lg text-4xl tracking-tighter italic mb-2" style="color:#00dbe9; text-shadow:0 0 28px rgba(0,219,233,.5);">
+                            VERIFY_UPLINK
                         </h2>
-                        <p class="font-mono text-xs" style="color:rgba(185,202,203,0.5);">6-digit access code dispatched to registered contact</p>
+                        <p class="font-mono text-xs" style="color:rgba(185,202,203,0.45);">6-digit code sent to your registered contact</p>
                     </div>
 
-                    <!-- Decorative glitch line -->
-                    <div class="w-48 h-px" style="background: linear-gradient(90deg, transparent, #00dbe9, transparent);"></div>
+                    <div class="w-40 h-px" style="background:linear-gradient(90deg,transparent,rgba(0,219,233,0.4),transparent);"></div>
 
-                    <!-- 6-box OTP strip -->
-                    <div class="otp-scan-wrap p-4">
-                        <div id="otpBoxes" class="otp-strip">
-                            <input class="otp-box" id="otp0" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" autocomplete="one-time-code" />
-                            <input class="otp-box" id="otp1" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
-                            <input class="otp-box" id="otp2" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
-                            <span class="otp-sep">—</span>
-                            <input class="otp-box" id="otp3" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
-                            <input class="otp-box" id="otp4" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
-                            <input class="otp-box" id="otp5" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
-                        </div>
+                    <!-- 6 circular inputs -->
+                    <div id="otpBoxes" class="otp-strip">
+                        <input class="otp-box" id="otp0" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" autocomplete="one-time-code" />
+                        <input class="otp-box" id="otp1" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                        <input class="otp-box" id="otp2" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                        <span class="otp-sep">·</span>
+                        <input class="otp-box" id="otp3" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                        <input class="otp-box" id="otp4" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
+                        <input class="otp-box" id="otp5" maxlength="1" type="text" inputmode="numeric" pattern="[0-9]" />
                     </div>
 
-                    <!-- Error -->
                     <div id="otpError" class="hidden font-mono text-xs tracking-widest" style="color:#ffb4ab;">⚠ INVALID CODE — RETRY</div>
 
-                    <!-- Verify button -->
                     <button onclick="verifyOtp()" type="button"
                         class="px-20 py-4 rounded-xl font-body-md font-bold uppercase tracking-[0.3em] transition-all duration-300 hover:scale-[1.03] active:scale-[0.97]"
-                        style="background:rgba(0,219,233,0.12); color:#00dbe9; border:1.5px solid rgba(0,219,233,0.4); box-shadow:0 0 30px rgba(0,219,233,0.3), inset 0 0 20px rgba(0,219,233,0.08); text-shadow:0 0 12px rgba(0,219,233,0.8);">
+                        style="background:rgba(0,219,233,0.1); color:#00dbe9; border:1.5px solid rgba(0,219,233,0.35); box-shadow:0 0 24px rgba(0,219,233,0.2);">
                         VERIFY
                     </button>
 
                 </div>
 
-                <!-- PAYMENT CARD  ─── main-page theme -->
-                <div id="paymentCard" class="hidden flex-col items-center justify-center py-10 gap-6 w-full max-w-lg mx-auto">
+                <!-- PAYMENT CARD — clean minimal receipt -->
+                <div id="paymentCard" class="hidden flex-col items-center justify-center py-10 gap-6 w-full max-w-md mx-auto">
 
-                    <!-- Header -->
                     <div class="text-center">
-                        <p class="text-[9px] font-mono tracking-[0.4em] uppercase mb-3"
-                           style="color:rgba(208,91,255,0.45);">[ PAYMENT GATEWAY :: SECURE ]</p>
-                        <h2 class="font-display-lg text-4xl tracking-tighter italic"
-                           style="color:#ecb1ff; text-shadow:0 0 32px rgba(208,91,255,.55), 0 0 60px rgba(208,91,255,.15);">
-                           SECURE_CHANNEL
-                        </h2>
+                        <p class="text-[9px] font-mono tracking-[0.35em] uppercase mb-2" style="color:rgba(185,202,203,0.35);">PAYMENT SUMMARY</p>
+                        <h2 class="font-display-lg text-3xl tracking-tighter italic" style="color:#e2e2e2;">ORDER RECEIPT</h2>
                     </div>
 
-                    <!-- Main panel -->
-                    <div class="w-full rounded-2xl overflow-hidden glitch-border"
-                         style="background: linear-gradient(145deg, rgba(208,91,255,0.06) 0%, rgba(0,0,0,0.75) 100%);
-                                border: 1px solid rgba(208,91,255,0.22);
-                                box-shadow: 0 0 50px rgba(208,91,255,0.1), inset 0 0 30px rgba(0,0,0,0.4);">
+                    <!-- Receipt panel -->
+                    <div class="w-full rounded-2xl overflow-hidden"
+                         style="background:#0e0e0e; border:1px solid rgba(255,255,255,0.08); box-shadow:0 8px 40px rgba(0,0,0,0.6);">
 
-                        <!-- Top identity bar -->
+                        <!-- Identity row -->
                         <div class="px-6 py-4 flex items-center justify-between"
-                             style="border-bottom:1px solid rgba(208,91,255,0.15); background:rgba(208,91,255,0.04);">
+                             style="border-bottom:1px solid rgba(255,255,255,0.06); background:rgba(255,255,255,0.02);">
                             <div class="flex items-center gap-3">
-                                <span class="material-symbols-outlined" style="color:#ecb1ff; font-size:1.4rem;">verified_user</span>
+                                <span class="material-symbols-outlined" style="color:rgba(0,219,233,0.6); font-size:1.2rem;">person</span>
                                 <div>
-                                    <p class="text-[9px] uppercase tracking-[0.25em] font-mono" style="color:rgba(208,91,255,0.5);">REGISTERED NODE</p>
-                                    <p id="payName" class="font-bold font-mono text-sm" style="color:#dbfcff;">—</p>
+                                    <p class="text-[9px] uppercase tracking-[0.2em] font-mono" style="color:rgba(185,202,203,0.35);">PARTICIPANT</p>
+                                    <p id="payName" class="font-bold font-mono text-sm" style="color:#e2e2e2;">—</p>
                                 </div>
                             </div>
-                            <!-- Early bird badge using site primary color -->
-                            <span class="referral-badge" style="background:rgba(0,219,233,0.1); color:#00dbe9; border:1px solid rgba(0,219,233,0.3);">
-                                <span class="material-symbols-outlined" style="font-size:11px;">bolt</span>
-                                EARLY BIRD
-                            </span>
+                            <span class="font-mono text-[9px] font-bold uppercase tracking-widest px-3 py-1 rounded-full"
+                                  style="background:rgba(0,219,233,0.08); color:rgba(0,219,233,0.7); border:1px solid rgba(0,219,233,0.18);">EARLY BIRD</span>
                         </div>
 
-                        <!-- Fee breakdown -->
-                        <div class="px-6 py-5 flex flex-col font-mono text-sm">
-                            <p class="text-[9px] uppercase tracking-[0.25em] mb-4" style="color:rgba(208,91,255,0.45);">PAYMENT DETAILS</p>
+                        <!-- Fee rows -->
+                        <div class="px-6 py-5 font-mono text-sm">
+                            <p class="text-[9px] uppercase tracking-[0.2em] mb-4" style="color:rgba(185,202,203,0.3);">FEE BREAKDOWN</p>
 
                             <div class="pay-row">
-                                <span style="color:rgba(185,202,203,0.55);">Original Fee</span>
-                                <span id="payOriginal" style="color:rgba(185,202,203,0.75);">₹ 400</span>
+                                <span style="color:rgba(185,202,203,0.5);">Original Fee</span>
+                                <span id="payOriginal" style="color:rgba(185,202,203,0.65);">₹ 400</span>
                             </div>
                             <div class="pay-row">
-                                <span style="color:rgba(185,202,203,0.55);">Early Bird Discount</span>
-                                <span id="payDiscount" class="glow-cyan" style="color:#00dbe9;">- ₹ 200</span>
+                                <span style="color:rgba(185,202,203,0.5);">Early Bird Discount</span>
+                                <span id="payDiscount" style="color:#4ade80;">- ₹ 200</span>
                             </div>
-
-                            <!-- Total -->
                             <div class="pay-total-row">
-                                <span class="font-bold text-base uppercase tracking-wider" style="color:#dbfcff;">Bill Amount</span>
-                                <span id="payTotal" class="font-bold text-2xl glow-magenta" style="color:#ecb1ff;">₹ 200</span>
+                                <span class="font-bold uppercase tracking-wider" style="color:#e2e2e2;">Total Due</span>
+                                <span id="payTotal" class="font-bold text-2xl" style="color:#e2e2e2;">₹ 200</span>
                             </div>
                         </div>
 
-                        <!-- Referral code section (replaces QR footer) -->
-                        <div class="px-6 py-5"
-                             style="border-top:1px solid rgba(208,91,255,0.15); background:rgba(0,0,0,0.35);">
-                            <p class="text-[9px] uppercase tracking-[0.25em] font-mono mb-3" style="color:rgba(0,219,233,0.45);">REFERRAL CODE <span style="color:rgba(185,202,203,0.3);">(optional — unlocks bonus XP)</span></p>
-                            <div class="flex gap-3 items-center">
-                                <input
-                                    id="referralCode"
-                                    type="text"
-                                    placeholder="ENTER-REF-CODE"
-                                    maxlength="20"
-                                    class="referral-input"
-                                />
-                                <button
-                                    onclick="applyReferral()"
-                                    type="button"
+                        <!-- Referral row -->
+                        <div class="px-6 py-4" style="border-top:1px solid rgba(255,255,255,0.06); background:rgba(0,0,0,0.3);">
+                            <p class="text-[9px] uppercase tracking-[0.2em] font-mono mb-3" style="color:rgba(185,202,203,0.3);">
+                                Referral Code <span style="color:rgba(185,202,203,0.2);">(optional)</span>
+                            </p>
+                            <div class="flex gap-2 items-center">
+                                <input id="referralCode" type="text" placeholder="ENTER CODE" maxlength="20"
+                                    class="referral-input flex-1" />
+                                <button onclick="applyReferral()" type="button"
                                     class="shrink-0 px-4 py-2 rounded-lg font-mono text-xs font-bold uppercase tracking-widest transition-all duration-200 hover:scale-105 active:scale-95"
-                                    style="background:rgba(0,219,233,0.1); color:#00dbe9; border:1px solid rgba(0,219,233,0.35); white-space:nowrap;">
+                                    style="background:rgba(255,255,255,0.05); color:rgba(185,202,203,0.7); border:1px solid rgba(255,255,255,0.1); white-space:nowrap;">
                                     APPLY
                                 </button>
                             </div>
@@ -747,10 +705,10 @@
 
                     </div>
 
-                    <!-- CTA button -->
+                    <!-- Pay button -->
                     <button onclick="processPayment()" type="button"
                         class="w-full py-4 rounded-xl font-body-md font-bold uppercase tracking-[0.3em] transition-all duration-300 hover:scale-[1.02] active:scale-[0.97]"
-                        style="background:linear-gradient(90deg, rgba(208,91,255,0.75), rgba(140,40,220,0.85)); color:#f9d8ff; box-shadow:0 0 35px rgba(208,91,255,.45), inset 0 0 20px rgba(0,0,0,0.3); text-shadow:0 0 10px rgba(208,91,255,0.5);">
+                        style="background:#00dbe9; color:#001f22; box-shadow:0 4px 24px rgba(0,219,233,0.25);">
                         PROCEED TO PAY
                     </button>
 
