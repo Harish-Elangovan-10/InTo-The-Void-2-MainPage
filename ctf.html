@@ -885,6 +885,8 @@
                         style="background:#00dbe9; color:#001f22; box-shadow:0 4px 24px rgba(0,219,233,0.25);">
                         PROCEED TO PAY
                     </button>
+                    <p id="paymentError" class="hidden mt-3 font-mono text-[11px] tracking-wider text-center"
+                        style="color:#ff6b6b;"></p>
 
                 </div>
 
@@ -1689,11 +1691,40 @@
             paymentCard.classList.add('flex', 'card-pop');
         }
 
-        function processPayment() {
-            // In a real app, integrate payment gateway here.
-            alert('Payment processing initiated. Uplink establishing...');
-            // Example redirect or final submission:
-            // document.getElementById('soloFormEl').submit();
+        async function processPayment() {
+            const payBtn = document.querySelector('button[onclick="processPayment()"]');
+            const errorEl = document.getElementById('paymentError');
+            const originalText = payBtn.innerText;
+            errorEl.classList.add('hidden');
+
+            payBtn.disabled = true;
+            payBtn.innerText = 'REDIRECTING...';
+
+            const isSolo = document.getElementById('soloTab').classList.contains('active-tab');
+            const leaderEmail = isSolo
+                ? document.getElementById('soloEmail').value.trim()
+                : document.getElementById('teamLeaderEmail').value.trim();
+
+            try {
+                const resp = await fetch(BACKEND_URL + '_/api/v1/pub/payment/create-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: leaderEmail })
+                });
+
+                const data = await resp.json();
+
+                if (!resp.ok) {
+                    throw new Error(data.message || 'Payment initiation failed');
+                }
+
+                window.location.href = data.payment_link;
+            } catch (err) {
+                errorEl.innerText = '⚠ ' + err.message;
+                errorEl.classList.remove('hidden');
+                payBtn.disabled = false;
+                payBtn.innerText = originalText;
+            }
         }
 
         function applyReferral() {
