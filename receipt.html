@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Receipt — Into the Void 2.0</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Courier New', Courier, monospace;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  padding: 1rem;
+}
+.receipt {
+  background: #111;
+  width: 420px;
+  max-width: 100%;
+  padding: 2rem 1.75rem;
+  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: 0 0 60px rgba(0,219,233,0.06);
+  position: relative;
+}
+.receipt::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #00dbe9, #c084fc, #00dbe9);
+  opacity: 0.5;
+}
+.header {
+  text-align: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px dashed rgba(255,255,255,0.12);
+  margin-bottom: 1.25rem;
+}
+.header h1 {
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #00dbe9;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.header .sub {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(185,202,203,0.35);
+}
+.header .edition {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: rgba(185,202,203,0.2);
+  margin-top: 0.15rem;
+}
+.dash {
+  border: none;
+  border-top: 1px dashed rgba(255,255,255,0.08);
+  margin: 0.6rem 0;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+.row .label {
+  color: rgba(185,202,203,0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.row .value {
+  color: #e0e0e0;
+  text-align: right;
+  max-width: 60%;
+  word-break: break-word;
+}
+.badge {
+  display: inline-block;
+  padding: 0.3rem 1.2rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-radius: 0;
+}
+.badge.paid {
+  background: rgba(0,219,233,0.1);
+  color: #00dbe9;
+  border: 1px solid rgba(0,219,233,0.25);
+}
+.badge.failed {
+  background: rgba(255,107,107,0.1);
+  color: #ff6b6b;
+  border: 1px solid rgba(255,107,107,0.25);
+}
+.badge.pending {
+  background: rgba(255,183,77,0.1);
+  color: #ffb74d;
+  border: 1px solid rgba(255,183,77,0.25);
+}
+.status-row {
+  text-align: center;
+  padding: 1rem 0;
+}
+.total-row {
+  border-top: 2px dashed rgba(255,255,255,0.12);
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+}
+.total-row .value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #fff;
+}
+.footer {
+  text-align: center;
+  padding-top: 1.25rem;
+  border-top: 2px dashed rgba(255,255,255,0.12);
+  margin-top: 1.25rem;
+  font-size: 0.65rem;
+  color: rgba(185,202,203,0.25);
+  letter-spacing: 0.05em;
+  line-height: 1.8;
+}
+.footer .qr {
+  margin: 0.75rem auto;
+  width: 64px;
+  height: 64px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.5rem;
+  color: rgba(185,202,203,0.15);
+}
+.return-link {
+  display: inline-block;
+  margin-top: 1.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(0,219,233,0.5);
+  text-decoration: none;
+  border: 1px solid rgba(0,219,233,0.15);
+  padding: 0.5rem 1.5rem;
+  transition: all 0.2s;
+}
+.return-link:hover {
+  color: #00dbe9;
+  border-color: rgba(0,219,233,0.4);
+  background: rgba(0,219,233,0.04);
+}
+.spinner {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: 2px solid rgba(0,219,233,0.1);
+  border-top-color: #00dbe9;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 0.75rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text {
+  font-size: 0.7rem;
+  color: rgba(185,202,203,0.35);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.hidden { display: none; }
+</style>
+</head>
+<body>
+<div class="receipt" id="receipt">
+  <div class="header">
+    <h1>INTO THE VOID</h1>
+    <p class="sub">Capture The Flag</p>
+    <p class="edition">Edition 2.0 &bull; Receipt</p>
+  </div>
+
+  <div id="loadingState" style="text-align:center;padding:2rem 0;">
+    <div class="spinner"></div>
+    <p class="loading-text">Verifying payment...</p>
+  </div>
+
+  <div id="receiptContent" class="hidden">
+    <div class="status-row" id="badgeRow"></div>
+
+    <hr class="dash">
+
+    <div id="detailsRows"></div>
+
+    <hr class="dash">
+
+    <div id="totalRow" class="row total-row">
+      <span class="label">Total Paid</span>
+      <span class="value" id="totalAmount">—</span>
+    </div>
+
+    <div class="footer">
+      <div class="qr">&#9617;&#9617;&#9617;&#9617;&#9617;&#9617;&#9617;<br>&#9617;  #ITV2  &#9617;<br>&#9617;&#9617;&#9617;&#9617;&#9617;&#9617;&#9617;</div>
+      <p>Thank you for registering &bull; See you in the void</p>
+      <p style="margin-top:0.3rem;">ExploitX &bull; CIT Chennai</p>
+    </div>
+  </div>
+
+  <div id="errorState" class="hidden" style="text-align:center;padding:2rem 0;">
+    <p style="color:#ff6b6b;font-size:0.85rem;">⚠</p>
+    <p id="errorMessage" style="color:#ff6b6b;font-size:0.75rem;margin-top:0.5rem;"></p>
+  </div>
+
+  <div style="text-align:center;">
+    <a href="/ctf.html" class="return-link">&larr; Return to Portal</a>
+  </div>
+</div>
+
+<script>
+(async () => {
+  const params = new URLSearchParams(window.location.search);
+  const email = params.get('email');
+  const receiptContent = document.getElementById('receiptContent');
+  const loadingState = document.getElementById('loadingState');
+  const errorState = document.getElementById('errorState');
+  const errorMessage = document.getElementById('errorMessage');
+  const detailsRows = document.getElementById('detailsRows');
+  const totalAmount = document.getElementById('totalAmount');
+  const badgeRow = document.getElementById('badgeRow');
+
+  if (!email) {
+    loadingState.classList.add('hidden');
+    errorState.classList.remove('hidden');
+    errorMessage.innerText = 'No email provided. Missing payment reference.';
+    return;
+  }
+
+  const BACKEND_URL = 'http://localhost:3000/';
+
+  async function checkStatus() {
+    const resp = await fetch(BACKEND_URL + '_/api/v1/pub/payment/order-status?email=' + encodeURIComponent(email));
+    if (!resp.ok) {
+      const data = await resp.json().catch(() => ({}));
+      throw new Error(data.message || 'Failed to fetch payment status');
+    }
+    return await resp.json();
+  }
+
+  let data;
+  try {
+    data = await checkStatus();
+    // If still pending, poll a few more times
+    let attempts = 0;
+    while ((data.payment_status === 'pending' || data.payment_status === 'ACTIVE') && attempts < 10) {
+      await new Promise(r => setTimeout(r, 3000));
+      data = await checkStatus();
+      attempts++;
+    }
+  } catch (err) {
+    loadingState.classList.add('hidden');
+    errorState.classList.remove('hidden');
+    errorMessage.innerText = err.message;
+    return;
+  }
+
+  loadingState.classList.add('hidden');
+  receiptContent.classList.remove('hidden');
+
+  const status = (data.payment_status || '').toLowerCase();
+  let badgeClass = 'pending';
+  let badgeText = 'PENDING';
+  if (status === 'paid' || status === 'success') {
+    badgeClass = 'paid';
+    badgeText = 'PAID';
+  } else if (status === 'failed') {
+    badgeClass = 'failed';
+    badgeText = 'FAILED';
+  }
+
+  badgeRow.innerHTML = '<span class="badge ' + badgeClass + '">' + badgeText + '</span>';
+
+  let html = '';
+  if (data.order_id) {
+    html += '<div class="row"><span class="label">Order ID</span><span class="value">' + data.order_id + '</span></div>';
+  }
+  if (data.cf_order_id) {
+    html += '<div class="row"><span class="label">CF Order ID</span><span class="value" style="font-size:0.7rem;">' + data.cf_order_id + '</span></div>';
+  }
+  if (data.payment_amount) {
+    totalAmount.innerText = '₹ ' + data.payment_amount;
+  }
+  if (data.ordered_at) {
+    html += '<div class="row"><span class="label">Ordered At</span><span class="value">' + new Date(data.ordered_at).toLocaleString('en-IN') + '</span></div>';
+  }
+  if (data.paid_at) {
+    html += '<div class="row"><span class="label">Paid At</span><span class="value">' + new Date(data.paid_at).toLocaleString('en-IN') + '</span></div>';
+  }
+  if (data.order_status) {
+    html += '<div class="row"><span class="label">Order Status</span><span class="value">' + data.order_status + '</span></div>';
+  }
+  if (data.invoice_no) {
+    html += '<div class="row"><span class="label">Invoice No.</span><span class="value">' + data.invoice_no + '</span></div>';
+  }
+
+  detailsRows.innerHTML = html;
+})();
+</script>
+</body>
+</html>
