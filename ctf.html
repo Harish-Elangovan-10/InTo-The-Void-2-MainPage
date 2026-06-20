@@ -649,7 +649,7 @@
                                 <option class="bg-black">Male</option>
                                 <option class="bg-black">Female</option>
                                 <option class="bg-black">Transgender</option>
-                                <option class="bg-black">Other</option> 
+                                <option class="bg-black">Other</option>
                             </select>
                         </div>
 
@@ -1463,59 +1463,60 @@
             submitBtn.innerText = 'INITIALIZING UPLINK...';
 
             try {
-                let payload = { registration_type: formType };
-                
+                let payload = { registration_type: formType === 'team' ? 'couple' : 'solo' };
+
                 if (formType === 'solo') {
                     payload.team_name = document.getElementById('soloTeamName').value.trim();
                     payload.leader_name = formEl.querySelector('input[placeholder="Enter your full name"]').value.trim();
                     payload.leader_email_id = document.getElementById('soloEmail').value.trim();
                     payload.leader_mobile_cc = document.getElementById('soloPhoneCC').value.trim();
                     payload.leader_mobile_number = document.getElementById('soloPhone').value.trim();
-                    
+
                     const selects = formEl.querySelectorAll('select');
                     payload.leader_gender = selects[0].value.trim();
                     payload.leader_year_of_study = parseInt(selects[1].value) || 1;
-                    
+
                     payload.leader_college_name = formEl.querySelector('input[list="collegeList"]').value.trim();
                     payload.leader_degree = formEl.querySelector('input[placeholder="B.Tech, B.E, B.Sc"]').value.trim();
                     payload.leader_department = formEl.querySelector('input[placeholder="Computer Science, IT"]').value.trim();
                     payload.leader_location = formEl.querySelector('input[placeholder="City / District"]').value.trim();
                 } else {
                     payload.team_name = document.getElementById('teamTeamName').value.trim();
-                    
+
                     payload.leader_name = formEl.querySelector('input[placeholder="Leader Name"]').value.trim();
                     payload.leader_email_id = document.getElementById('teamLeaderEmail').value.trim();
                     payload.leader_mobile_cc = document.getElementById('teamLeaderPhoneCC').value.trim();
                     payload.leader_mobile_number = document.getElementById('teamLeaderPhone').value.trim();
-                    
+
                     const selects = formEl.querySelectorAll('select');
                     payload.leader_year_of_study = parseInt(selects[0].value) || 1;
                     payload.leader_gender = selects[1].value.trim();
                     payload.member_year_of_study = parseInt(selects[2].value) || 1;
                     payload.member_gender = selects[3].value.trim();
-                    
+
                     const locations = formEl.querySelectorAll('input[placeholder="City / District"]');
                     payload.leader_location = locations[0].value.trim();
                     payload.member_location = locations[1].value.trim();
-                    
+
                     const colleges = formEl.querySelectorAll('input[list="collegeList"]');
                     payload.leader_college_name = colleges[0].value.trim();
                     payload.member_college_name = colleges[1].value.trim();
-                    
+
                     const degrees = formEl.querySelectorAll('input[placeholder="B.Tech, B.E, B.Sc"]');
                     payload.leader_degree = degrees[0].value.trim();
                     payload.member_degree = degrees[1].value.trim();
-                    
+
                     const depts = formEl.querySelectorAll('input[placeholder="Computer Science, IT"]');
                     payload.leader_department = depts[0].value.trim();
                     payload.member_department = depts[1].value.trim();
 
-                    payload.member_name = formEl.querySelector('input[placeholder="Member Name"]').value.trim();
+                    payload.member_name = formEl.querySelector('input[placeholder="Team Member Name"]').value.trim();
                     payload.member_email_id = document.getElementById('teamMemberEmail').value.trim();
                     payload.member_mobile_cc = document.getElementById('teamMemberPhoneCC').value.trim();
                     payload.member_mobile_number = document.getElementById('teamMemberPhone').value.trim();
                 }
 
+                console.log(payload);
                 const response = await fetch(BACKEND_URL + '_/api/v1/pub/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -1529,7 +1530,7 @@
                 }
 
                 window.registeredData = data;
-                
+
                 showOtpCard();
 
             } catch (err) {
@@ -1560,7 +1561,7 @@
                 document.getElementById('memberOtpEmailLabel').innerText = document.getElementById('teamMemberEmail').value || 'member email';
                 startResendTimer('member');
             }
-            
+
             startResendTimer('leader');
 
             const otpCard = document.getElementById('otpCard');
@@ -1598,7 +1599,7 @@
                     return;
                 }
             }
-            
+
             document.getElementById('otpError').classList.add('hidden');
 
             const teamName = isSolo ? document.getElementById('soloTeamName').value.trim() : document.getElementById('teamTeamName').value.trim();
@@ -1628,7 +1629,7 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
                 });
-                
+
                 const data = await response.json().catch(() => ({ message: 'Invalid server response' }));
 
                 if (!response.ok) {
