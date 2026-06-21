@@ -1702,16 +1702,15 @@
             }
 
             // --- Fetch college value ---
-            let collegeInputValue = "";
+            let isCIT = false;
             if (isSolo) {
-                const inputs = document.querySelectorAll('#soloFormEl input[list="collegeList"]');
-                if (inputs.length > 0) collegeInputValue = inputs[0].value;
+                const email = document.getElementById('soloEmail') ? document.getElementById('soloEmail').value : '';
+                isCIT = email.toLowerCase().includes('@citchennai.net');
             } else {
-                const inputs = document.querySelectorAll('#teamFormEl input[list="collegeList"]');
-                if (inputs.length > 0) collegeInputValue = inputs[0].value;
+                const leaderEmail = document.getElementById('teamLeaderEmail') ? document.getElementById('teamLeaderEmail').value : '';
+                const memberEmail = document.getElementById('teamMemberEmail') ? document.getElementById('teamMemberEmail').value : '';
+                isCIT = leaderEmail.toLowerCase().includes('@citchennai.net') && memberEmail.toLowerCase().includes('@citchennai.net');
             }
-
-            const isCIT = collegeInputValue.toLowerCase().includes('chennai institute of technology') || collegeInputValue.toLowerCase() === 'cit';
 
             // CIT: ₹400 original, 75% off → ₹300 discount → ₹100 final
             // Others: ₹400 original, ₹200 discount → ₹200 final
