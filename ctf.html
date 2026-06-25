@@ -1574,6 +1574,35 @@
                 const data = await response.json().catch(() => ({ message: 'Invalid server response' }));
 
                 if (!response.ok && data.next_step !== 'resend_verification') {
+                    if (data.verified === false) {
+                        try {
+                            const resendResp = await fetch(BACKEND_URL + '_/api/v1/pub/auth/resend-otp', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ team_name: payload.team_name })
+                            });
+                            if (!resendResp.ok) throw new Error("Failed to resend OTP");
+                        } catch (e) {
+                            console.error(e);
+                        }
+                        showOtpCard();
+                        return;
+                    } else if (data.verified === true && data.payment === false) {
+                        try {
+                            const payResp = await fetch(BACKEND_URL + '_/api/v1/pub/payment/create-order', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ email: payload.leader_email_id })
+                            });
+                            const payData = await payResp.json();
+                            if (payData.payment_link) {
+                                window.location.href = payData.payment_link;
+                                return;
+                            }
+                        } catch (e) {
+                            console.error(e);
+                        }
+                    }
                     throw new Error(data.message || `Server error: ${response.status}`);
                 }
 
