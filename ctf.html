@@ -1271,9 +1271,15 @@
                         if (vStatus) detailsArr.push(`Verification: ${vStatus}`);
                         const detailsStr = detailsArr.length > 0 ? detailsArr.join(' | ') : '';
 
-                        fieldStates[fieldId] = { status: 'error', value: value, error: errMsg, details: detailsStr };
-                        updateFieldUI(fieldId, 'error', errMsg, detailsStr);
-                        verificationCache[config.type][cacheKey] = { found: true, error: errMsg, details: detailsStr };
+                        if (vStatus === 'pending') {
+                            fieldStates[fieldId] = { status: 'pending', value: value, error: '' };
+                            updateFieldUI(fieldId, 'available', `⚠ ${config.label} is pending verification. Submit to continue.`);
+                            verificationCache[config.type][cacheKey] = { found: true, pending: true };
+                        } else {
+                            fieldStates[fieldId] = { status: 'error', value: value, error: errMsg, details: detailsStr };
+                            updateFieldUI(fieldId, 'error', errMsg, detailsStr);
+                            verificationCache[config.type][cacheKey] = { found: true, error: errMsg, details: detailsStr };
+                        }
                     } else {
                         fieldStates[fieldId] = { status: 'available', value: value, error: '' };
                         updateFieldUI(fieldId, 'available', `✅ ${config.label} is available`);
