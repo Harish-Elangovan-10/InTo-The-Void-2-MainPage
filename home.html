@@ -28,6 +28,7 @@
                 margin: auto 0 !important;
             }
         }
+
         @media (max-width: 500px) {
             .border-matrix {
                 width: max-content !important;
@@ -266,9 +267,17 @@
             </div>
         </section>
 
-
         <section id="registration"
             class="min-h-screen flex flex-col justify-center pt-16 pb-24 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto w-full">
+            <div
+                class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12 border-b border-secondary/20 pb-4">
+                <div class="flex items-center gap-4">
+                    <h2
+                        class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-secondary tracking-tight uppercase">
+                        REGISTRATION_PORTAL</h2>
+                    <div class="h-2 w-2 rounded-full bg-secondary animate-pulse shadow-[0_0_8px_#d05bff]"></div>
+                </div>
+            </div>
             <div class="flex flex-wrap justify-center items-center gap-32">
                 <a href="ctf.html" alt="Mythrill">
                     <div class="card">
@@ -317,7 +326,8 @@
                 </div>
 
                 <!-- HUD -->
-                <div class="absolute inset-4 md:inset-8 z-20 pointer-events-none flex flex-col justify-between font-mono text-[9px] md:text-[10px] text-white/45 uppercase tracking-wider">
+                <div
+                    class="absolute inset-4 md:inset-8 z-20 pointer-events-none flex flex-col justify-between font-mono text-[9px] md:text-[10px] text-white/45 uppercase tracking-wider">
                     <div class="flex items-center justify-between w-full">
                         <span>NEURAL_GRID // ACTIVE</span>
                         <div class="hidden sm:block flex-1 h-px bg-white/20 mx-4 relative">
@@ -459,20 +469,24 @@
             <!-- Sponsor Showcase (Now Matrix Animation) -->
             <section class="min-h-screen flex flex-col items-center justify-center overflow-hidden">
                 <div class="border-matrix w-full max-w-5xl">
-                    <h1 class="font-display-lg text-headline-xl text-primary tracking-tight uppercase mb-8 text-center"style="text-shadow: 0 0 10px rgba(0,219,233,0.5);">Pov: You Made Good Choices.</h1>
+                    <h1 class="font-display-lg text-headline-xl text-primary tracking-tight uppercase mb-8 text-center"
+                        style="text-shadow: 0 0 10px rgba(0,219,233,0.5);">Pov: You Made Good Choices.</h1>
                     <div id="matrix"></div>
                 </div>
                 <canvas id="canvas" style="display:none;"></canvas>
             </section>
             <!-- Partnership Opportunities -->
             <section class="mb-16">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12 border-b border-secondary/20 pb-4">
+                <div
+                    class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12 border-b border-secondary/20 pb-4">
                     <div class="flex items-center gap-4">
-                        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-secondary tracking-tight uppercase">
+                        <h2
+                            class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-secondary tracking-tight uppercase">
                             Partnership Opportunities</h2>
                         <div class="h-2 w-2 rounded-full bg-secondary animate-pulse shadow-[0_0_8px_#d05bff]"></div>
                     </div>
-                    <div class="font-label-caps text-label-caps text-on-surface-variant text-xs sm:text-sm">BECOME_A_SPONSOR</div>
+                    <div class="font-label-caps text-label-caps text-on-surface-variant text-xs sm:text-sm">
+                        BECOME_A_SPONSOR</div>
                 </div>
                 <div class="grid md:grid-cols-3 gap-8">
                     <!-- Technology Partner -->
@@ -594,13 +608,13 @@
             class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">
             <div>© 2124 MULTIVERSE_CORE. ALL RIGHTS RESERVED. [RESTRICTED ACCESS]</div>
             <div class="flex flex-wrap items-center justify-center gap-6">
-<a class="hover:text-primary transition-all" href="terms.html">PROTOCOL_TC</a>
-<a class="hover:text-primary transition-all" href="privacy.html">PRIVACY_ENCRYPT</a>
-<a class="hover:text-primary transition-all" href="refunds.html">REFUNDS_CANCEL</a>
-<a class="hover:text-primary transition-all" href="contact.html">CONTACT_US</a>
-<a class="hover:text-primary transition-all" href="products.html">PRODUCTS_SERVICES</a>
-<a class="hover:text-primary transition-all" href="sitemap.html">SITEMAP_DIR</a>
-</div>
+                <a class="hover:text-primary transition-all" href="terms.html">PROTOCOL_TC</a>
+                <a class="hover:text-primary transition-all" href="privacy.html">PRIVACY_ENCRYPT</a>
+                <a class="hover:text-primary transition-all" href="refunds.html">REFUNDS_CANCEL</a>
+                <a class="hover:text-primary transition-all" href="contact.html">CONTACT_US</a>
+                <a class="hover:text-primary transition-all" href="products.html">PRODUCTS_SERVICES</a>
+                <a class="hover:text-primary transition-all" href="sitemap.html">SITEMAP_DIR</a>
+            </div>
         </div>
     </footer>
     <script src="assets/js/footer-links.js"></script>
