@@ -1887,10 +1887,14 @@
             }
         }
 
-        function applyReferral() {
+        async function applyReferral() {
             const input = document.getElementById('referralCode');
             const status = document.getElementById('referralStatus');
             const code = input ? input.value.trim().toUpperCase() : '';
+            const btn = document.querySelector('button[onclick="applyReferral()"]');
+
+            const isSolo = document.getElementById('soloTab').classList.contains('active-tab');
+            const teamName = isSolo ? document.getElementById('soloTeamName').value.trim() : document.getElementById('teamTeamName').value.trim();
 
             status.classList.remove('hidden');
 
@@ -1900,19 +1904,46 @@
                 return;
             }
 
-            // Simulate checking: in a real app, call your API here
-            // For demo, accept any 6+ character code
-            if (code.length >= 6) {
-                status.style.color = '#00dbe9';
-                status.innerText = `✅ CODE ${code} ACCEPTED — Bonus XP unlocked`;
-                input.style.borderColor = 'rgba(0,219,233,0.7)';
-                input.style.boxShadow = '0 0 14px rgba(0,219,233,0.35)';
-                input.disabled = true;
-            } else {
+            const originalBtnText = btn.innerText;
+            btn.disabled = true;
+            btn.innerText = '...';
+
+            try {
+                const response = await fetch(BACKEND_URL + '_/api/v1/pub/add-referred-by-reference-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        referred_by_reference_code: code,
+                        team_name: teamName
+                    })
+                });
+
+                const data = await response.json().catch(() => ({ message: 'Invalid server response' }));
+
+                if (response.ok) {
+                    status.style.color = '#00dbe9';
+                    status.innerText = `✅ CODE ${code} ACCEPTED — ${data.message || 'Referral applied successfully.'}`;
+                    input.style.borderColor = 'rgba(0,219,233,0.7)';
+                    input.style.boxShadow = '0 0 14px rgba(0,219,233,0.35)';
+                    input.disabled = true;
+                    btn.disabled = true;
+                    btn.innerText = 'APPLIED';
+                } else {
+                    status.style.color = '#ffb4ab';
+                    status.innerText = `❌ ${data.message || 'INVALID CODE'}`;
+                    input.style.borderColor = 'rgba(255,180,171,0.5)';
+                    input.style.boxShadow = '0 0 14px rgba(255,180,171,0.2)';
+                    btn.disabled = false;
+                    btn.innerText = originalBtnText;
+                }
+            } catch (err) {
+                console.error("Referral Error:", err);
                 status.style.color = '#ffb4ab';
-                status.innerText = `❌ INVALID CODE — Must be at least 6 characters`;
+                status.innerText = `⚠ Error applying code: ${err.message}`;
                 input.style.borderColor = 'rgba(255,180,171,0.5)';
                 input.style.boxShadow = '0 0 14px rgba(255,180,171,0.2)';
+                btn.disabled = false;
+                btn.innerText = originalBtnText;
             }
         }
 
@@ -1968,4 +1999,833 @@
     </script>
 </body>
 
-</html>
+</html>            }
+
+            if (value === '') {
+                fieldStates[fieldId] = { status: 'default', value: '', error: '' };
+                updateFieldUI(fieldId, 'default');
+                return;
+            }
+
+            let cc = '';
+            if (config.type === 'mobile') {
+                const ccEl = document.getElementById(fieldId + 'CC');
+                if (ccEl) cc = ccEl.value;
+                if (value.length !== 10) {
+                    fieldStates[fieldId] = { status: 'default', value: value, error: '' };
+                    updateFieldUI(fieldId, 'default');
+                    return;
+                }
+            }
+
+            // Format validation check
+            let validationError = null;
+            if (config.type === 'team_name') validationError = validateTeamName(value);
+            else if (config.type === 'email') validationError = validateEmail(value);
+            else if (config.type === 'mobile') validationError = validatePhone(cc, value);
+
+            if (validationError) {
+                fieldStates[fieldId] = { status: 'invalid', value: value, error: validationError };
+                updateFieldUI(fieldId, 'invalid', `⚠ ${validationError}`);
+                return;
+            }
+
+            // Show typing/checking status immediately
+            fieldStates[fieldId] = { status: 'typing', value: value, error: '' };
+            updateFieldUI(fieldId, 'typing');
+
+            // Debounce actual API request (1000ms for team_name, 400ms otherwise)
+            const delay = config.type === 'team_name' ? 1000 : 400;
+            debounceTimers[fieldId] = setTimeout(async () => {
+                fieldStates[fieldId].status = 'checking';
+                updateFieldUI(fieldId, 'checking');
+
+                // Format cache key
+                const cacheKey = config.type === 'mobile' ? JSON.stringify({ cc, number: value }) : value;
+                const cached = verificationCache[config.type][cacheKey];
+                if (cached !== undefined) {
+                    if (cached.found) {
+                        fieldStates[fieldId] = { status: 'error', value: value, error: cached.error, details: cached.details };
+                        updateFieldUI(fieldId, 'error', cached.error, cached.details);
+                    } else {
+                        fieldStates[fieldId] = { status: 'available', value: value, error: '' };
+                        updateFieldUI(fieldId, 'available', `✅ ${config.label} is available`);
+                    }
+                    return;
+                }
+
+                const controller = new AbortController();
+                activeRequests[fieldId] = controller;
+
+                try {
+                    let requestBody;
+                    if (config.type === 'mobile') {
+                        requestBody = { type: 'mobile', query: { cc, number: value } };
+                    } else {
+                        requestBody = { type: config.type, query: value };
+                    }
+
+                    const response = await fetch(BACKEND_URL + "_/api/v1/pub/preflight", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(requestBody),
+                        signal: controller.signal
+                    });
+
+                    activeRequests[fieldId] = null;
+
+                    if (response.status === 422) {
+                        const errData = await response.json();
+                        const msg = errData.message || `Invalid ${config.label} format.`;
+                        fieldStates[fieldId] = { status: 'invalid', value: value, error: msg };
+                        updateFieldUI(fieldId, 'invalid', `⚠ ${msg}`);
+                        verificationCache[config.type][cacheKey] = { found: true, error: `⚠ ${msg}`, details: '' };
+                        return;
+                    }
+
+                    if (!response.ok) {
+                        throw new Error(`Server error: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+                    if (data.found) {
+                        const errMsg = `❌ ${config.label} already registered`;
+
+                        // Parse metadata if available
+                        const detailsArr = [];
+                        if (data.team_name) detailsArr.push(`Team: ${data.team_name}`);
+                        if (data.registration_type) detailsArr.push(`Type: ${data.registration_type}`);
+                        if (data.payment_status) detailsArr.push(`Payment: ${data.payment_status}`);
+
+                        const vStatus = data.leader_status || data.member_status || (data.leader_verified ? 'verified' : 'pending');
+                        if (vStatus) detailsArr.push(`Verification: ${vStatus}`);
+                        const detailsStr = detailsArr.length > 0 ? detailsArr.join(' | ') : '';
+
+                        fieldStates[fieldId] = { status: 'error', value: value, error: errMsg, details: detailsStr };
+                        updateFieldUI(fieldId, 'error', errMsg, detailsStr);
+                        verificationCache[config.type][cacheKey] = { found: true, error: errMsg, details: detailsStr };
+                    } else {
+                        fieldStates[fieldId] = { status: 'available', value: value, error: '' };
+                        updateFieldUI(fieldId, 'available', `✅ ${config.label} is available`);
+                        verificationCache[config.type][cacheKey] = { found: false };
+                    }
+                } catch (err) {
+                    if (err.name === 'AbortError') return;
+                    activeRequests[fieldId] = null;
+                    console.error("Verification Error:", err);
+
+                    let errMsg = err.message;
+                    if (errMsg === "Failed to fetch") {
+                        errMsg += " (This is usually a CORS issue or the backend isn't running)";
+                    }
+                    if (BACKEND_URL === "") {
+                        errMsg = "BACKEND_URL is empty. The .env file failed to load.";
+                    }
+
+                    fieldStates[fieldId] = { status: 'network_error', value: value, error: errMsg };
+                    updateFieldUI(fieldId, 'network_error', `⚠ Network Error: ${errMsg}`);
+                }
+            }, 400);
+        }
+
+        // Validate form prior to final submission
+        function validateFormBeforeSubmit(formType) {
+            const fieldsToValidate = formType === 'solo'
+                ? ['soloTeamName', 'soloEmail', 'soloPhone']
+                : ['teamTeamName', 'teamLeaderEmail', 'teamLeaderPhone', 'teamMemberEmail', 'teamMemberPhone'];
+
+            let firstInvalidField = null;
+            let errorMessage = '';
+
+            for (const fieldId of fieldsToValidate) {
+                const inputEl = document.getElementById(fieldId);
+                const val = inputEl ? inputEl.value.trim() : '';
+                const state = fieldStates[fieldId];
+
+                if (val === '') {
+                    fieldStates[fieldId] = { status: 'invalid', value: '', error: 'Required field.' };
+                    updateFieldUI(fieldId, 'invalid', `⚠ ${fieldsConfig[fieldId].label} is required.`);
+                    if (!firstInvalidField) firstInvalidField = inputEl;
+                    if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} is required.`;
+                    continue;
+                }
+
+                // If input changed or was never checked
+                if (state.status === 'default' || state.value !== val) {
+                    let formatError = null;
+                    const config = fieldsConfig[fieldId];
+                    if (config.type === 'team_name') formatError = validateTeamName(val);
+                    else if (config.type === 'email') formatError = validateEmail(val);
+                    else if (config.type === 'mobile') {
+                        const ccEl = document.getElementById(fieldId + 'CC');
+                        formatError = validatePhone(ccEl ? ccEl.value : '', val);
+                    }
+
+                    if (formatError) {
+                        fieldStates[fieldId] = { status: 'invalid', value: val, error: formatError };
+                        updateFieldUI(fieldId, 'invalid', `⚠ ${formatError}`);
+                        if (!firstInvalidField) firstInvalidField = inputEl;
+                        if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} has invalid format.`;
+                    } else {
+                        // Start checking
+                        fieldStates[fieldId] = { status: 'checking', value: val, error: '' };
+                        updateFieldUI(fieldId, 'checking');
+                        performVerification(fieldId);
+                        if (!firstInvalidField) firstInvalidField = inputEl;
+                        if (!errorMessage) errorMessage = `Submission blocked: Checking ${fieldsConfig[fieldId].label} availability. Please wait.`;
+                    }
+                    continue;
+                }
+
+                // Inspect validation results
+                if (state.status === 'typing' || state.status === 'checking') {
+                    if (!firstInvalidField) firstInvalidField = inputEl;
+                    if (!errorMessage) errorMessage = `Submission blocked: Checking ${fieldsConfig[fieldId].label} availability. Please wait.`;
+                } else if (state.status === 'invalid') {
+                    if (!firstInvalidField) firstInvalidField = inputEl;
+                    if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} has invalid format.`;
+                } else if (state.status === 'error') {
+                    if (!firstInvalidField) firstInvalidField = inputEl;
+                    if (!errorMessage) errorMessage = `Submission blocked: ${fieldsConfig[fieldId].label} is already registered.`;
+                } else if (state.status === 'network_error') {
+                    if (!firstInvalidField) firstInvalidField = inputEl;
+                    if (!errorMessage) errorMessage = `Submission blocked: Verification server connection failed. Please retry.`;
+                }
+            }
+
+            const bannerId = formType === 'solo' ? 'soloSubmitError' : 'teamSubmitError';
+            const banner = document.getElementById(bannerId);
+
+            if (!firstInvalidField && formType === 'team') {
+                const lEmail = document.getElementById('teamLeaderEmail').value.trim();
+                const mEmail = document.getElementById('teamMemberEmail').value.trim();
+                if (lEmail && mEmail && lEmail === mEmail) {
+                    firstInvalidField = document.getElementById('teamMemberEmail');
+                    errorMessage = "Submission blocked: Leader and Member cannot have the same email address.";
+                } else {
+                    const lPhone = document.getElementById('teamLeaderPhone').value.trim();
+                    const mPhone = document.getElementById('teamMemberPhone').value.trim();
+                    if (lPhone && mPhone && lPhone === mPhone) {
+                        firstInvalidField = document.getElementById('teamMemberPhone');
+                        errorMessage = "Submission blocked: Leader and Member cannot have the same mobile number.";
+                    }
+                }
+            }
+
+            if (firstInvalidField) {
+                firstInvalidField.focus();
+                if (banner) {
+                    banner.innerText = errorMessage;
+                    banner.classList.remove('hidden');
+                }
+                return false;
+            }
+
+            if (banner) {
+                banner.classList.add('hidden');
+                banner.innerText = '';
+            }
+            return true;
+        }
+
+        // --- OTP and Payment UI Transitions ---
+        function initOtpBoxes() {
+            const setupBoxes = (prefix) => {
+                const ids = [0, 1, 2, 3, 4, 5].map(i => prefix + i);
+                ids.forEach((id, idx) => {
+                    const el = document.getElementById(id);
+                    if (!el) return;
+
+                    el.addEventListener('input', (e) => {
+                        el.value = el.value.replace(/[^0-9]/g, '');
+                        el.classList.toggle('filled', el.value.length > 0);
+                        if (el.value.length === 1 && idx < ids.length - 1) {
+                            document.getElementById(ids[idx + 1]).focus();
+                        }
+                        document.getElementById('otpError').classList.add('hidden');
+                    });
+
+                    el.addEventListener('keydown', (e) => {
+                        if (e.key === 'Backspace') {
+                            if (el.value === '' && idx > 0) {
+                                const prev = document.getElementById(ids[idx - 1]);
+                                prev.value = '';
+                                prev.classList.remove('filled');
+                                prev.focus();
+                            }
+                        }
+                        if (e.key === 'ArrowLeft' && idx > 0) document.getElementById(ids[idx - 1]).focus();
+                        if (e.key === 'ArrowRight' && idx < ids.length - 1) document.getElementById(ids[idx + 1]).focus();
+                    });
+
+                    el.addEventListener('paste', (e) => {
+                        e.preventDefault();
+                        const pasted = (e.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 6);
+                        pasted.split('').forEach((char, i) => {
+                            const box = document.getElementById(ids[i]);
+                            if (box) { box.value = char; box.classList.add('filled'); }
+                        });
+                        const nextEmpty = ids.find(id => !document.getElementById(id).value);
+                        if (nextEmpty) document.getElementById(nextEmpty).focus();
+                        else document.getElementById(ids[5]).focus();
+                    });
+                });
+            };
+            setupBoxes('otp');
+            setupBoxes('motp');
+        }
+
+        let resendTimers = { leader: null, member: null };
+        function startResendTimer(type) {
+            const btn = document.getElementById(type + 'ResendBtn');
+            const timerSpan = document.getElementById(type + 'ResendTimer');
+            if (!btn || !timerSpan) return;
+
+            btn.disabled = true;
+            let timeLeft = 30;
+            timerSpan.innerText = `(${timeLeft}s)`;
+
+            if (resendTimers[type]) clearInterval(resendTimers[type]);
+            resendTimers[type] = setInterval(() => {
+                timeLeft--;
+                if (timeLeft <= 0) {
+                    clearInterval(resendTimers[type]);
+                    btn.disabled = false;
+                    timerSpan.innerText = '';
+                } else {
+                    timerSpan.innerText = `(${timeLeft}s)`;
+                }
+            }, 1000);
+        }
+
+        async function resendOtp(type) {
+            const isSolo = document.getElementById('soloTab').classList.contains('active-tab');
+            const teamName = isSolo ? document.getElementById('soloTeamName').value.trim() : document.getElementById('teamTeamName').value.trim();
+
+            const btn = document.getElementById(type + 'ResendBtn');
+            if (btn) btn.disabled = true;
+
+            try {
+                const response = await fetch(BACKEND_URL + '_/api/v1/pub/auth/resend-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ team_name: teamName })
+                });
+
+                const data = await response.json().catch(() => ({ message: 'Invalid server response' }));
+
+                if (!response.ok) {
+                    throw new Error(data.message || `Server error: ${response.status}`);
+                }
+                console.log(`Resent OTP for ${type} in team ${teamName}`);
+                startResendTimer(type);
+            } catch (err) {
+                console.error("Resend OTP Error:", err);
+                const errorBanner = document.getElementById('otpError');
+                if (errorBanner) {
+                    errorBanner.classList.remove('hidden');
+                    errorBanner.innerText = `⚠ RESEND ERROR: ${err.message}`;
+                }
+                if (btn) btn.disabled = false;
+            }
+        }
+
+        async function submitRegistration(formType) {
+            const formEl = document.getElementById(formType + 'FormEl');
+            const submitBtn = formEl.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerText;
+            const errorBanner = document.getElementById(formType + 'SubmitError');
+
+            errorBanner.classList.add('hidden');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin inline-block align-middle mr-2">sync</span> INITIALIZING UPLINK...';
+
+            try {
+                let payload = { registration_type: formType === 'team' ? 'couple' : 'solo' };
+
+                if (formType === 'solo') {
+                    payload.team_name = document.getElementById('soloTeamName').value.trim();
+                    payload.leader_name = formEl.querySelector('input[placeholder="Enter your full name"]').value.trim();
+                    payload.leader_email_id = document.getElementById('soloEmail').value.trim();
+                    payload.leader_mobile_cc = document.getElementById('soloPhoneCC').value.trim();
+                    payload.leader_mobile_number = document.getElementById('soloPhone').value.trim();
+
+                    const selects = formEl.querySelectorAll('select');
+                    payload.leader_gender = selects[0].value.trim();
+                    payload.leader_year_of_study = parseInt(selects[1].value) || 1;
+
+                    payload.leader_college_name = formEl.querySelector('input[list="soloCollegeList"]').value.trim();
+                    payload.leader_degree = formEl.querySelector('input[placeholder="B.Tech, B.E, B.Sc"]').value.trim();
+                    payload.leader_department = formEl.querySelector('input[placeholder="Computer Science, IT"]').value.trim();
+                    payload.leader_location = formEl.querySelector('input[placeholder="City / District"]').value.trim();
+                } else {
+                    payload.team_name = document.getElementById('teamTeamName').value.trim();
+
+                    payload.leader_name = formEl.querySelector('input[placeholder="Leader Name"]').value.trim();
+                    payload.leader_email_id = document.getElementById('teamLeaderEmail').value.trim();
+                    payload.leader_mobile_cc = document.getElementById('teamLeaderPhoneCC').value.trim();
+                    payload.leader_mobile_number = document.getElementById('teamLeaderPhone').value.trim();
+
+                    const selects = formEl.querySelectorAll('select');
+                    payload.leader_year_of_study = parseInt(selects[0].value) || 1;
+                    payload.leader_gender = selects[1].value.trim();
+                    payload.member_year_of_study = parseInt(selects[2].value) || 1;
+                    payload.member_gender = selects[3].value.trim();
+
+                    const locations = formEl.querySelectorAll('input[placeholder="City / District"]');
+                    payload.leader_location = locations[0].value.trim();
+                    payload.member_location = locations[1].value.trim();
+
+                    const leaderCollege = formEl.querySelector('input[list="leaderCollegeList"]');
+                    const memberCollege = formEl.querySelector('input[list="memberCollegeList"]');
+                    payload.leader_college_name = leaderCollege ? leaderCollege.value.trim() : '';
+                    payload.member_college_name = memberCollege ? memberCollege.value.trim() : '';
+
+                    const degrees = formEl.querySelectorAll('input[placeholder="B.Tech, B.E, B.Sc"]');
+                    payload.leader_degree = degrees[0].value.trim();
+                    payload.member_degree = degrees[1].value.trim();
+
+                    const depts = formEl.querySelectorAll('input[placeholder="Computer Science, IT"]');
+                    payload.leader_department = depts[0].value.trim();
+                    payload.member_department = depts[1].value.trim();
+
+                    payload.member_name = formEl.querySelector('input[placeholder="Team Member Name"]').value.trim();
+                    payload.member_email_id = document.getElementById('teamMemberEmail').value.trim();
+                    payload.member_mobile_cc = document.getElementById('teamMemberPhoneCC').value.trim();
+                    payload.member_mobile_number = document.getElementById('teamMemberPhone').value.trim();
+                }
+
+                console.log(payload);
+                const response = await fetch(BACKEND_URL + '_/api/v1/pub/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json().catch(() => ({ message: 'Invalid server response' }));
+
+                if (!response.ok && data.next_step !== 'resend_verification') {
+                    if (data.verified === false) {
+                        try {
+                            const resendResp = await fetch(BACKEND_URL + '_/api/v1/pub/auth/resend-otp', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ team_name: payload.team_name })
+                            });
+                            if (!resendResp.ok) throw new Error("Failed to resend OTP");
+                        } catch (e) {
+                            console.error(e);
+                        }
+                        showOtpCard();
+                        return;
+                    } else if (data.verified === true && data.payment === false) {
+                        try {
+                            const payResp = await fetch(BACKEND_URL + '_/api/v1/pub/payment/create-order', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ email: payload.leader_email_id })
+                            });
+                            const payData = await payResp.json();
+                            if (payData.payment_link) {
+                                window.location.href = payData.payment_link;
+                                return;
+                            }
+                        } catch (e) {
+                            console.error(e);
+                        }
+                    }
+                    throw new Error(data.message || `Server error: ${response.status}`);
+                }
+
+                window.registeredData = data;
+
+                showOtpCard();
+
+            } catch (err) {
+                console.error("Registration Error:", err);
+                errorBanner.classList.remove('hidden');
+                errorBanner.innerText = `⚠ ${err.message}`;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = originalBtnText;
+            }
+        }
+
+        function showOtpCard() {
+            document.getElementById('formTabsWrapper').classList.add('hidden');
+            document.getElementById('soloForm').classList.add('hidden');
+            document.getElementById('teamForm').classList.add('hidden');
+
+            const isSolo = document.getElementById('soloTab').classList.contains('active-tab');
+
+            if (isSolo) {
+                document.getElementById('memberOtpSection').classList.add('hidden');
+                document.getElementById('memberOtpSection').classList.remove('flex');
+                document.getElementById('leaderOtpEmailLabel').innerText = document.getElementById('soloEmail').value || 'your email';
+            } else {
+                document.getElementById('memberOtpSection').classList.remove('hidden');
+                document.getElementById('memberOtpSection').classList.add('flex');
+                document.getElementById('leaderOtpEmailLabel').innerText = document.getElementById('teamLeaderEmail').value || 'leader email';
+                document.getElementById('memberOtpEmailLabel').innerText = document.getElementById('teamMemberEmail').value || 'member email';
+                startResendTimer('member');
+            }
+
+            startResendTimer('leader');
+
+            const otpCard = document.getElementById('otpCard');
+            otpCard.classList.remove('hidden');
+            otpCard.classList.add('flex', 'card-pop');
+            // Focus first box
+            setTimeout(() => document.getElementById('otp0').focus(), 100);
+        }
+
+        async function verifyOtp() {
+            const isSolo = document.getElementById('soloTab').classList.contains('active-tab');
+
+            // Collect OTP from 6 boxes
+            const otpValue = ['otp0', 'otp1', 'otp2', 'otp3', 'otp4', 'otp5']
+                .map(id => document.getElementById(id).value)
+                .join('');
+
+            if (otpValue.length < 6) {
+                document.getElementById('otpError').classList.remove('hidden');
+                document.getElementById('otpError').innerText = '⚠ INCOMPLETE LEADER/SOLO CODE';
+                document.getElementById('otp0').focus();
+                return;
+            }
+
+            let motpValue = null;
+            if (!isSolo) {
+                motpValue = ['motp0', 'motp1', 'motp2', 'motp3', 'motp4', 'motp5']
+                    .map(id => document.getElementById(id).value)
+                    .join('');
+
+                if (motpValue.length < 6) {
+                    document.getElementById('otpError').classList.remove('hidden');
+                    document.getElementById('otpError').innerText = '⚠ INCOMPLETE MEMBER CODE';
+                    document.getElementById('motp0').focus();
+                    return;
+                }
+            }
+
+            document.getElementById('otpError').classList.add('hidden');
+
+            const teamName = isSolo ? document.getElementById('soloTeamName').value.trim() : document.getElementById('teamTeamName').value.trim();
+            const leaderEmail = isSolo ? document.getElementById('soloEmail').value.trim() : document.getElementById('teamLeaderEmail').value.trim();
+            const memberEmail = isSolo ? null : document.getElementById('teamMemberEmail').value.trim();
+
+            const verifyBtn = document.querySelector('button[onclick="verifyOtp()"]');
+            const originalBtnText = verifyBtn.innerHTML;
+            verifyBtn.disabled = true;
+            verifyBtn.innerHTML = '<span class="material-symbols-outlined text-lg animate-spin">refresh</span><span>VERIFYING...</span>';
+
+            try {
+                const payload = {
+                    team_leader: {
+                        email: leaderEmail,
+                        otp: otpValue
+                    },
+                    team_member: isSolo ? null : {
+                        email: memberEmail,
+                        otp: motpValue
+                    },
+                    team_name: teamName
+                };
+
+                const response = await fetch(BACKEND_URL + '_/api/v1/pub/auth/verify-otp', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json().catch(() => ({ message: 'Invalid server response' }));
+
+                if (!response.ok) {
+                    throw new Error(data.message || `Verification failed: ${response.status}`);
+                }
+            } catch (err) {
+                document.getElementById('otpError').classList.remove('hidden');
+                document.getElementById('otpError').innerText = `⚠ ${err.message}`;
+                verifyBtn.disabled = false;
+                verifyBtn.innerHTML = originalBtnText;
+                return;
+            }
+
+            verifyBtn.disabled = false;
+            verifyBtn.innerHTML = originalBtnText;
+
+            // --- Fetch registrant name ---
+            let registrantName = "—";
+            if (isSolo) {
+                const nameInputs = document.querySelectorAll('#soloFormEl input[type="text"]');
+                if (nameInputs.length > 0) registrantName = nameInputs[0].value.trim() || "—";
+            } else {
+                const nameInputs = document.querySelectorAll('#teamFormEl input[type="text"]');
+                if (nameInputs.length > 0) registrantName = nameInputs[0].value.trim() || "—";
+            }
+
+            // --- Fetch college value ---
+            let isCIT = false;
+            if (isSolo) {
+                const email = document.getElementById('soloEmail') ? document.getElementById('soloEmail').value : '';
+                isCIT = email.toLowerCase().includes('@citchennai.net');
+            } else {
+                const leaderEmail = document.getElementById('teamLeaderEmail') ? document.getElementById('teamLeaderEmail').value : '';
+                const memberEmail = document.getElementById('teamMemberEmail') ? document.getElementById('teamMemberEmail').value : '';
+                isCIT = leaderEmail.toLowerCase().includes('@citchennai.net') && memberEmail.toLowerCase().includes('@citchennai.net');
+            }
+
+            // CIT: ₹400 original, 75% off → ₹300 discount → ₹100 final
+            // Others: ₹400 original, ₹200 discount → ₹200 final
+            const originalPrice = 400;
+            const discount = isCIT ? 300 : 200;
+            const finalPrice = originalPrice - discount;
+            const discountLabel = isCIT ? '75% Early Bird' : 'Early Bird';
+
+            document.getElementById('payName').innerText = registrantName;
+            document.getElementById('payOriginal').innerText = '₹ ' + originalPrice;
+            document.getElementById('payDiscount').innerText = `- ₹ ${discount} (${discountLabel})`;
+            document.getElementById('payTotal').innerText = '₹ ' + finalPrice;
+
+            // Hide OTP card, show payment card with pop animation
+            document.getElementById('otpCard').classList.add('hidden');
+            document.getElementById('otpCard').classList.remove('flex', 'card-pop');
+
+            const paymentCard = document.getElementById('paymentCard');
+            paymentCard.classList.remove('hidden');
+            paymentCard.classList.add('flex', 'card-pop');
+        }
+
+        async function processPayment() {
+            const payBtn = document.querySelector('button[onclick="processPayment()"]');
+            const errorEl = document.getElementById('paymentError');
+            const originalText = payBtn.innerText;
+            errorEl.classList.add('hidden');
+
+            payBtn.disabled = true;
+            payBtn.innerText = 'INITIATING...';
+
+            const isSolo = document.getElementById('soloTab').classList.contains('active-tab');
+            const leaderEmail = isSolo
+                ? document.getElementById('soloEmail').value.trim()
+                : document.getElementById('teamLeaderEmail').value.trim();
+
+            try {
+                const resp = await fetch(BACKEND_URL + '_/api/v1/pub/payment/create-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: leaderEmail })
+                });
+
+                const data = await resp.json();
+
+                if (!resp.ok) {
+                    throw new Error(data.message || 'Payment initiation failed');
+                }
+
+                const initRazorpay = () => {
+                    const options = {
+                        key: data.rzp_key_id,
+                        amount: String(data.amount * 100),
+                        currency: data.currency || "INR",
+                        name: "ExploitX, Org.",
+                        description: "Into The Void 2.0 Registration",
+                        order_id: data.rzp_order_id,
+                        prefill: {
+                            name: 'Leader',
+                            contact: data.leader_mobile || (isSolo ? document.getElementById('soloPhone').value : document.getElementById('teamLeaderPhone').value),
+                            email: data.leader_email || leaderEmail
+                        },
+                        config: {
+                            display: {
+                                hide: [],
+                                preferences: {
+                                    show_default_blocks: true
+                                }
+                            }
+                        },
+                        handler: async function(r) {
+                            payBtn.innerText = 'VERIFYING PAYMENT...';
+                            try {
+                                await fetch(BACKEND_URL + '_/api/v1/pub/payment/verify-payment', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({
+                                        razorpay_order_id: r.razorpay_order_id,
+                                        razorpay_payment_id: r.razorpay_payment_id,
+                                        razorpay_signature: r.razorpay_signature
+                                    })
+                                });
+                                window.location.href = '/payment/status?email=' + encodeURIComponent(leaderEmail);
+                            } catch (e) {
+                                console.error(e);
+                                window.location.href = '/payment/status?email=' + encodeURIComponent(leaderEmail);
+                            }
+                        },
+                        theme: {
+                            color: "#00dbe9"
+                        },
+                        modal: {
+                            ondismiss: function() {
+                                window.location.href = '/payment/status?email=' + encodeURIComponent(leaderEmail);
+                            }
+                        }
+                    };
+
+                    const rzp = new window.Razorpay(options);
+                    rzp.on('payment.failed', function (response) {
+                        errorEl.innerText = '⚠ Payment failed. ' + response.error.description;
+                        errorEl.classList.remove('hidden');
+                        payBtn.disabled = false;
+                        payBtn.innerText = originalText;
+                    });
+                    rzp.open();
+                };
+
+                if (data.provider === 'razorpay') {
+                    // Dynamically load script to catch AdBlocker blocking it
+                    if (!window.Razorpay) {
+                        const script = document.createElement('script');
+                        script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+                        script.onload = () => initRazorpay();
+                        script.onerror = () => {
+                            if (data.rzp_payment_link || data.payment_link) {
+                                window.location.href = data.rzp_payment_link || data.payment_link;
+                            } else {
+                                errorEl.innerText = '⚠ Adblocker prevented payment gateway. Please disable it to pay.';
+                                errorEl.classList.remove('hidden');
+                                payBtn.disabled = false;
+                                payBtn.innerText = originalText;
+                            }
+                        };
+                        document.head.appendChild(script);
+                    } else {
+                        initRazorpay();
+                    }
+                } else if (data.cf_payment_link) {
+                    window.location.href = data.cf_payment_link;
+                } else if (data.payment_link) {
+                    window.location.href = data.payment_link;
+                } else {
+                    throw new Error('No supported payment method returned by server');
+                }
+            } catch (err) {
+                errorEl.innerText = '⚠ ' + err.message;
+                errorEl.classList.remove('hidden');
+                payBtn.disabled = false;
+                payBtn.innerText = originalText;
+            }
+        }
+
+        async function applyReferral() {
+            const input = document.getElementById('referralCode');
+            const status = document.getElementById('referralStatus');
+            const code = input ? input.value.trim().toUpperCase() : '';
+            const btn = document.querySelector('button[onclick="applyReferral()"]');
+
+            const isSolo = document.getElementById('soloTab').classList.contains('active-tab');
+            const teamName = isSolo ? document.getElementById('soloTeamName').value.trim() : document.getElementById('teamTeamName').value.trim();
+
+            status.classList.remove('hidden');
+
+            if (!code) {
+                status.style.color = '#ffb4ab';
+                status.innerText = '⚠ Enter a referral code first.';
+                return;
+            }
+
+            const originalBtnText = btn.innerText;
+            btn.disabled = true;
+            btn.innerText = '...';
+
+            try {
+                const response = await fetch(BACKEND_URL + '_/api/v1/pub/add-referred-by-reference-code', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        referred_by_reference_code: code,
+                        team_name: teamName
+                    })
+                });
+
+                const data = await response.json().catch(() => ({ message: 'Invalid server response' }));
+
+                if (response.ok) {
+                    status.style.color = '#00dbe9';
+                    status.innerText = `✅ CODE ${code} ACCEPTED — ${data.message || 'Referral applied successfully.'}`;
+                    input.style.borderColor = 'rgba(0,219,233,0.7)';
+                    input.style.boxShadow = '0 0 14px rgba(0,219,233,0.35)';
+                    input.disabled = true;
+                    btn.disabled = true;
+                    btn.innerText = 'APPLIED';
+                } else {
+                    status.style.color = '#ffb4ab';
+                    status.innerText = `❌ ${data.message || 'INVALID CODE'}`;
+                    input.style.borderColor = 'rgba(255,180,171,0.5)';
+                    input.style.boxShadow = '0 0 14px rgba(255,180,171,0.2)';
+                    btn.disabled = false;
+                    btn.innerText = originalBtnText;
+                }
+            } catch (err) {
+                console.error("Referral Error:", err);
+                status.style.color = '#ffb4ab';
+                status.innerText = `⚠ Error applying code: ${err.message}`;
+                input.style.borderColor = 'rgba(255,180,171,0.5)';
+                input.style.boxShadow = '0 0 14px rgba(255,180,171,0.2)';
+                btn.disabled = false;
+                btn.innerText = originalBtnText;
+            }
+        }
+
+        // Attach listeners on load
+        document.addEventListener("DOMContentLoaded", () => {
+            initOtpBoxes();
+
+            const soloForm = document.getElementById('soloFormEl');
+            const teamForm = document.getElementById('teamFormEl');
+
+            if (soloForm) {
+                soloForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (!validateFormBeforeSubmit('solo')) {
+                        e.stopPropagation();
+                    } else {
+                        submitRegistration('solo');
+                    }
+                });
+            }
+
+            if (teamForm) {
+                teamForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    if (!validateFormBeforeSubmit('team')) {
+                        e.stopPropagation();
+                    } else {
+                        submitRegistration('team');
+                    }
+                });
+            }
+
+            // Attach input listeners
+            Object.keys(fieldsConfig).forEach(fieldId => {
+                const inputEl = document.getElementById(fieldId);
+                if (inputEl) {
+                    const triggerVerify = () => {
+                        const formType = fieldId.startsWith('solo') ? 'solo' : 'team';
+                        const banner = document.getElementById(formType + 'SubmitError');
+                        if (banner) banner.classList.add('hidden');
+                        performVerification(fieldId);
+                    };
+                    inputEl.addEventListener('input', triggerVerify);
+                    inputEl.addEventListener('change', triggerVerify);
+
+                    const ccEl = document.getElementById(fieldId + 'CC');
+                    if (ccEl) {
+                        ccEl.addEventListener('change', triggerVerify);
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+
