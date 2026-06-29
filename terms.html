@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Mono:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="assets/css/responsive.css" rel="stylesheet"/>
-<style>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;family=Space+Mono:wght@400;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="assets/css/responsive.css" rel="stylesheet" />
+    <style>
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
         }
+
         .scanline-overlay {
             position: fixed;
             top: 0;
@@ -22,6 +29,7 @@
             pointer-events: none;
             z-index: 9999;
         }
+
         .confidential-watermark {
             position: fixed;
             top: 50%;
@@ -35,9 +43,11 @@
             white-space: nowrap;
             user-select: none;
         }
+
         .glitch-border {
             position: relative;
         }
+
         .glitch-border::after {
             content: '';
             position: absolute;
@@ -46,7 +56,7 @@
             clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%);
         }
     </style>
-<script id="tailwind-config">
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -123,109 +133,148 @@
                         "headline-xl": ["Space Grotesk"]
                     },
                     "fontSize": {
-                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "label-caps": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.15em", "fontWeight": "700"}],
-                        "headline-lg": ["32px", {"lineHeight": "1.2", "fontWeight": "500"}],
-                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
-                        "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700"}],
-                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
-                        "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}]
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.15em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }]
                     }
                 },
             },
         }
     </script>
 </head>
-<body class="bg-black text-on-surface font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
-<div class="scanline-overlay"></div>
-<div class="confidential-watermark">CONFIDENTIAL // ENCRYPTED</div>
-<!-- TopNavBar -->
-<header class="liquid-navbar">
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
-<div class="flex items-center gap-3">
 
-<!-- <span class="font-display-lg text-headline-lg font-black text-primary dark:text-primary-fixed-dim uppercase italic">Into the Void 2.0</span> -->
-</div>
-<nav class="hidden md:flex items-center gap-8">
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="home.html">Home</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="home.html">Event</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="home.html">Registration</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps" href="home.html">Sponsor</a>
+<body
+    class="bg-black text-on-surface font-body-md overflow-x-hidden selection:bg-primary-container selection:text-on-primary">
+    <div class="scanline-overlay"></div>
+    <div class="confidential-watermark">CONFIDENTIAL // ENCRYPTED</div>
+    <!-- TopNavBar -->
+    <header class="liquid-navbar">
+        <div
+            class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
 
-</nav>
-<div class="flex items-center">
+                <!-- <span class="font-display-lg text-headline-lg font-black text-primary dark:text-primary-fixed-dim uppercase italic">Into the Void 2.0</span> -->
+            </div>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
+                    href="home.html">Home</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
+                    href="home.html">Event</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
+                    href="home.html">Registration</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors duration-300 font-label-caps text-label-caps"
+                    href="home.html">Sponsor</a>
 
-</div>
-</div>
-</header>
-<!-- Main Content Area -->
-<main class="pt-24  pb-24 px-margin-desktop max-w-[1440px] relative z-10">
-<div class="max-w-4xl mx-auto">
-<!-- Page Header -->
-<div class="mb-16 border-l-4 border-primary pl-8 py-4 bg-primary/5">
-<div class="text-primary font-label-caps text-sm tracking-[0.5em] mb-2">SECURE_DOCUMENT_0X7F4</div>
-<h1 class="font-display-lg text-headline-xl text-primary-fixed-dim uppercase italic mb-4">Legal Cipher &amp; Terms of Engagement</h1>
-<div class="flex gap-8 text-[10px] text-on-surface-variant font-label-caps">
-<span>VERSION: 2.124.A</span>
-<span>CLASSIFICATION: TOP_SECRET</span>
-<span>ENCRYPTION: AES-4096-VOID</span>
-</div>
-</div>
-<!-- Content Cards (Glassmorphism) -->
-<div class="space-y-12">
-<!-- Section: Eligibility -->
-<section class="relative p-8 bg-surface-container-lowest/60 backdrop-blur-xl border border-primary/20 rounded-lg" id="eligibility">
-<div class="absolute top-4 right-4 text-[10px] text-primary/40 font-label-caps">STATUS: NOMINAL // 0x2A</div>
-<h2 class="font-headline-lg text-primary-fixed-dim mb-6 flex items-center gap-4">
-<span class="material-symbols-outlined" data-icon="security">security</span>
+            </nav>
+            <div class="flex items-center">
+
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Area -->
+    <main class="pt-24  pb-24 px-margin-desktop max-w-[1440px] relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <!-- Page Header -->
+            <div class="mb-16 border-l-4 border-primary pl-8 py-4 bg-primary/5">
+                <div class="text-primary font-label-caps text-sm tracking-[0.5em] mb-2">SECURE_DOCUMENT_0X7F4</div>
+                <h1 class="font-display-lg text-headline-xl text-primary-fixed-dim uppercase italic mb-4">Legal Cipher
+                    &amp; Terms of Engagement</h1>
+                <div class="flex gap-8 text-[10px] text-on-surface-variant font-label-caps">
+                    <span>VERSION: 2.124.A</span>
+                    <span>CLASSIFICATION: TOP_SECRET</span>
+                    <span>ENCRYPTION: AES-4096-VOID</span>
+                </div>
+            </div>
+            <!-- Content Cards (Glassmorphism) -->
+            <div class="space-y-12">
+                <!-- Section: Eligibility -->
+                <section
+                    class="relative p-8 bg-surface-container-lowest/60 backdrop-blur-xl border border-primary/20 rounded-lg"
+                    id="eligibility">
+                    <div class="absolute top-4 right-4 text-[10px] text-primary/40 font-label-caps">STATUS: NOMINAL //
+                        0x2A</div>
+                    <h2 class="font-headline-lg text-primary-fixed-dim mb-6 flex items-center gap-4">
+                        <span class="material-symbols-outlined" data-icon="security">security</span>
                         01. ELIGIBILITY_PROTOCOLS
                     </h2>
-<div class="font-body-md text-on-surface-variant leading-relaxed space-y-4">
-<p>By accessing the Multiverse Core interface, the user ("Operator") represents and warrants that they possess the cognitive and technical capacity to operate within High-Density Data Environments. Access is restricted to entities aged 18 cycles or older, or the local equivalent of legal majority.</p>
-<p class="border-l border-primary/30 pl-4 py-2 bg-primary/5">CRITICAL: Any breach of identity verification results in immediate terminal lockout and data scrubbing of the associated node.</p>
-</div>
-</section>
-<!-- Section: Conduct -->
-<section class="relative p-8 bg-surface-container-lowest/60 backdrop-blur-xl border border-secondary/20 rounded-lg" id="conduct">
-<div class="absolute top-4 right-4 text-[10px] text-secondary/40 font-label-caps">LOG_ID: B-998 // CONDUCT</div>
-<h2 class="font-headline-lg text-secondary mb-6 flex items-center gap-4">
-<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+                    <div class="font-body-md text-on-surface-variant leading-relaxed space-y-4">
+                        <p>By accessing the Multiverse Core interface, the user ("Operator") represents and warrants
+                            that they possess the cognitive and technical capacity to operate within High-Density Data
+                            Environments. Access is restricted to entities aged 18 cycles or older, or the local
+                            equivalent of legal majority.</p>
+                        <p class="border-l border-primary/30 pl-4 py-2 bg-primary/5">CRITICAL: Any breach of identity
+                            verification results in immediate terminal lockout and data scrubbing of the associated
+                            node.</p>
+                    </div>
+                </section>
+                <!-- Section: Conduct -->
+                <section
+                    class="relative p-8 bg-surface-container-lowest/60 backdrop-blur-xl border border-secondary/20 rounded-lg"
+                    id="conduct">
+                    <div class="absolute top-4 right-4 text-[10px] text-secondary/40 font-label-caps">LOG_ID: B-998 //
+                        CONDUCT</div>
+                    <h2 class="font-headline-lg text-secondary mb-6 flex items-center gap-4">
+                        <span class="material-symbols-outlined" data-icon="terminal">terminal</span>
                         02. OPERATIONAL_CONDUCT
                     </h2>
-<div class="font-body-md text-on-surface-variant leading-relaxed space-y-4">
-<p>Operators must adhere to the Non-Interference Directive. Unauthorized injection of malicious code, packet-sniffing of neighboring nodes, or simulation-destabilization activities are strictly prohibited.</p>
-<ul class="list-none space-y-2">
-<li class="flex items-start gap-3"><span class="text-secondary opacity-50 text-xs mt-1">&gt;&gt;</span> NO COLLUSIVE DECRYPTION</li>
-<li class="flex items-start gap-3"><span class="text-secondary opacity-50 text-xs mt-1">&gt;&gt;</span> NO VOID-GATE BYPASSING</li>
-<li class="flex items-start gap-3"><span class="text-secondary opacity-50 text-xs mt-1">&gt;&gt;</span> NO UNAUTHORIZED NEURAL LINKING</li>
-</ul>
-</div>
-</section>
-<!-- Visual Break - Hero Style -->
-<div class="relative h-64 w-full overflow-hidden rounded-xl border border-primary/20">
-<img alt="Cyberpunk legal document visualization" class="w-full h-full object-cover opacity-40 mix-blend-screen" data-alt="A highly detailed cinematic shot of a glowing holographic interface displaying complex geometric cryptographic patterns. The lighting is dominated by neon cyan and deep magenta lasers cutting through a dark, smoky void. High-contrast digital readouts and scrolling hexadecimal code float in a layered, 3D space, creating a sense of high-stakes security and advanced technology. The aesthetic is purely cyberpunk, evoking the feeling of an encrypted mainframe core." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9lcARUXICgQ8vZ_ksBajHiQrJqcY4vQgPYbhmQkl_ZSFHNAeocRtV8DvMyOLL1ox3UpViemq9Qye2CcfLgxJ1tlZ6XcSDKbG3umAGicCW3Lv4SikCAwpI-gpYcIOB0j0NoPgKehiW115BaUz7TgMpMrhuJEZdVaiLpCCqHuRGy_uQzxGYTpziSwt4itwu_f7m-gW31zeW-cL847QRNHr2aq2mp5SNe6GUeqpRj_Bec4UHiecLZKP0R2W0rKF9fWS8Z-ttZ7OoTFE"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-<div class="absolute bottom-6 left-6">
-<div class="font-label-caps text-primary text-xl tracking-tighter italic">VOID_ENCRYPTION_LAYER_7</div>
-<div class="text-[10px] text-on-surface-variant uppercase tracking-widest">Active Monitoring Enabled</div>
-</div>
-</div>
-<!-- Section: Encryption -->
-<section class="relative p-8 bg-surface-container-lowest/60 backdrop-blur-xl border border-primary/20 rounded-lg" id="encryption">
-<div class="absolute top-4 right-4 text-[10px] text-primary/40 font-label-caps">KEY_TYPE: RSA-VOID-2048</div>
-<h2 class="font-headline-lg text-primary-fixed-dim mb-6 flex items-center gap-4">
-<span class="material-symbols-outlined" data-icon="lock">lock</span>
+                    <div class="font-body-md text-on-surface-variant leading-relaxed space-y-4">
+                        <p>Operators must adhere to the Non-Interference Directive. Unauthorized injection of malicious
+                            code, packet-sniffing of neighboring nodes, or simulation-destabilization activities are
+                            strictly prohibited.</p>
+                        <ul class="list-none space-y-2">
+                            <li class="flex items-start gap-3"><span
+                                    class="text-secondary opacity-50 text-xs mt-1">&gt;&gt;</span> NO COLLUSIVE
+                                DECRYPTION</li>
+                            <li class="flex items-start gap-3"><span
+                                    class="text-secondary opacity-50 text-xs mt-1">&gt;&gt;</span> NO VOID-GATE
+                                BYPASSING</li>
+                            <li class="flex items-start gap-3"><span
+                                    class="text-secondary opacity-50 text-xs mt-1">&gt;&gt;</span> NO UNAUTHORIZED
+                                NEURAL LINKING</li>
+                        </ul>
+                    </div>
+                </section>
+                <!-- Visual Break - Hero Style -->
+                <div class="relative h-64 w-full overflow-hidden rounded-xl border border-primary/20">
+                    <img alt="Cyberpunk legal document visualization"
+                        class="w-full h-full object-cover opacity-40 mix-blend-screen"
+                        data-alt="A highly detailed cinematic shot of a glowing holographic interface displaying complex geometric cryptographic patterns. The lighting is dominated by neon cyan and deep magenta lasers cutting through a dark, smoky void. High-contrast digital readouts and scrolling hexadecimal code float in a layered, 3D space, creating a sense of high-stakes security and advanced technology. The aesthetic is purely cyberpunk, evoking the feeling of an encrypted mainframe core."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9lcARUXICgQ8vZ_ksBajHiQrJqcY4vQgPYbhmQkl_ZSFHNAeocRtV8DvMyOLL1ox3UpViemq9Qye2CcfLgxJ1tlZ6XcSDKbG3umAGicCW3Lv4SikCAwpI-gpYcIOB0j0NoPgKehiW115BaUz7TgMpMrhuJEZdVaiLpCCqHuRGy_uQzxGYTpziSwt4itwu_f7m-gW31zeW-cL847QRNHr2aq2mp5SNe6GUeqpRj_Bec4UHiecLZKP0R2W0rKF9fWS8Z-ttZ7OoTFE" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6">
+                        <div class="font-label-caps text-primary text-xl tracking-tighter italic">
+                            VOID_ENCRYPTION_LAYER_7</div>
+                        <div class="text-[10px] text-on-surface-variant uppercase tracking-widest">Active Monitoring
+                            Enabled</div>
+                    </div>
+                </div>
+                <!-- Section: Encryption -->
+                <section
+                    class="relative p-8 bg-surface-container-lowest/60 backdrop-blur-xl border border-primary/20 rounded-lg"
+                    id="encryption">
+                    <div class="absolute top-4 right-4 text-[10px] text-primary/40 font-label-caps">KEY_TYPE:
+                        RSA-VOID-2048</div>
+                    <h2 class="font-headline-lg text-primary-fixed-dim mb-6 flex items-center gap-4">
+                        <span class="material-symbols-outlined" data-icon="lock">lock</span>
                         03. DATA_CIPHER_STANDARDS
                     </h2>
-<div class="font-body-md text-on-surface-variant leading-relaxed space-y-4">
-<p>All communications within the Void 2.0 ecosystem are subject to End-to-End Quantum Encryption (E2EQE). Multiverse Core does not store private keys. If a key is lost, the data is functionally non-existent across all known dimensions.</p>
-<div class="p-4 bg-black/50 border border-primary/10 font-mono text-[12px] overflow-hidden whitespace-nowrap">
-                            [0x00FF12] -&gt; SYNCING... [0x00FF13] -&gt; ENCRYPTED // HASH: 8f2d9c1b0e5a4f3d2c1b0e9a8f7d6c5b4a3f2e1d
+                    <div class="font-body-md text-on-surface-variant leading-relaxed space-y-4">
+                        <p>All communications within the Void 2.0 ecosystem are subject to End-to-End Quantum Encryption
+                            (E2EQE). Multiverse Core does not store private keys. If a key is lost, the data is
+                            functionally non-existent across all known dimensions.</p>
+                        <div
+                            class="p-4 bg-black/50 border border-primary/10 font-mono text-[12px] overflow-hidden whitespace-nowrap">
+                            [0x00FF12] -&gt; SYNCING... [0x00FF13] -&gt; ENCRYPTED // HASH:
+                            8f2d9c1b0e5a4f3d2c1b0e9a8f7d6c5b4a3f2e1d
                         </div>
-</div>
-</section>
-<!-- Digital Signature Field -->
-<div class="mt-20 p-12 bg-surface-container-high border-2 border-primary/40 rounded-xl relative overflow-hidden">
+                    </div>
+                </section>
+                <!-- Digital Signature Field -->
+                <!-- <div class="mt-20 p-12 bg-surface-container-high border-2 border-primary/40 rounded-xl relative overflow-hidden">
 <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
 <h3 class="font-headline-lg text-white mb-8 text-center italic">OPERATOR_SIGNATURE_REQUIRED</h3>
 <div class="max-w-md mx-auto space-y-6">
@@ -246,70 +295,86 @@
 </div>
 <p class="text-[9px] text-center text-on-surface-variant uppercase opacity-50">
                             By clicking execute, you bind your digital identity to the Multiverse Core Protocol for the duration of the current epoch.
-                        </p>
-</div>
-</div>
-</div>
-</div>
-</main>
-<!-- Footer -->
-<footer class="w-full bg-black/95 border-t border-primary/20 py-10">
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop flex flex-col lg:flex-row items-center justify-between gap-8">
-<a class="flex items-center gap-4 group" data-env="CLUB_URL" href="https://www.exploitx.org" aria-label="ExploitX official club page">
-<img src="assets/images/exploitx-logo.png" alt="ExploitX club logo" class="w-12 h-12 rounded-full border border-primary/30 bg-black/40 object-contain"/>
-<div class="flex flex-col">
-<span class="text-primary font-bold font-display-lg text-sm uppercase tracking-wider">ExploitX</span>
-<span class="text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">Official club page</span>
-</div>
-</a>
-<div class="flex flex-wrap items-center justify-center gap-4">
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="INSTAGRAM_URL" href="https://www.instagram.com/exploitxorg" aria-label="Instagram">
-<span class="material-symbols-outlined text-base">photo_camera</span>
-<span>Instagram</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="LINKEDIN_URL" href="https://www.linkedin.com/company/exploitxorg/" aria-label="LinkedIn">
-<span class="material-symbols-outlined text-base">work</span>
-<span>LinkedIn</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="X_URL" href="https://twitter.com/exploitxorg" aria-label="X">
-<span class="material-symbols-outlined text-base">close</span>
-<span>X</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="REDDIT_URL" href="https://www.reddit.com/user/exploitxorg" aria-label="Reddit">
-<span class="material-symbols-outlined text-base">forum</span>
-<span>Reddit</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="GITHUB_URL" href="https://github.com/exploitx-org" aria-label="GitHub">
-<span class="material-symbols-outlined text-base">code</span>
-<span>GitHub</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="MASTODON_URL" href="https://mastodon.social/@exploitxorg" aria-label="Mastodon">
-<span class="material-symbols-outlined text-base">hub</span>
-<span>Mastodon</span>
-</a>
-<a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase" data-env="MAIL_URL" href="mailto:exploitx@citchennai.net" aria-label="Email">
-<span class="material-symbols-outlined text-base">mail</span>
-<span>Mail</span>
-</a>
-</div>
-</div>
-<div class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">
-<div>© 2124 MULTIVERSE_CORE. ALL RIGHTS RESERVED. [RESTRICTED ACCESS]</div>
-<div class="flex flex-wrap items-center justify-center gap-6">
-<a class="hover:text-primary transition-all" href="terms.html">PROTOCOL_TC</a>
-<a class="hover:text-primary transition-all" href="privacy.html">PRIVACY_ENCRYPT</a>
-<a class="hover:text-primary transition-all" href="refunds.html">REFUNDS_CANCEL</a>
-<a class="hover:text-primary transition-all" href="contact.html">CONTACT_US</a>
-<a class="hover:text-primary transition-all" href="products.html">PRODUCTS_SERVICES</a>
-<a class="hover:text-primary transition-all" href="sitemap.html">SITEMAP_DIR</a>
-</div>
-</div>
-</footer>
-<div class="fixed bottom-6 right-6 z-50">
-<button class="w-14 h-14 bg-primary text-on-primary flex items-center justify-center rounded-sm shadow-[0_0_20px_rgba(0,219,233,0.5)] hover:scale-110 active:scale-95 transition-transform">
-<span class="material-symbols-outlined">support_agent</span>
-</button>
-</div>
-<script src="assets/js/footer-links.js"></script>
-<script src="assets/js/smooth-scroll.js"></script>
-</body></html>
+                        </p> -->
+            </div>
+        </div>
+        </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="w-full bg-black/95 border-t border-primary/20 py-10">
+        <div
+            class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop flex flex-col lg:flex-row items-center justify-between gap-8">
+            <a class="flex items-center gap-4 group" data-env="CLUB_URL" href="https://www.exploitx.org"
+                aria-label="ExploitX official club page">
+                <img src="assets/images/exploitx-logo.png" alt="ExploitX club logo"
+                    class="w-12 h-12 rounded-full border border-primary/30 bg-black/40 object-contain" />
+                <div class="flex flex-col">
+                    <span
+                        class="text-primary font-bold font-display-lg text-sm uppercase tracking-wider">ExploitX</span>
+                    <span class="text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">Official
+                        club page</span>
+                </div>
+            </a>
+            <div class="flex flex-wrap items-center justify-center gap-4">
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="INSTAGRAM_URL" href="https://www.instagram.com/exploitxorg" aria-label="Instagram">
+                    <span class="material-symbols-outlined text-base">photo_camera</span>
+                    <span>Instagram</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="LINKEDIN_URL" href="https://www.linkedin.com/company/exploitxorg/" aria-label="LinkedIn">
+                    <span class="material-symbols-outlined text-base">work</span>
+                    <span>LinkedIn</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="X_URL" href="https://twitter.com/exploitxorg" aria-label="X">
+                    <span class="material-symbols-outlined text-base">close</span>
+                    <span>X</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="REDDIT_URL" href="https://www.reddit.com/user/exploitxorg" aria-label="Reddit">
+                    <span class="material-symbols-outlined text-base">forum</span>
+                    <span>Reddit</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="GITHUB_URL" href="https://github.com/exploitx-org" aria-label="GitHub">
+                    <span class="material-symbols-outlined text-base">code</span>
+                    <span>GitHub</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="MASTODON_URL" href="https://mastodon.social/@exploitxorg" aria-label="Mastodon">
+                    <span class="material-symbols-outlined text-base">hub</span>
+                    <span>Mastodon</span>
+                </a>
+                <a class="flex items-center gap-2 text-on-surface-variant/70 hover:text-primary transition-all font-label-caps text-[12px] uppercase"
+                    data-env="MAIL_URL" href="mailto:exploitx@citchennai.net" aria-label="Email">
+                    <span class="material-symbols-outlined text-base">mail</span>
+                    <span>Mail</span>
+                </a>
+            </div>
+        </div>
+        <div
+            class="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-on-surface-variant/60 font-body-md text-[10px] tracking-widest uppercase">
+            <div>© 2026 MULTIVERSE_CORE. ALL RIGHTS RESERVED. [RESTRICTED ACCESS]</div>
+            <div class="flex flex-wrap items-center justify-center gap-6">
+                <a class="hover:text-primary transition-all" href="terms.html">PROTOCOL_TC</a>
+                <a class="hover:text-primary transition-all" href="privacy.html">PRIVACY_ENCRYPT</a>
+                <a class="hover:text-primary transition-all" href="refunds.html">REFUNDS_CANCEL</a>
+                <a class="hover:text-primary transition-all" href="contact.html">CONTACT_US</a>
+                <a class="hover:text-primary transition-all" href="products.html">PRODUCTS_SERVICES</a>
+                <a class="hover:text-primary transition-all" href="sitemap.html">SITEMAP_DIR</a>
+            </div>
+        </div>
+    </footer>
+    <div class="fixed bottom-6 right-6 z-50">
+        <button
+            class="w-14 h-14 bg-primary text-on-primary flex items-center justify-center rounded-sm shadow-[0_0_20px_rgba(0,219,233,0.5)] hover:scale-110 active:scale-95 transition-transform">
+            <span class="material-symbols-outlined">support_agent</span>
+        </button>
+    </div>
+    <script src="assets/js/footer-links.js"></script>
+    <script src="assets/js/smooth-scroll.js"></script>
+</body>
+
+</html>
