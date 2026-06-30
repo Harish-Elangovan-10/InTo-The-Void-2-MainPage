@@ -13,6 +13,51 @@ document.addEventListener("DOMContentLoaded", () => {
   ];
 
   let currentImageIndex = 0;
+  let dots = [];
+
+  // Create a loading screen for the matrix
+  const loadingScreen = document.createElement("div");
+  loadingScreen.style.position = "absolute";
+  loadingScreen.style.top = "50%";
+  loadingScreen.style.left = "50%";
+  loadingScreen.style.transform = "translate(-50%, -50%)";
+  loadingScreen.style.color = "#00dbe9";
+  loadingScreen.style.fontFamily = "monospace";
+  loadingScreen.style.fontSize = "18px";
+  loadingScreen.style.fontWeight = "bold";
+  loadingScreen.style.zIndex = "10";
+  loadingScreen.style.textShadow = "0 0 10px rgba(0, 219, 233, 0.8)";
+  loadingScreen.innerText = "INITIALIZING MATRIX...";
+  matrix.appendChild(loadingScreen);
+
+  let dotsCreated = 0;
+  const totalDots = 7200;
+
+  function createDotsChunk() {
+    const chunk = 800; // Create and append 800 dots per frame
+    const end = Math.min(dotsCreated + chunk, totalDots);
+    const fragment = document.createDocumentFragment();
+    for (let i = dotsCreated; i < end; i++) {
+      const dot = document.createElement("div");
+      dot.classList.add("dot");
+      fragment.appendChild(dot);
+      dots.push(dot);
+    }
+    matrix.appendChild(fragment);
+    dotsCreated = end;
+
+    if (dotsCreated < totalDots) {
+      requestAnimationFrame(createDotsChunk);
+    } else {
+      loadingScreen.style.display = "none";
+      // Start the animation only after all dots are created
+      updateImage();
+      setInterval(updateImage, 800);
+    }
+  }
+
+  // Start creating dots in chunks
+  requestAnimationFrame(createDotsChunk);
 
   function updateImage() {
     const img = new Image();
@@ -36,18 +81,16 @@ document.addEventListener("DOMContentLoaded", () => {
         dy = 0;
       }
       
-      // Use better smoothing if needed, though canvas does decent bilinear downscaling
       ctx.drawImage(img, dx, dy, drawWidth, drawHeight);
 
       const imageData = ctx.getImageData(0, 0, 120, 60);
       const data = imageData.data;
       
-      // Determine if the image has a transparent background
       let transparentPixels = 0;
       for (let i = 0; i < data.length; i += 4) {
         if (data[i + 3] < 50) transparentPixels++;
       }
-      const isTransparentBg = transparentPixels > (data.length / 4) * 0.1; // more than 10% transparent
+      const isTransparentBg = transparentPixels > (data.length / 4) * 0.1;
 
       const matris = [];
       for (let i = 0; i < data.length; i += 4) {
@@ -56,11 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
         
         let isActive = 0;
         if (isTransparentBg) {
-          // If transparent bg, the logo is defined by what is opaque
-          // We consider it active if it's opaque enough
           if (alpha > 100) isActive = 1;
         } else {
-          // If solid bg, the logo is defined by dark pixels
           if (alpha > 128 && grey < 220) isActive = 1;
         }
 
@@ -78,19 +118,12 @@ document.addEventListener("DOMContentLoaded", () => {
     currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
   }
 
-  setInterval(updateImage, 800);
-
-  for (let i = 0; i < 7200; i++) {
-    const dot = document.createElement("div");
-    dot.classList.add("dot");
-    matrix.appendChild(dot);
-  }
-
   function createSymbol(matris) {
+    if (!matris || matris.length === 0) return;
     for (let row = 0; row < matris.length; row++) {
       for (let col = 0; col < matris[row].length; col++) {
         const dotIndex = row * 120 + col;
-        const dot = document.querySelectorAll("#matrix .dot")[dotIndex];
+        const dot = dots[dotIndex];
 
         if (dot) {
           if (matris[row][col] === 1) {
@@ -102,7 +135,4 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   }
-
-  let matris = [];
-  createSymbol(matris);
 });
