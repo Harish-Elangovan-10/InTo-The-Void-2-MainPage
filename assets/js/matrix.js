@@ -1,70 +1,108 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const canvas = document.getElementById("canvas");
-    const matrix = document.getElementById("matrix");
-    if (!canvas || !matrix) return;
+  const canvas = document.getElementById("canvas");
+  const matrix = document.getElementById("matrix");
+  if (!canvas || !matrix) return;
 
-    const ctx = canvas.getContext("2d");
-    canvas.width = 60;
-    canvas.height = 30;
+  const ctx = canvas.getContext("2d", { willReadFrequently: true });
+  canvas.width = 120;
+  canvas.height = 60;
 
-    const imageUrls = [
-      "https://raw.githubusercontent.com/HevalNergiz/html-dot-matrix/main/Frame-5.jpg",
-      "https://raw.githubusercontent.com/HevalNergiz/html-dot-matrix/main/Frame-6.jpg",
-      "https://raw.githubusercontent.com/HevalNergiz/html-dot-matrix/main/Frame-7.jpg",
-      "https://raw.githubusercontent.com/HevalNergiz/html-dot-matrix/main/Frame-8.jpg"
-    ];
+  const imageUrls = [
+    "assets/sponser/cyberdefenders.png",
+    "assets/sponser/alteredsecurity.png"
+  ];
 
-    let currentImageIndex = 0;
+  let currentImageIndex = 0;
 
-    function updateImage() {
-      const img = new Image();
-      img.crossOrigin = "anonymous";
-      img.onload = function () {
-        ctx.drawImage(img, 0, 0, 60, 30);
-        const imageData = ctx.getImageData(0, 0, 60, 30);
-        const data = imageData.data;
-        const matris = [];
-        for (let i = 0; i < data.length; i += 4) {
-          const grey = (data[i] + data[i + 1] + data[i + 2]) / 3;
-          const row = Math.floor(i / 4 / 60);
-          if (!matris[row]) {
-            matris[row] = [];
-          }
-          matris[row].push(grey < 128 ? 1 : 0);
+  function updateImage() {
+    const img = new Image();
+    img.crossOrigin = "anonymous";
+    img.onload = function () {
+      ctx.clearRect(0, 0, 120, 60);
+      
+      const imgAspect = img.width / img.height;
+      const canvasAspect = 120 / 60;
+      let drawWidth, drawHeight, dx, dy;
+      
+      if (imgAspect > canvasAspect) {
+        drawWidth = 120;
+        drawHeight = 120 / imgAspect;
+        dx = 0;
+        dy = (60 - drawHeight) / 2;
+      } else {
+        drawHeight = 60;
+        drawWidth = 60 * imgAspect;
+        dx = (120 - drawWidth) / 2;
+        dy = 0;
+      }
+      
+      // Use better smoothing if needed, though canvas does decent bilinear downscaling
+      ctx.drawImage(img, dx, dy, drawWidth, drawHeight);
+
+      const imageData = ctx.getImageData(0, 0, 120, 60);
+      const data = imageData.data;
+      
+      // Determine if the image has a transparent background
+      let transparentPixels = 0;
+      for (let i = 0; i < data.length; i += 4) {
+        if (data[i + 3] < 50) transparentPixels++;
+      }
+      const isTransparentBg = transparentPixels > (data.length / 4) * 0.1; // more than 10% transparent
+
+      const matris = [];
+      for (let i = 0; i < data.length; i += 4) {
+        const alpha = data[i + 3];
+        const grey = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        
+        let isActive = 0;
+        if (isTransparentBg) {
+          // If transparent bg, the logo is defined by what is opaque
+          // We consider it active if it's opaque enough
+          if (alpha > 100) isActive = 1;
+        } else {
+          // If solid bg, the logo is defined by dark pixels
+          if (alpha > 128 && grey < 220) isActive = 1;
         }
 
-        createSymbol(matris);
-      };
+        const row = Math.floor(i / 4 / 120);
+        if (!matris[row]) {
+          matris[row] = [];
+        }
+        matris[row].push(isActive);
+      }
 
-      img.src = imageUrls[currentImageIndex];
-      currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
-    }
+      createSymbol(matris);
+    };
 
-    setInterval(updateImage, 800);
+    img.src = imageUrls[currentImageIndex];
+    currentImageIndex = (currentImageIndex + 1) % imageUrls.length;
+  }
 
-    for (let i = 0; i < 1800; i++) {
-      const dot = document.createElement("div");
-      dot.classList.add("dot");
-      matrix.appendChild(dot);
-    }
+  setInterval(updateImage, 800);
 
-    function createSymbol(matris) {
-      for (let row = 0; row < matris.length; row++) {
-        for (let col = 0; col < matris[row].length; col++) {
-          const dotIndex = row * 60 + col;
-          const dot = document.querySelectorAll("#matrix .dot")[dotIndex];
+  for (let i = 0; i < 7200; i++) {
+    const dot = document.createElement("div");
+    dot.classList.add("dot");
+    matrix.appendChild(dot);
+  }
 
-          if(dot) {
-              if (matris[row][col] === 1) {
-                dot.classList.add("active");
-              } else {
-                dot.classList.remove("active");
-              }
+  function createSymbol(matris) {
+    for (let row = 0; row < matris.length; row++) {
+      for (let col = 0; col < matris[row].length; col++) {
+        const dotIndex = row * 120 + col;
+        const dot = document.querySelectorAll("#matrix .dot")[dotIndex];
+
+        if (dot) {
+          if (matris[row][col] === 1) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
           }
         }
       }
     }
+  }
 
-    let matris = [];
-    createSymbol(matris);
+  let matris = [];
+  createSymbol(matris);
 });

@@ -251,8 +251,8 @@
 
 /* DOT MATRIX CSS */
 :root {
-  --width: 60;
-  --height: 30;
+  --width: 120;
+  --height: 60;
   --border-w: 2px;
   --big-pd: 2rem;
   --corner-radius: 2rem;
@@ -261,7 +261,7 @@
 }
 
 #matrix {
-  width: calc(60 * 5px + 59 * 3px);
+  width: calc(120 * 5px + 119 * 3px);
   display: grid;
   grid-template-columns: repeat(var(--width), 0fr);
   grid-template-rows: repeat(var(--height), 0fr);
@@ -301,8 +301,8 @@
 }
 
 #matrix .dot:first-child,
-#matrix .dot:nth-child(60),
-#matrix .dot:nth-child(1741),
+#matrix .dot:nth-child(120),
+#matrix .dot:nth-child(7081),
 #matrix .dot:last-child {
   opacity: 0;
 }
