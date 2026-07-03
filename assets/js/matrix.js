@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const imageUrls = [
     "assets/sponser/cyberdefenders.png",
-    "assets/sponser/alteredsecurity.png"
+    "assets/sponser/alteredsecurity.png",
+    "assets/sponser/K7NoBG.png"
   ];
 
   let currentImageIndex = 0;
